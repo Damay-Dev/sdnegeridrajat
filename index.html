@@ -156,7 +156,7 @@
 
   <!-- ==================== 3. HERO JARGON SECTION ==================== -->
   <section id="hero-section" class="relative overflow-hidden py-16 md:py-24 bg-slate-950">
-    <div id="hero-bg" class="absolute inset-0 bg-cover bg-center opacity-25 animate-fadeIn"></div>
+    <div id="hero-bg" class="absolute inset-0 bg-cover bg-center opacity-25"></div>
     <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl -z-10 animate-pulse"></div>
     
     <div class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
@@ -196,7 +196,7 @@
         </div>
         <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl text-center shadow-md">
           <span id="stat-students" class="text-2xl md:text-3xl font-black text-emerald-400 block font-outfit">0</span>
-          <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Jumlah Murid</span>
+          <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider font-sans">Jumlah Murid</span>
         </div>
       </div>
     </div>
@@ -319,7 +319,7 @@
             <div class="space-y-3">
               <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-500/10 text-cyan-400"><i data-lucide="shield-check" class="w-5 h-5"></i></div>
               <h4 class="font-extrabold text-white text-sm">Sekolah Sehat</h4>
-              <p class="text-xs text-slate-400 leading-relaxed">Sinergi pembiasaan harian terintegrasi penuh di SD Negeri Drajat.</p>
+              <p class="text-xs text-slate-400 leading-relaxed">Sinergi pembiasaan harian terintegrasi penuh di SDN Drajat.</p>
             </div>
           </div>
         </div>
@@ -557,6 +557,15 @@
       </div>
     </div>
 
+    <!-- SUB-TAB 8: INFORMASI -->
+    <div id="tab-informasi" class="tab-view hidden max-w-4xl mx-auto space-y-8">
+      <div class="text-center space-y-2">
+        <span class="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700 font-outfit">PORTAL BERITA</span>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white font-serif-elegant">Warta & Berita Sekolah</h2>
+      </div>
+      <div id="berita-full-list" class="space-y-6"></div>
+    </div>
+
   </main>
 
   <!-- ==================== 5. FOOTER & DINAMIS LOGO KEMITRAAN ==================== -->
@@ -600,7 +609,7 @@
   
   <!-- Hello Drajat (Aduan / Aspirasi WA) -->
   <div class="fixed bottom-20 right-4 md:bottom-6 md:right-6 z-50 flex flex-col gap-2">
-    <button onclick="toggleHelloDrawer()" class="bg-emerald-600 hover:bg-emerald-700 text-slate-950 font-black p-3.5 rounded-full shadow-2xl border border-emerald-400 flex items-center gap-2 group transform hover:scale-105 transition-all">
+    <button onclick="toggleHelloDrawer()" class="bg-emerald-600 hover:bg-emerald-700 text-slate-950 font-black p-3.5 rounded-full shadow-2xl border border-emerald-450 flex items-center gap-2 group transform hover:scale-105 transition-all">
       <i data-lucide="shield-alert" class="w-5 h-5 animate-pulse text-slate-950"></i>
       <span class="text-xs font-black pr-1.5 hidden sm:inline">Hello Drajat</span>
     </button>
@@ -626,7 +635,7 @@
 
         <div class="space-y-1">
           <label class="block text-slate-400 font-bold">KATEGORI PELAYANAN</label>
-          <select id="hello-category" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-white">
+          <select id="hello-category" class="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-white font-semibold">
             <option value="Pengaduan">📣 Laporan Pengaduan</option>
             <option value="Saran">💡 Saran Perbaikan</option>
             <option value="Kritik">✍️ Kritik Sekolah</option>
@@ -752,7 +761,7 @@
         <!-- Teks Utama & Statistik -->
         <div class="space-y-2">
           <div><label class="text-[9px] font-bold text-slate-400 uppercase">Nama Lembaga</label><input id="edit-name" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></div>
-          <div><label class="text-[9px] font-bold text-slate-400 uppercase">Slogan Slogan</label><input id="edit-tagline" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></div>
+          <div><label class="text-[9px] font-bold text-slate-400 uppercase">Slogan Sekolah</label><input id="edit-tagline" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></div>
           <div><label class="text-[9px] font-bold text-slate-400 uppercase">Kepala Sekolah</label><input id="edit-principalName" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></div>
           <div><label class="text-[9px] font-bold text-slate-400 uppercase">Alamat Lengkap</label><input id="edit-address" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></div>
           <div><label class="text-[9px] font-bold text-slate-400 uppercase">Warta Utama</label><textarea id="edit-announcement" rows="2" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></textarea></div>
@@ -767,17 +776,9 @@
     </div>
   </div>
 
-  <!-- ==================== MOBILE NAVIGATION FOOTER ==================== -->
-  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-slate-950 border-t border-slate-800 py-2.5 px-3 flex items-center justify-around z-30 shadow-2xl">
-    <button onclick="switchTab('beranda')" class="flex flex-col items-center gap-1 text-[10px] text-emerald-400 font-bold"><i data-lucide="home" class="w-5 h-5"></i><span>Beranda</span></button>
-    <button onclick="switchTab('layanan', 'spmb')" class="flex flex-col items-center gap-1 text-[10px] text-slate-450"><i data-lucide="book-open" class="w-5 h-5"></i><span>Layanan</span></button>
-    <button onclick="switchTab('skm')" class="flex flex-col items-center gap-1 text-[10px] text-slate-450"><i data-lucide="heart-handshake" class="w-5 h-5"></i><span>Isi SKM</span></button>
-    <button onclick="switchTab('kontak')" class="flex flex-col items-center gap-1 text-[10px] text-slate-450"><i data-lucide="phone" class="w-5 h-5"></i><span>Kontak</span></button>
-  </div>
-
   <!-- ==================== DATA & JAVASCRIPT STATE CONTROLLER ==================== -->
   <script>
-    // --- DATABASE CONFIG AWAL (Dikonversi dari link Google Drive ke Direct CDN) ---
+    // --- DATABASE CONFIG AWAL (DAMAY: BISA DIEDIT LANGSUNG DI SINI UNTUK PERMANEN) ---
     let CONFIG = {
       name: "SD NEGERI DRAJAT",
       subName: "KEC. BAURENO KAB. BOJONEGORO",
@@ -788,23 +789,21 @@
       whatsappAduan: "6281234567890", 
       email: "sdndrajat@gmail.com",
       address: "Jl. Raya Drajat, Desa Drajat, Kec. Baureno, Kab. Bojonegoro, Jawa Timur 62191",
-      principalName: "NURUL HIDAYAH, S.Pd.SD.",
-      numPTK: "11",
+      principalName: "NURUL HIDAYAH, S.Pd.SD",
+      numPTK: "14",
       numRombel: "6",
       accreditation: "B",
-      numStudents: "31",
-      logoUrl: "https://lh3.googleusercontent.com/d/1T6JE6h7y-KmkqfgmvQARvx-UGKKbdhhT", 
-      heroBgUrl: "https://lh3.googleusercontent.com/d/16zESl_0sMWEpUBKEmOwv18_bjVjRVsAG",
+      numStudents: "128",
+      logoUrl: "", 
+      heroBgUrl: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1500",
       principalPhotoUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400",
-      cerdasBerkarakterLogoUrl: "https://lh3.googleusercontent.com/d/1XYCQfw13CJYjxUUT6wqQeoFRJtKAMnjL" 
+      cerdasBerkarakterLogoUrl: "" 
     };
 
     let PARTNERS = [
       { id: 1, name: "Kemendikbud Ristek", url: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Logo_of_Ministry_of_Education_and_Culture_of_Republic_of_Indonesia.svg" },
-      { id: 2, name: "KEMENDIDASMEN RAMAH", url: "https://lh3.googleusercontent.com/d/13S5TugO5tKXMH45YesA8kFmAfEbjpX0X" },
-      { id: 3, name: "Pendidikan Bermutu Untuk Semua", url: "https://lh3.googleusercontent.com/d/1lBWyJ6p46xUj45eJL10okkcjgbODxXKg" },
-      { id: 4, name: "BERAKHLAK", url: "https://lh3.googleusercontent.com/d/1I73FMXunq08Je6cUnhsh0M2mxNVtABHI" },
-      { id: 5, name: "Supporting Student Wellbeing", url: "https://lh3.googleusercontent.com/d/1wlivek8f1uyhO2XjpPflH5ej2CZq8Xw-" }
+      { id: 2, name: "Pemkab Bojonegoro", url: "https://lh3.googleusercontent.com/d/1ApGljkMedUVXHdDA3KBfIUGfTxueLTFX" },
+      { id: 3, name: "Merdeka Belajar", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Logo_Kampus_Merdeka_Kemenristekdikti.png/640px-Logo_Kampus_Merdeka_Kemenristekdikti.png" }
     ];
 
     let TEACHERS = [
@@ -821,7 +820,7 @@
     let GALLERY = [
       { id: 1, title: "Pramuka Siaga - Pembentukan Akhlak Mulia", category: "Pramuka Siaga", image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600", desc: "Murid kelas 1-3 belajar kemandirian melalui permainan tradisional dan ketangkasan kelompok yang menyenangkan." },
       { id: 2, title: "Pramuka Penggalang - Pionering Pembuatan Jembatan", category: "Pramuka Penggalang", image: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&q=80&w=600", desc: "Murid kelas 4-6 mempraktikkan ikatan tali-temali untuk membangun struktur jembatan darurat secara kompak." },
-      { id: 3, title: "Pencegahan Kekerasan & MPLS Ramah Murid", category: "Pembiasaan", image: "https://lh3.googleusercontent.com/d/18ukAn7JLaf_X6IWudBEmBxYB6W0Y7R66", desc: "Sinergi lingkungan belajar asri yang ramah, aman, bebas perundungan dan menyenangkan bagi peserta didik baru." }
+      { id: 3, title: "Pencegahan Kekerasan & Sekolah Ramah Murid", category: "Pembiasaan", image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=600", desc: "Sosialisasi preventif dan pembiasaan empati guna menjamin rasa aman jasmani dan psikologis seluruh murid." }
     ];
 
     let SERVICES = [
@@ -836,8 +835,8 @@
     ];
 
     let NEWS = [
-      { id: 1, title: "Menyambut Fajar Baru: MPLS Ramah Murid SD Negeri Drajat Hangatkan Langkah Awal Murid Hebat!", date: "06 Juli 2026", category: "MPLS Ramah", summary: "Hari pertama masuk sekolah di SD Negeri Drajat dihiasi senyum ramah dan pelukan hangat para guru. Program Masa Pengenalan Lingkungan Sekolah (MPLS) didesain menyenangkan tanpa tekanan fisik maupun mental, mengedepankan lingkungan asri yang ramah murid." },
-      { id: 2, title: "Implementasi Gerakan 7 Kebiasaan Anak Indonesia Hebat Guna Membentuk Karakter Unggul", date: "04 Juli 2026", category: "Karakter", summary: "Menyambut tahun ajaran baru, SD Negeri Drajat mengadopsi penuh program prioritas Cerdas Berkarakter Kemendikdasmen. Melalui sinergi guru dan wali murid, kami membiasakan 7 aktivitas harian positif di sekolah maupun rumah." }
+      { id: 1, title: "Menyambut Fajar Baru: MPLS Ramah Murid SDN Drajat Hangatkan Langkah Awal Murid Hebat!", date: "06 Juli 2026", category: "MPLS Ramah", summary: "Hari pertama masuk sekolah di SD Negeri Drajat dihiasi senyum ramah dan pelukan hangat para guru. Program Masa Pengenalan Lingkungan Sekolah (MPLS) didesain menyenangkan tanpa tekanan fisik maupun mental, mengedepankan lingkungan asri yang ramah murid." },
+      { id: 2, title: "Implementasi Gerakan 7 Kebiasaan Anak Indonesia Hebat Guna Membentuk Karakter Unggul", date: "04 Juli 2026", category: "Karakter", summary: "Menyambut tahun ajaran baru, SDN Drajat mengadopsi penuh program prioritas Cerdas Berkarakter Kemendikdasmen. Melalui sinergi guru dan wali murid, kami membiasakan 7 aktivitas harian positif di sekolah maupun rumah." }
     ];
 
     // --- STATE KEAMANAN ---
@@ -906,7 +905,7 @@
       teachersGrid.innerHTML = '';
       TEACHERS.forEach(t => {
         teachersGrid.innerHTML += `
-          <div class="bg-slate-950 border border-slate-855 p-4 rounded-2xl text-center space-y-3">
+          <div class="bg-slate-950 border border-slate-850 p-4 rounded-2xl text-center space-y-3">
             <div class="w-20 h-20 rounded-full overflow-hidden mx-auto border-2 border-slate-800 bg-slate-900">
               <img src="${t.photo}" alt="${t.name}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200'">
             </div>
@@ -932,12 +931,30 @@
               <h4 class="font-extrabold text-white text-base leading-snug line-clamp-2">${item.title}</h4>
               <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">${item.summary}</p>
             </div>
-            <span onclick="switchTab('informasi')" class="text-emerald-400 text-xs font-bold hover:underline cursor-pointer block pt-3 border-t border-slate-800">Baca Selengkapnya →</span>
+            <span onclick="switchTab('informasi')" class="text-emerald-400 text-xs font-bold hover:underline cursor-pointer block pt-3 border-t border-slate-800 font-outfit">Baca Selengkapnya →</span>
           </div>
         `;
       });
 
-      // 8. Render Logo Kemitraan (Footer)
+      // 8. Render Berita di halaman Informasi Lengkap
+      const beritaFullList = document.getElementById('berita-full-list');
+      if (beritaFullList) {
+        beritaFullList.innerHTML = '';
+        NEWS.forEach(item => {
+          beritaFullList.innerHTML += `
+            <div class="bg-slate-900 border border-slate-800 p-6 md:p-8 rounded-3xl space-y-3">
+              <div class="flex justify-between items-center text-[10px] font-bold text-amber-400 uppercase">
+                <span>${item.category}</span>
+                <span class="text-slate-500">${item.date}</span>
+              </div>
+              <h3 class="font-extrabold text-white text-base md:text-lg leading-snug">${item.title}</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">${item.summary}</p>
+            </div>
+          `;
+        });
+      }
+
+      // 9. Render Logo Kemitraan (Footer)
       const partnersView = document.getElementById('partners-view');
       partnersView.innerHTML = '';
       PARTNERS.forEach(p => {
@@ -946,7 +963,7 @@
         `;
       });
 
-      // 9. Initial SKM Feed & Chatbot
+      // 10. Initial SKM Feed & Chatbot
       renderSkmFeed();
       renderChatMessages();
     }
@@ -969,7 +986,7 @@
         const targetCategory = subTabId === 'infra' ? 'Infrastruktur' : 'Pembelajaran';
         FACILITIES.filter(item => item.category === targetCategory).forEach(item => {
           facilitiesGrid.innerHTML += `
-            <div class="bg-slate-900 border border-slate-800 overflow-hidden rounded-2xl shadow-sm">
+            <div class="bg-slate-900 border border-slate-800 overflow-hidden rounded-2xl shadow-sm animate-fadeIn">
               <div class="h-44 bg-slate-950 overflow-hidden">
                 <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
               </div>
@@ -1001,7 +1018,7 @@
           galleryGrid.innerHTML = '';
           GALLERY.filter(item => item.category === categoryTarget).forEach(item => {
             galleryGrid.innerHTML += `
-              <div class="bg-slate-900 border border-slate-800 overflow-hidden rounded-2xl shadow-sm">
+              <div class="bg-slate-900 border border-slate-800 overflow-hidden rounded-2xl shadow-sm animate-fadeIn">
                 <div class="h-44 bg-slate-950 overflow-hidden">
                   <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
                 </div>
@@ -1017,7 +1034,7 @@
 
       // Filter sub tab SOP Layanan
       if (tabId === 'layanan') {
-        document.getElementById('layanan-title-page').innerText = subTabId === 'spmb' ? 'Penerimaan Murid Baru (PPDB)' : subTabId === 'legalisir' ? 'SOP Legalisir Dokumen' : 'SOP Mutasi Murid';
+        document.getElementById('layanan-title-page').innerText = subTabId === 'spmb' ? 'Penerimaan Murid Baru (PPDB Online)' : subTabId === 'legalisir' ? 'SOP Legalisir Dokumen' : 'SOP Mutasi Murid';
         const listContainer = document.getElementById('services-view-list');
         listContainer.innerHTML = '';
         SERVICES.filter(item => item.category === subTabId).forEach(s => {
@@ -1036,7 +1053,7 @@
 
       // Ubah warna active nav button di desktop
       document.querySelectorAll('.nav-item-btn').forEach(btn => {
-        btn.className = "nav-item-btn px-4 py-2 rounded-full transition-all text-slate-355 hover:text-white hover:bg-slate-800";
+        btn.className = "nav-item-btn px-4 py-2 rounded-full transition-all text-slate-300 hover:text-white hover:bg-slate-800";
       });
       const activeBtn = document.getElementById('btn-nav-' + tabId);
       if (activeBtn) activeBtn.className = "nav-item-btn px-4 py-2 rounded-full transition-all bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 font-black";
@@ -1097,7 +1114,7 @@
                 ${item.rating}
               </span>
             </div>
-            <p class="text-xs text-slate-400 italic">"${item.comment}"</p>
+            <p class="text-xs text-slate-400 italic font-sans">"${item.comment}"</p>
           </div>
         `;
       });
@@ -1126,7 +1143,7 @@
 
       if (!text.trim()) return;
 
-      const formatted = `*HELLO DRAJAT – SD Negeri Drajat*\n----------------------------------------\n*Kategori:* ${cat}\n*Sistem:* ${helloTarget === 'Admin' ? 'Sapa Admin' : 'Ki Drajat Bot'}\n\n*Pesan / Aspirasi:*\n"${text}"\n\n----------------------------------------\n_Dikirim otomatis via Portal Hello Drajat_`;
+      const formatted = `*HELLO DRAJAT - SDN Drajat*\n----------------------------------------\n*Kategori:* ${cat}\n*Sistem:* ${helloTarget === 'Admin' ? 'Sapa Admin' : 'Ki Drajat Bot'}\n\n*Pesan / Aspirasi:*\n"${text}"\n\n----------------------------------------\n_Dikirim otomatis via Portal Hello Drajat_`;
       const waUrl = `https://api.whatsapp.com/send?phone=${CONFIG.whatsappAduan}&text=${encodeURIComponent(formatted)}`;
       window.open(waUrl, '_blank');
       toggleHelloDrawer();
@@ -1164,7 +1181,7 @@
       } else if (option === '📋 HELLO Drajat') {
         ans = "Layanan digital terintegrasi yang mempermudah legalisir ijazah cepat, PPDB online, hingga sarana pelaporan wali murid langsung ke admin via WhatsApp.";
       } else if (option === '🏕️ Pramuka') {
-        ans = "Pengembangan Pramuka di SD Negeri Drajat dibagi menjadi Pramuka Siaga (kelas 1-3) untuk kemandirian, dan Pramuka Penggalang (kelas 4-6) untuk kepemimpinan.";
+        ans = "Pengembangan Pramuka di SDN Drajat dibagi menjadi Pramuka Siaga (kelas 1-3) untuk kemandirian, dan Pramuka Penggalang (kelas 4-6) untuk kepemimpinan.";
       } else {
         ans = "PPDB Tahun Ajaran Baru di SD Negeri Drajat telah resmi dibuka secara online bebas biaya. Hubungi admin via HELLO Drajat untuk panduan berkas.";
       }
@@ -1213,8 +1230,8 @@
       PARTNERS.forEach(p => {
         container.innerHTML += `
           <div class="flex justify-between items-center bg-slate-950 p-2 rounded border border-slate-850">
-            <span class="truncate max-w-[200px] text-slate-350 font-semibold">${p.name}</span>
-            <button onclick="deletePartner(${p.id})" class="text-rose-400 hover:text-rose-500">Hapus</button>
+            <span class="truncate max-w-[200px] text-slate-355 font-semibold">${p.name}</span>
+            <button onclick="deletePartner(${p.id})" class="text-rose-400 hover:text-rose-500 font-bold">Hapus</button>
           </div>
         `;
       });
@@ -1234,6 +1251,26 @@
     function deletePartner(id) {
       PARTNERS = PARTNERS.filter(p => p.id !== id);
       renderAdminPartners();
+    }
+
+    function saveKustomisasi() {
+      CONFIG.logoUrl = document.getElementById('edit-logoUrl').value;
+      CONFIG.principalPhotoUrl = document.getElementById('edit-principalPhoto').value;
+      CONFIG.heroBgUrl = document.getElementById('edit-heroBg').value;
+      CONFIG.cerdasBerkarakterLogoUrl = document.getElementById('edit-cerdasLogo').value;
+      CONFIG.name = document.getElementById('edit-name').value;
+      CONFIG.tagline = document.getElementById('edit-tagline').value;
+      CONFIG.principalName = document.getElementById('edit-principalName').value;
+      CONFIG.address = document.getElementById('edit-address').value;
+      CONFIG.announcement = document.getElementById('edit-announcement').value;
+      CONFIG.numStudents = document.getElementById('edit-numStudents').value;
+      CONFIG.numPTK = document.getElementById('edit-numPTK').value;
+
+      localStorage.setItem('sdn_drajat_config', JSON.stringify(CONFIG));
+      localStorage.setItem('sdn_drajat_partners', JSON.stringify(PARTNERS));
+
+      renderAllViews();
+      toggleAdminPanel();
     }
 
     // --- CODES COMPILER STATIC DOWNLOAD (CMS MANDIRI) ---
