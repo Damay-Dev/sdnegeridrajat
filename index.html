@@ -57,12 +57,12 @@ export default function App() {
   const [newPasswordSetting, setNewPasswordSetting] = useState("");
   const [passwordChangeSuccess, setPasswordChangeSuccess] = useState(false);
 
-  // --- GOOGLE SHEETS API URL ---
+  // --- GOOGLE SHEETS API URL (Opsional untuk Database Cloud) ---
   const [googleScriptUrl, setGoogleScriptUrl] = useState(() => {
     return localStorage.getItem('sdn_drajat_script_url') || "";
   });
 
-  // --- STATE KUSTOMISASI KONTEN UTAMA ---
+  // --- STATE KUSTOMISASI KONTEN UTAMA (Disimpan di LocalStorage) ---
   const [schoolConfig, setSchoolConfig] = useState(() => {
     const saved = localStorage.getItem('sdn_drajat_config');
     if (saved) return JSON.parse(saved);
@@ -81,6 +81,8 @@ export default function App() {
       numRombel: "6",
       accreditation: "A",
       numStudents: "128",
+      
+      // MEDIA UTAMA
       logoUrl: "", 
       heroBgUrl: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1500",
       principalPhotoUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400",
@@ -88,7 +90,7 @@ export default function App() {
     };
   });
 
-  // Database Berita Mandiri
+  // Database Berita Mandiri (Menyambut Murid Baru & MPLS Ramah Anak)
   const [newsList, setNewsList] = useState(() => {
     const saved = localStorage.getItem('sdn_drajat_news');
     if (saved) return JSON.parse(saved);
@@ -121,7 +123,7 @@ export default function App() {
     ];
   });
 
-  // Database Fasilitas Sekolah
+  // Database Fasilitas Sekolah (Infrastruktur & Pembelajaran)
   const [facilitiesList, setFacilitiesList] = useState(() => {
     const saved = localStorage.getItem('sdn_drajat_facilities');
     if (saved) return JSON.parse(saved);
@@ -131,7 +133,7 @@ export default function App() {
     ];
   });
 
-  // Database Galeri Kegiatan Sekolah
+  // Database Galeri Kegiatan Sekolah (Pramuka Siaga, Penggalang, Pembiasaan)
   const [galleryList, setGalleryList] = useState(() => {
     const saved = localStorage.getItem('sdn_drajat_gallery');
     if (saved) return JSON.parse(saved);
@@ -153,7 +155,7 @@ export default function App() {
     ];
   });
 
-  // Database Logo Afiliasi
+  // Database Logo Afiliasi/Kemitraan di Bagian Bawah Web
   const [partnerLogos, setPartnerLogos] = useState(() => {
     const saved = localStorage.getItem('sdn_drajat_partners');
     if (saved) return JSON.parse(saved);
@@ -190,7 +192,7 @@ export default function App() {
   const [surveySubmitted, setSurveySubmitted] = useState(false);
   const [surveySubmitting, setSurveySubmitting] = useState(false);
 
-  // --- HELLO DRAJAT SYSTEM ---
+  // --- HELLO DRAJAT SYSTEM (WhatsApp Deep Linking) ---
   const [isHelloOpen, setIsHelloOpen] = useState(false);
   const [helloData, setHelloData] = useState({
     target: "SapaAdmin", 
@@ -214,7 +216,7 @@ export default function App() {
   const [newArticle, setNewArticle] = useState({ title: "", category: "Inovasi", summary: "" });
   const [newTeacherInput, setNewTeacherInput] = useState({ name: "", role: "", photo: "" });
   const [newGalleryInput, setNewGalleryInput] = useState({ title: "", category: "Pramuka Siaga", image: "", desc: "" });
-  const [newFacilityInput, setNewFacilityInput] = useState({ title: "", category: "Pembelajaran", image: "", desc: "" });
+  const [newFacilityInput, setNewGalleryFacility] = useState({ title: "", category: "Pembelajaran", image: "", desc: "" });
   const [newServiceInput, setNewServiceInput] = useState({ title: "", category: "spmb", desc: "", time: "", cost: "" });
   const [newPartnerInput, setNewPartnerInput] = useState({ name: "", url: "" });
 
@@ -259,7 +261,7 @@ export default function App() {
     localStorage.setItem('sdn_drajat_script_url', googleScriptUrl);
   }, [googleScriptUrl]);
 
-  // --- HITUNG STATISTIK SURVEI SKM ---
+  // --- HITUNG STATISTIK SURVEI SKM SECARA DINAMIS (ANTI KOSONG) ---
   const safeResponses = Array.isArray(skmResponses) ? skmResponses : [];
   const totalVotes = safeResponses.length;
   const sangatPuasCount = safeResponses.filter(r => r.rating === "Sangat Puas").length;
@@ -391,7 +393,7 @@ export default function App() {
     if (newFacilityInput.title.trim() && newFacilityInput.desc.trim()) {
       const fallback = "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&q=80&w=400";
       setFacilitiesList([...facilitiesList, { id: Date.now(), title: newFacilityInput.title, category: newFacilityInput.category, image: newFacilityInput.image.trim() || fallback, desc: newFacilityInput.desc }]);
-      setNewFacilityInput({ title: "", category: "Pembelajaran", image: "", desc: "" });
+      setNewGalleryFacility({ title: "", category: "Pembelajaran", image: "", desc: "" });
     }
   };
 
@@ -424,10 +426,19 @@ export default function App() {
     setPartnerLogos(partnerLogos.filter(item => item.id !== id));
   };
 
+  // --- THEME COLOR SELECTION ---
+  const currentTheme = {
+    bg: "from-emerald-500 to-teal-600",
+    text: "text-emerald-400",
+    border: "border-emerald-500/30",
+    badge: "bg-emerald-950/80 text-emerald-400 border-emerald-800/60",
+    buttonBg: "from-emerald-400 to-teal-500 hover:from-emerald-500 hover:to-teal-600",
+  };
+
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 font-sans flex flex-col pb-16 md:pb-0 select-none">
       
-      {/* 1. BILAH INFORMASI KAPSUL BERDENYUT */}
+      {/* 1. BILAH INFORMASI KAPSUL BERDENYUT (Modern News Ticker) */}
       <div className="bg-slate-950/90 border-b border-slate-800/80 py-3.5 px-4 shadow-2xl relative">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -453,6 +464,7 @@ export default function App() {
       <header className="bg-slate-950/90 backdrop-blur-md border-b border-slate-800/60 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
           
+          {/* Logo Brand */}
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => { setActiveTab('beranda'); setActiveSubTab(''); }}>
             {schoolConfig.logoUrl ? (
               <img 
@@ -475,8 +487,14 @@ export default function App() {
                 <h1 className="text-base md:text-lg font-black tracking-wider text-white leading-tight">
                   {schoolConfig.name}
                 </h1>
+                
+                {/* Dynamic Cerdas Berkarakter Logo */}
                 {schoolConfig.cerdasBerkarakterLogoUrl ? (
-                  <img src={schoolConfig.cerdasBerkarakterLogoUrl} alt="Cerdas Berkarakter" className="h-6 object-contain" />
+                  <img 
+                    src={schoolConfig.cerdasBerkarakterLogoUrl} 
+                    alt="Cerdas Berkarakter" 
+                    className="h-6 object-contain"
+                  />
                 ) : (
                   <span className="hidden sm:inline-block bg-emerald-950 text-emerald-400 border border-emerald-800 text-[8px] font-black uppercase px-1.5 py-0.5 rounded">
                     Cerdas Berkarakter
@@ -489,10 +507,12 @@ export default function App() {
             </div>
           </div>
 
+          {/* Desktop Navigation Menus */}
           <nav className="hidden md:flex items-center gap-1.5 bg-slate-900 border border-slate-800 p-1.5 rounded-full text-xs font-bold shadow-2xl">
             <button onClick={() => { setActiveTab('beranda'); setActiveSubTab(''); }} className={`px-4 py-2 rounded-full transition-all ${activeTab === 'beranda' ? 'bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950' : 'text-slate-300 hover:text-white hover:bg-slate-800'}`}>Beranda</button>
             <button onClick={() => { setActiveTab('profil'); setActiveSubTab(''); }} className={`px-4 py-2 rounded-full transition-all ${activeTab === 'profil' ? 'bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950' : 'text-slate-300 hover:text-white hover:bg-slate-800'}`}>Profil & Guru</button>
             
+            {/* Dropdown Fasilitas */}
             <div className="relative">
               <button 
                 onClick={() => setDropdownActive({ ...dropdownActive, fasilitas: !dropdownActive.fasilitas, pengembangan: false, layanan: false, informasi: false })}
@@ -508,6 +528,7 @@ export default function App() {
               )}
             </div>
 
+            {/* Dropdown Pengembangan */}
             <div className="relative">
               <button 
                 onClick={() => setDropdownActive({ ...dropdownActive, pengembangan: !dropdownActive.pengembangan, fasilitas: false, layanan: false, informasi: false })}
@@ -524,6 +545,7 @@ export default function App() {
               )}
             </div>
 
+            {/* Dropdown Layanan */}
             <div className="relative">
               <button 
                 onClick={() => setDropdownActive({ ...dropdownActive, layanan: !dropdownActive.layanan, fasilitas: false, pengembangan: false, informasi: false })}
@@ -544,11 +566,13 @@ export default function App() {
             <button onClick={() => { setActiveTab('kontak'); setActiveSubTab(''); }} className={`px-4 py-2 rounded-full transition-all ${activeTab === 'kontak' ? 'bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950' : 'text-slate-300 hover:text-white hover:bg-slate-800'}`}>Kontak</button>
           </nav>
 
+          {/* Mobile Menu Trigger */}
           <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden p-2.5 bg-slate-900 border border-slate-800 rounded-xl">
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
 
+        {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
           <div className="md:hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur-lg px-4 py-4 space-y-2 font-bold text-sm">
             <button onClick={() => { setActiveTab('beranda'); setActiveSubTab(''); setIsMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900">Beranda</button>
@@ -560,16 +584,18 @@ export default function App() {
         )}
       </header>
 
-      {/* 3. HERO JARGON & SAMBUTAN */}
+      {/* 3. HERO JARGON & SAMBUTAN (Filosofi Ki Hadjar Dewantara) */}
       {activeTab === 'beranda' && (
         <section className="relative overflow-hidden py-16 md:py-24 bg-slate-950">
           <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url('${schoolConfig.heroBgUrl}')` }}></div>
+          
           <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+            
+            <div className="lg:col-span-7 space-y-6 text-center lg:text-left animate-fadeIn">
               <span className="inline-flex bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg">
                 PORTAL RESMI {schoolConfig.name}
               </span>
-              <h2 className="text-3xl md:text-5xl font-black text-white leading-tight">
+              <h2 className="text-3xl md:text-5xl font-black text-white leading-tight font-serif-elegant">
                 {schoolConfig.tagline}
               </h2>
               <p className="text-sm md:text-base text-slate-400 leading-relaxed max-w-xl">
@@ -585,6 +611,7 @@ export default function App() {
               </div>
             </div>
 
+            {/* WIDGET STATISTIK RIIL */}
             <div className="lg:col-span-5 grid grid-cols-2 gap-4">
               <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl text-center shadow-md">
                 <span className="text-2xl md:text-3xl font-black text-emerald-400 block">{schoolConfig.numPTK}</span>
@@ -603,6 +630,7 @@ export default function App() {
                 <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Jumlah Murid</span>
               </div>
             </div>
+
           </div>
         </section>
       )}
@@ -610,15 +638,19 @@ export default function App() {
       {/* 4. MAIN CONTAINER CONTENT */}
       <main className="flex-1 max-w-7xl mx-auto px-4 md:px-8 py-8 w-full">
         
+        {/* BERANDA TAB */}
         {activeTab === 'beranda' && (
           <div className="space-y-16">
-            <div className="space-y-8 bg-slate-950/65 p-8 rounded-3xl border border-slate-800/80 relative overflow-hidden shadow-2xl">
+            
+            {/* SEKSI KHUSUS FILOSOFI PENDIDIKAN KI HADJAR DEWANTARA */}
+            <div className="space-y-8 bg-slate-950/65 p-8 rounded-3xl border border-slate-800/80 relative overflow-hidden shadow-2xl animate-fadeIn">
               <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl"></div>
+              
               <div className="text-center space-y-2 relative z-10 max-w-2xl mx-auto">
                 <span className="text-[9px] text-emerald-400 font-extrabold uppercase tracking-widest bg-emerald-950/80 px-4 py-1.5 rounded-full border border-emerald-800/40">
                   FILOSOFI KI HADJAR DEWANTARA
                 </span>
-                <h3 className="text-2xl md:text-3xl font-black text-white leading-snug">
+                <h3 className="text-2xl md:text-3xl font-black text-white font-serif-elegant leading-snug">
                   Menuntun Tumbuh Kembang Setiap Jiwa Murid
                 </h3>
                 <p className="text-xs text-slate-400 leading-relaxed">
@@ -626,44 +658,62 @@ export default function App() {
                 </p>
               </div>
 
+              {/* 4 Pilar Visi dari Gambar CGP */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 relative z-10">
-                <div className="bg-slate-900/60 p-5 rounded-2xl border border-slate-800/80 flex gap-4 items-start hover:border-emerald-500/30 transition-all">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 text-lg">💎</div>
+                <div className="bg-slate-900/60 p-5 rounded-2xl border border-slate-800/80 flex gap-4 items-start hover:border-emerald-500/30 transition-all hover:scale-[1.01] duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 text-lg font-bold">
+                    💎
+                  </div>
                   <div className="space-y-1">
                     <h4 className="font-extrabold text-white text-xs uppercase tracking-wider text-emerald-400">Merdeka & Berkarakter</h4>
-                    <p className="text-xs text-slate-400 leading-relaxed">Murid dituntun tumbuh berkarakter mandiri, jujur, serta mampu menghormati segala bentuk perbedaan.</p>
+                    <p className="text-xs text-slate-400 leading-relaxed">Murid dituntun tumbuh berkarakter mandiri, jujur, serta mampu menghormati segala bentuk perbedaan di masyarakat.</p>
                   </div>
                 </div>
-                <div className="bg-slate-900/60 p-5 rounded-2xl border border-slate-800/80 flex gap-4 items-start hover:border-emerald-500/30 transition-all">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 text-lg">🚀</div>
+
+                <div className="bg-slate-900/60 p-5 rounded-2xl border border-slate-800/80 flex gap-4 items-start hover:border-emerald-500/30 transition-all hover:scale-[1.01] duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 text-lg font-bold">
+                    🚀
+                  </div>
                   <div className="space-y-1">
                     <h4 className="font-extrabold text-white text-xs uppercase tracking-wider text-emerald-400">Optimalisasi Potensi</h4>
-                    <p className="text-xs text-slate-400 leading-relaxed">Guru membersamai murid menemukenali potensi dirinya melalui bimbingan yang terarah.</p>
+                    <p className="text-xs text-slate-400 leading-relaxed">Guru membersamai murid menemukenali potensi dirinya melalui bimbingan yang terarah, ruang ekspresi, dan keteladanan harian secara merdeka.</p>
                   </div>
                 </div>
-                <div className="bg-slate-900/60 p-5 rounded-2xl border border-slate-800/80 flex gap-4 items-start hover:border-emerald-500/30 transition-all">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 text-lg">🤝</div>
+
+                <div className="bg-slate-900/60 p-5 rounded-2xl border border-slate-800/80 flex gap-4 items-start hover:border-emerald-500/30 transition-all hover:scale-[1.01] duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 text-lg font-bold">
+                    🤝
+                  </div>
                   <div className="space-y-1">
                     <h4 className="font-extrabold text-white text-xs uppercase tracking-wider text-emerald-400">Selamat, Nyaman & Bahagia</h4>
-                    <p className="text-xs text-slate-400 leading-relaxed">Pencegahan dini terhadap segala bentuk perundungan fisik, verbal, maupun siber.</p>
+                    <p className="text-xs text-slate-400 leading-relaxed">Pencegahan dini terhadap segala bentuk perundungan fisik, verbal, maupun siber lewat kampanye aktif anti-bullying.</p>
                   </div>
                 </div>
-                <div className="bg-slate-900/60 p-5 rounded-2xl border border-slate-800/80 flex gap-4 items-start hover:border-emerald-500/30 transition-all">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 text-lg">🌿</div>
+
+                <div className="bg-slate-900/60 p-5 rounded-2xl border border-slate-800/80 flex gap-4 items-start hover:border-emerald-500/30 transition-all hover:scale-[1.01] duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 text-lg font-bold">
+                    🌿
+                  </div>
                   <div className="space-y-1">
                     <h4 className="font-extrabold text-white text-xs uppercase tracking-wider text-emerald-400">Kesejahteraan Murid (Well-being)</h4>
-                    <p className="text-xs text-slate-400 leading-relaxed">Lingkungan belajar asri, sejuk, dan inklusif yang melahirkan rasa bahagia belajar.</p>
+                    <p className="text-xs text-slate-400 leading-relaxed">Lingkungan belajar asri, sejuk, dan inklusif yang melahirkan rasa bahagia belajar sepanjang hayat (lifelong learners).</p>
                   </div>
                 </div>
               </div>
             </div>
 
+            {/* KEUNGGULAN KAMI CARDS */}
             <div className="space-y-8">
               <div className="text-center space-y-2">
-                <span className="text-[10px] text-emerald-400 font-extrabold uppercase tracking-widest bg-emerald-950/80 px-4 py-1.5 rounded-full border border-emerald-800/40">LENTERA MASA DEPAN</span>
-                <h3 className="text-2xl md:text-4xl font-black text-white">Lingkungan Belajar yang Sehat & Inspiratif</h3>
+                <span className="text-[10px] text-emerald-400 font-extrabold uppercase tracking-widest bg-emerald-950/80 px-4 py-1.5 rounded-full border border-emerald-800/40">
+                  LENTERA MASA DEPAN
+                </span>
+                <h3 className="text-2xl md:text-4xl font-black text-white font-serif-elegant">
+                  Lingkungan Belajar yang Sehat & Inspiratif
+                </h3>
                 <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full"></div>
               </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
                   { emoji: "🌱", title: "Unggul dalam Kreativitas", desc: "Menciptakan ruang kreasi bebas hambatan melalui kurikulum digital adaptif." },
@@ -671,8 +721,8 @@ export default function App() {
                   { emoji: "💎", title: "Akhlakul Karimah", desc: "Mengutamakan pembentukan budi pekerti, pembiasaan sholat berjamaah & ngaji pagi." },
                   { emoji: "🚀", title: "Inovasi Pembelajaran", desc: "Eksplorasi ilmu sains dan sosial berbasis teknologi digital termutakhir." }
                 ].map((item, idx) => (
-                  <div key={idx} className="bg-slate-950 border border-slate-800 p-6 rounded-3xl hover:border-emerald-500/30 transition-all group relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl"></div>
+                  <div key={idx} className="bg-slate-950 border border-slate-800 p-6 rounded-3xl hover:border-emerald-500/30 transition-all hover:-translate-y-1 duration-300 relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl group-hover:bg-emerald-500/10 transition-colors"></div>
                     <span className="text-3xl block mb-3">{item.emoji}</span>
                     <h4 className="font-extrabold text-white text-base mb-1.5">{item.title}</h4>
                     <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
@@ -681,14 +731,15 @@ export default function App() {
               </div>
             </div>
 
+            {/* Sambutan Kepala Sekolah */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-slate-900 border border-slate-800 p-6 md:p-8 rounded-3xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/5 rounded-full blur-3xl"></div>
               <div className="lg:col-span-8 space-y-4 relative z-10">
                 <div className="border-l-4 border-emerald-500 pl-4">
                   <span className="text-[10px] text-emerald-400 font-bold uppercase block tracking-wider">Aspirasi Pemimpin</span>
-                  <h3 className="text-xl md:text-2xl font-black text-white">Sambutan Kepala Sekolah SD Negeri Drajat</h3>
+                  <h3 className="text-xl md:text-2xl font-black text-white font-serif-elegant">Sambutan Kepala Sekolah SD Negeri Drajat</h3>
                 </div>
-                <p className="text-slate-300 text-xs md:text-sm leading-relaxed italic bg-slate-950/40 p-5 rounded-2xl border border-slate-850">
+                <p className="text-slate-300 text-xs md:text-sm leading-relaxed italic font-serif bg-slate-950/40 p-5 rounded-2xl border border-slate-850">
                   "Menghadapi tantangan transformasi digital nasional, SD Negeri Drajat berkomitmen menyelenggarakan layanan pendidikan dasar ramah murid, berwawasan lingkungan hijau, serta mengedepankan transparansi administrasi tanpa pungutan biaya."
                 </p>
                 <span className="text-xs text-slate-400 font-bold block">— {schoolConfig.principalName} (Kepala Sekolah)</span>
@@ -700,6 +751,7 @@ export default function App() {
               </div>
             </div>
 
+            {/* Berita Sekolah & Pengumuman Terbaru */}
             <div className="space-y-6">
               <div className="border-b border-slate-800 pb-4 flex justify-between items-end">
                 <div>
@@ -708,6 +760,7 @@ export default function App() {
                 </div>
                 <button onClick={() => { setActiveTab('informasi'); setActiveSubTab('berita'); }} className="text-xs text-emerald-400 font-bold hover:underline flex items-center gap-1">Semua Berita <ChevronRight className="w-4 h-4" /></button>
               </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {newsList.map(news => (
                   <div key={news.id} className="bg-slate-950 border border-slate-800 p-6 rounded-3xl flex flex-col justify-between space-y-4 hover:border-slate-700 transition-all">
@@ -724,24 +777,28 @@ export default function App() {
                 ))}
               </div>
             </div>
+
           </div>
         )}
 
         {/* PROFIL TAB */}
         {activeTab === 'profil' && (
-          <div className="max-w-4xl mx-auto space-y-12">
+          <div className="max-w-4xl mx-auto space-y-12 animate-fadeIn">
             <div className="text-center space-y-2">
               <span className="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700">KENALI KAMI</span>
-              <h2 className="text-2xl md:text-4xl font-extrabold text-white">Visi, Misi & Dewan Guru</h2>
+              <h2 className="text-2xl md:text-4xl font-extrabold text-white font-serif-elegant">Visi, Misi & Dewan Guru</h2>
               <div className="w-20 h-1 bg-emerald-500 mx-auto rounded-full"></div>
             </div>
+
             <div className="bg-slate-900 border border-slate-850 p-6 md:p-8 rounded-3xl space-y-6">
               <div className="space-y-3">
                 <h3 className="font-extrabold text-white text-base border-l-4 border-emerald-500 pl-3">Visi Sekolah</h3>
-                <p className="text-slate-300 italic text-sm p-4 bg-slate-950/40 rounded-xl border border-slate-850 leading-relaxed">
+                <p className="text-slate-300 font-serif italic text-sm p-4 bg-slate-950/40 rounded-xl border border-slate-850 leading-relaxed">
                   {schoolConfig.tagline}
                 </p>
               </div>
+
+              {/* Dewan Guru & PTK */}
               <div className="space-y-4 pt-4 border-t border-slate-850">
                 <h3 className="font-extrabold text-white text-base border-l-4 border-emerald-500 pl-3 mb-3">Dewan Guru & Tenaga Kependidikan</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
@@ -767,15 +824,16 @@ export default function App() {
           </div>
         )}
 
-        {/* FASILITAS TAB */}
+        {/* FASILITAS TAB (Kustomisasi Fleksibel Penuh) */}
         {activeTab === 'fasilitas' && (
-          <div className="space-y-8">
+          <div className="space-y-8 animate-fadeIn">
             <div className="text-center space-y-2">
               <span className="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700">SARANA PRASARANA</span>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-white">
+              <h2 className="text-2xl md:text-3xl font-extrabold text-white font-serif-elegant">
                 {activeSubTab === 'infra' ? 'Sarana Infrastruktur' : 'Sarana Pembelajaran'}
               </h2>
             </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {facilitiesList.filter(item => activeSubTab === 'infra' ? item.category === 'Infrastruktur' : item.category === 'Pembelajaran').map((item) => (
                 <div key={item.id} className="bg-slate-900 border border-slate-800 overflow-hidden rounded-2xl shadow-sm">
@@ -792,22 +850,33 @@ export default function App() {
           </div>
         )}
 
-        {/* PENGEMBANGAN TAB */}
+        {/* PENGEMBANGAN / PROGRAM & PEMBIASAAN TAB */}
         {activeTab === 'pengembangan' && (
-          <div className="space-y-12">
+          <div className="space-y-12 animate-fadeIn">
+            
             {activeSubTab === 'pembiasaan' ? (
               <div className="space-y-12">
                 <div className="text-center space-y-2">
                   <span className="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700">PROGRAM & PEMBIASAAN</span>
-                  <h2 className="text-2xl md:text-4xl font-extrabold text-white">3 Program Prioritas Cerdas Berkarakter</h2>
+                  <h2 className="text-2xl md:text-4xl font-extrabold text-white font-serif-elegant">3 Program Prioritas Cerdas Berkarakter</h2>
                   <div className="w-20 h-1 bg-emerald-500 mx-auto rounded-full"></div>
                 </div>
+
+                {/* INFOGRAFIS INTERAKTIF PREMIUM */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                  <div className="bg-slate-950 border border-slate-800 rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between group shadow-lg">
+                  
+                  {/* Prioritas 1 */}
+                  <div className="bg-slate-950 border border-slate-800 rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between hover:border-emerald-500/40 transition-all duration-300 group shadow-lg">
+                    <div className="absolute -top-12 -right-12 w-32 h-32 bg-amber-500/5 rounded-full blur-2xl group-hover:bg-amber-500/10 transition-colors"></div>
                     <div className="space-y-4">
-                      <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-xl text-amber-400 font-black">01</div>
-                      <h3 className="text-lg font-black text-white">Gerakan 7 Kebiasaan Anak Indonesia Hebat</h3>
-                      <p className="text-xs text-slate-400 leading-relaxed">Pembiasaan perilaku sehat harian yang mengintegrasikan pilar fisik, mental, sosial, dan spiritual murid.</p>
+                      <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-xl text-amber-400 font-black animate-pulse">
+                        01
+                      </div>
+                      <h3 className="text-lg font-black text-white font-serif-elegant">Gerakan 7 Kebiasaan Anak Indonesia Hebat</h3>
+                      <p className="text-xs text-slate-400 leading-relaxed">
+                        Pembiasaan perilaku sehat harian yang mengintegrasikan pilar fisik, mental, sosial, dan spiritual murid agar tumbuh seimbang dan maksimal.
+                      </p>
+                      
                       <div className="space-y-2 pt-2 text-[11px] text-slate-300">
                         <div className="flex items-center gap-2 bg-slate-900/60 p-2 rounded-xl border border-slate-850">
                           <Sun className="w-3.5 h-3.5 text-amber-400 shrink-0" /> <span>Pagi Hari: Bangun pagi & Taat beribadah</span>
@@ -815,47 +884,81 @@ export default function App() {
                         <div className="flex items-center gap-2 bg-slate-900/60 p-2 rounded-xl border border-slate-850">
                           <Activity className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> <span>Siang Hari: Berolahraga, Makan Sehat & Gemar Belajar</span>
                         </div>
+                        <div className="flex items-center gap-2 bg-slate-900/60 p-2 rounded-xl border border-slate-850">
+                          <Moon className="w-3.5 h-3.5 text-purple-400 shrink-0" /> <span>Malam Hari: Bermasyarakat & Tidur tepat waktu</span>
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-slate-950 border border-slate-800 rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between group shadow-lg">
+                  {/* Prioritas 2 */}
+                  <div className="bg-slate-950 border border-slate-800 rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between hover:border-emerald-500/40 transition-all duration-300 group shadow-lg">
+                    <div className="absolute -top-12 -right-12 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl group-hover:bg-emerald-500/10 transition-colors"></div>
                     <div className="space-y-4">
-                      <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-xl text-emerald-400 font-black">02</div>
-                      <h3 className="text-lg font-black text-white">Budaya Aman dan Nyaman</h3>
-                      <p className="text-xs text-slate-400 leading-relaxed">Pencegahan dan Penanganan Kekerasan di Lingkungan Satuan Pendidikan (PPKSP).</p>
+                      <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-xl text-emerald-400 font-black">
+                        02
+                      </div>
+                      <h3 className="text-lg font-black text-white font-serif-elegant">Budaya Aman dan Nyaman</h3>
+                      <p className="text-xs text-slate-400 leading-relaxed">
+                        Pencegahan dan Penanganan Kekerasan di Lingkungan Satuan Pendidikan (PPKSP). Sekolah menjamin perlindungan terhadap perundungan dan tindak kekerasan fisik.
+                      </p>
+
                       <div className="space-y-2 pt-2 text-[11px] text-slate-300">
                         <div className="flex items-center gap-2 bg-slate-900/60 p-2 rounded-xl border border-slate-850">
                           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> <span>Membentuk Satgas khusus penanganan PPKSP</span>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-slate-950 border border-slate-800 rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between group shadow-lg">
-                    <div className="space-y-4">
-                      <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-xl text-blue-400 font-black">03</div>
-                      <h3 className="text-lg font-black text-white">Penguatan Inklusivitas & Kebinekaan</h3>
-                      <p className="text-xs text-slate-400 leading-relaxed">Mewujudkan iklim sekolah kebinekaan global yang ramah murid dari berbagai latar belakang.</p>
-                      <div className="space-y-2 pt-2 text-[11px] text-slate-300">
                         <div className="flex items-center gap-2 bg-slate-900/60 p-2 rounded-xl border border-slate-850">
-                          <Compass className="w-3.5 h-3.5 text-blue-400 shrink-0" /> <span>Menyediakan akses ramah disabilitas</span>
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> <span>Edukasi preventif anti-bullying berkala</span>
+                        </div>
+                        <div className="flex items-center gap-2 bg-slate-900/60 p-2 rounded-xl border border-slate-850">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> <span>Layanan hotline aduan langsung (Hello Drajat)</span>
                         </div>
                       </div>
                     </div>
                   </div>
+
+                  {/* Prioritas 3 */}
+                  <div className="bg-slate-950 border border-slate-800 rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between hover:border-emerald-500/40 transition-all duration-300 group shadow-lg">
+                    <div className="absolute -top-12 -right-12 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl group-hover:bg-blue-500/10 transition-colors"></div>
+                    <div className="space-y-4">
+                      <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-xl text-blue-400 font-black">
+                        03
+                      </div>
+                      <h3 className="text-lg font-black text-white font-serif-elegant">Penguatan Inklusivitas & Kebinekaan</h3>
+                      <p className="text-xs text-slate-400 leading-relaxed">
+                        Mewujudkan iklim sekolah kebinekaan global yang ramah murid dari berbagai latar belakang, suku, kepercayaan, serta anak berkebutuhan khusus.
+                      </p>
+
+                      <div className="space-y-2 pt-2 text-[11px] text-slate-300">
+                        <div className="flex items-center gap-2 bg-slate-900/60 p-2 rounded-xl border border-slate-850">
+                          <Compass className="w-3.5 h-3.5 text-blue-400 shrink-0" /> <span>Menyediakan akses ramah disabilitas (ramp/toilet)</span>
+                        </div>
+                        <div className="flex items-center gap-2 bg-slate-900/60 p-2 rounded-xl border border-slate-850">
+                          <Compass className="w-3.5 h-3.5 text-blue-400 shrink-0" /> <span>Peringatan hari kebudayaan & toleransi global</span>
+                        </div>
+                        <div className="flex items-center gap-2 bg-slate-900/60 p-2 rounded-xl border border-slate-850">
+                          <Compass className="w-3.5 h-3.5 text-blue-400 shrink-0" /> <span>Bahan ajar inklusif tanpa batas perbedaan</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             ) : (
               <div>
                 <div className="text-center space-y-2">
                   <span className="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700">PENGEMBANGAN DIRI</span>
-                  <h2 className="text-2xl md:text-3xl font-extrabold text-white">
+                  <h2 className="text-2xl md:text-3xl font-extrabold text-white font-serif-elegant">
                     {activeSubTab === 'siaga' ? 'Pramuka Golongan Siaga' : 'Pramuka Golongan Penggalang'}
                   </h2>
                 </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-8">
-                  {galleryList.filter(item => activeSubTab === 'siaga' ? item.category === 'Pramuka Siaga' : item.category === 'Pramuka Penggalang').map((item) => (
+                  {galleryList.filter(item => {
+                    if (activeSubTab === 'siaga') return item.category === 'Pramuka Siaga';
+                    return item.category === 'Pramuka Penggalang';
+                  }).map((item) => (
                     <div key={item.id} className="bg-slate-900 border border-slate-800 overflow-hidden rounded-2xl shadow-sm">
                       <div className="h-44 bg-slate-950 overflow-hidden">
                         <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
@@ -869,18 +972,20 @@ export default function App() {
                 </div>
               </div>
             )}
+
           </div>
         )}
 
-        {/* LAYANAN TAB */}
+        {/* LAYANAN TAB (Kustomisasi Penuh & Fleksibel) */}
         {activeTab === 'layanan' && (
-          <div className="max-w-4xl mx-auto space-y-8">
+          <div className="max-w-4xl mx-auto space-y-8 animate-fadeIn">
             <div className="text-center space-y-2">
               <span className="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700">HELLO DRAJAT</span>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-white">
+              <h2 className="text-2xl md:text-3xl font-extrabold text-white font-serif-elegant">
                 {activeSubTab === 'spmb' ? 'Penerimaan Murid Baru (PPDB Online)' : activeSubTab === 'legalisir' ? 'Legalisir Dokumen Murid' : 'Mutasi Keluar / Masuk'}
               </h2>
             </div>
+
             <div className="space-y-6">
               {servicesList.filter(item => item.category === activeSubTab).map((spp) => (
                 <div key={spp.id} className="bg-slate-900 border border-slate-800 p-6 md:p-8 rounded-3xl space-y-4 shadow-md">
@@ -896,13 +1001,14 @@ export default function App() {
           </div>
         )}
 
-        {/* INFORMASI TAB */}
+        {/* INFORMASI / BERITA TAB */}
         {activeTab === 'informasi' && (
-          <div className="max-w-4xl mx-auto space-y-8">
+          <div className="max-w-4xl mx-auto space-y-8 animate-fadeIn">
             <div className="text-center space-y-2">
               <span className="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700">PORTAL BERITA</span>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-white">Warta & Berita Sekolah</h2>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-white font-serif-elegant">Warta & Berita Sekolah</h2>
             </div>
+
             <div className="space-y-6">
               {newsList.map(news => (
                 <div key={news.id} className="bg-slate-900 border border-slate-800 p-6 rounded-3xl space-y-3">
@@ -918,28 +1024,40 @@ export default function App() {
           </div>
         )}
 
-        {/* SKM ONLINE TAB */}
+        {/* SKM ONLINE TAB (DIPASTIKAN BERJALAN LANCAR, ANTI LAYAR KOSONG) */}
         {activeTab === 'skm' && (
-          <div className="space-y-8">
+          <div className="space-y-8 animate-fadeIn">
             <div className="text-center space-y-2">
               <span className="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700">SURVEI KEPUASAN MASYARAKAT</span>
-              <h2 className="text-2xl md:text-4xl font-extrabold text-white">Indeks Kepuasan Publik Mandiri</h2>
+              <h2 className="text-2xl md:text-4xl font-extrabold text-white font-serif-elegant">Indeks Kepuasan Publik Mandiri</h2>
               <div className="w-20 h-1 bg-emerald-500 mx-auto rounded-full"></div>
             </div>
+
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              
+              {/* Form Input Interaktif */}
               <div className="lg:col-span-7 bg-slate-900 border border-slate-800 p-6 rounded-3xl space-y-5 shadow-xl">
-                <h3 className="font-extrabold text-white text-base border-l-4 border-emerald-500 Grandma pl-3">Formulir Kepuasan Publik</h3>
+                <h3 className="font-extrabold text-white text-base border-l-4 border-emerald-500 pl-3">Formulir Kepuasan Publik</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">Berikan penilaian Anda mengenai kualitas pelayanan di SD Negeri Drajat demi tercapainya standardisasi terbaik.</p>
+                
                 <form onSubmit={handleSurveySubmit} className="space-y-5 pt-1">
+                  
                   <div className="space-y-1.5">
                     <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">Identitas Responden</label>
-                    <select value={surveyResponse.nameChoice} onChange={(e) => setSurveyResponse({ ...surveyResponse, nameChoice: e.target.value })} className="w-full text-xs bg-slate-950 border border-slate-800 rounded-xl p-3 text-white font-semibold focus:outline-none">
+                    <select 
+                      value={surveyResponse.nameChoice} 
+                      onChange={(e) => setSurveyResponse({ ...surveyResponse, nameChoice: e.target.value })} 
+                      className="w-full text-xs bg-slate-950 border border-slate-800 rounded-xl p-3 focus:outline-none focus:border-emerald-500 text-white font-semibold"
+                    >
                       <option value="Wali Murid / Orang Tua Murid">Wali Murid / Orang Tua Murid</option>
                       <option value="Alumni SD Negeri Drajat">Alumni SD Negeri Drajat</option>
                       <option value="Tamu / Masyarakat Umum Baureno">Tamu / Masyarakat Umum Baureno</option>
+                      <option value="Dinas / Pegawai Pemerintahan">Dinas / Pegawai Pemerintahan</option>
                     </select>
                   </div>
+
                   <div className="space-y-1.5">
-                    <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">Pilih Penilaian</label>
+                    <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">Bagaimana Penilaian Anda? (Pilih Emoji)</label>
                     <div className="grid grid-cols-4 gap-3">
                       {[
                         { id: "Sangat Puas", icon: Smile, color: "text-emerald-400", label: "Sangat Puas" },
@@ -950,74 +1068,105 @@ export default function App() {
                         const IconComp = rating.icon;
                         const isSelected = surveyResponse.emojiChoice === rating.id;
                         return (
-                          <button key={rating.id} type="button" onClick={() => setSurveyResponse({ ...surveyResponse, emojiChoice: rating.id })} className={`bg-slate-950 p-4 rounded-xl border flex flex-col items-center justify-center gap-2 transition-all ${isSelected ? 'border-emerald-500 bg-emerald-950/20' : 'border-slate-800'}`}>
+                          <button 
+                            key={rating.id} 
+                            type="button" 
+                            onClick={() => setSurveyResponse({ ...surveyResponse, emojiChoice: rating.id })} 
+                            className={`bg-slate-950 p-4 rounded-xl border flex flex-col items-center justify-center gap-2 transition-all ${
+                              isSelected ? `border-emerald-500 shadow-xl scale-105 bg-emerald-950/20` : 'border-slate-800'
+                            }`}
+                          >
                             <IconComp className={`w-10 h-10 ${rating.color}`} strokeWidth={1} />
-                            <span className="text-[10px] font-extrabold">{rating.label}</span>
+                            <span className={`text-[10px] font-extrabold ${isSelected ? 'text-emerald-400' : 'text-slate-500'}`}>{rating.label}</span>
                           </button>
                         );
                       })}
                     </div>
                   </div>
+
                   <div className="space-y-1.5">
-                    <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">Komentar</label>
-                    <select value={surveyResponse.commentChoice} onChange={(e) => setSurveyResponse({ ...surveyResponse, commentChoice: e.target.value })} className="w-full text-xs bg-slate-950 border border-slate-800 rounded-xl p-3 text-white focus:outline-none">
+                    <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">Alasan / Komentar Pelayanan</label>
+                    <select 
+                      value={surveyResponse.commentChoice} 
+                      onChange={(e) => setSurveyResponse({ ...surveyResponse, commentChoice: e.target.value })} 
+                      className="w-full text-xs bg-slate-950 border border-slate-800 rounded-xl p-3 focus:outline-none focus:border-emerald-500 text-white font-semibold"
+                    >
                       <option value="Pelayanan sangat cepat, ramah, dan bebas biaya tambahan.">Pelayanan sangat cepat, ramah, dan bebas biaya tambahan.</option>
                       <option value="Guru-gurunya sangat sopan, ramah, dan peduli terhadap anak didik.">Guru-gurunya sangat sopan, ramah, dan peduli terhadap anak didik.</option>
+                      <option value="Sekolah memiliki fasilitas lobi yang bersih, sejuk, dan ramah murid.">Sekolah memiliki fasilitas lobi yang bersih, sejuk, dan ramah murid.</option>
+                      <option value="Prosedur pelayanan informasi publik sudah sangat jelas & transparan.">Prosedur pelayanan informasi publik sudah sangat jelas & transparan.</option>
                     </select>
                   </div>
-                  <button type="submit" disabled={surveySubmitting} className="w-full bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 font-black text-xs py-3.5 rounded-xl flex items-center justify-center gap-2">
-                    <Send className="w-4 h-4" /> {surveySubmitting ? 'Mengirim...' : 'Kirim Penilaian'}
+
+                  <button 
+                    type="submit" 
+                    disabled={surveySubmitting} 
+                    className="w-full bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 font-black text-xs md:text-sm py-3.5 rounded-xl transition-all shadow-xl flex items-center justify-center gap-2"
+                  >
+                    <Send className="w-4 h-4" />
+                    {surveySubmitting ? 'Mengirim data...' : 'Kirim Penilaian Kepuasan'}
                   </button>
                 </form>
-                {surveySubmitted && <div className="p-3 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold rounded-xl text-center">🎉 Terima kasih! Data tersimpan.</div>}
+
+                {surveySubmitted && (
+                  <div className="p-3 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold rounded-xl text-center">
+                    🎉 Terima kasih! Penilaian Anda berhasil dicatatkan.
+                  </div>
+                )}
               </div>
 
+              {/* Feed Komentar Terkini */}
               <div className="lg:col-span-5 space-y-4">
                 <h3 className="font-extrabold text-white text-sm">Respon Kepuasan Terakhir</h3>
                 <div className="space-y-3 max-h-[380px] overflow-y-auto pr-1">
                   {safeResponses.map((feed) => (
-                    <div key={feed.id} className="bg-slate-900 border border-slate-850 p-4 rounded-2xl space-y-1.5">
+                    <div key={feed.id} className="bg-slate-900 border border-slate-850 p-4 rounded-2xl space-y-1.5 hover:border-slate-750 transition-all">
                       <div className="flex justify-between items-start">
                         <div>
                           <span className="font-bold text-slate-200 text-xs block">{feed.name}</span>
-                          <span className="text-[9px] text-slate-500">{feed.date}</span>
+                          <span className="text-[9px] text-slate-500 font-semibold">{feed.date}</span>
                         </div>
-                        <span className="px-2 py-0.5 rounded-full font-bold text-[8px] bg-emerald-950 text-emerald-400 uppercase">{feed.rating}</span>
+                        <span className="px-2 py-0.5 rounded-full font-bold text-[8px] bg-emerald-950 text-emerald-400 uppercase tracking-wider">
+                          {feed.rating}
+                        </span>
                       </div>
                       <p className="text-xs text-slate-400 italic">"{feed.comment}"</p>
                     </div>
                   ))}
                 </div>
               </div>
+
             </div>
           </div>
         )}
 
         {/* TAB KONTAK */}
         {activeTab === 'kontak' && (
-          <div className="max-w-4xl mx-auto space-y-8">
+          <div className="max-w-4xl mx-auto space-y-8 animate-fadeIn">
             <div className="text-center space-y-2">
               <span className="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700">HUBUNGI KAMI</span>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-white">Hubungi Sekolah & Sekretariat</h2>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-white font-serif-elegant">Hubungi Sekolah & Sekretariat</h2>
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-slate-900 border border-slate-800 p-6 rounded-3xl space-y-6">
-                <h4 className="font-extrabold text-white text-base">Informasi Kontak</h4>
+                <h4 className="font-extrabold text-white text-base">Informasi Kontak & Jam Kerja</h4>
                 <div className="space-y-4 text-xs md:text-sm text-slate-400">
                   <div className="flex gap-3 items-start">
                     <MapPin className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                    <div><span className="block font-bold text-white">Alamat Resmi</span><span>{schoolConfig.address}</span></div>
+                    <div><span class="block font-bold text-white">Alamat Resmi</span><span>{schoolConfig.address}</span></div>
                   </div>
                   <div className="flex gap-3 items-start">
                     <Phone className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                    <div><span className="block font-bold text-white">Nomor Telepon</span><span>{schoolConfig.phone}</span></div>
+                    <div><span class="block font-bold text-white">Nomor Telepon</span><span>{schoolConfig.phone}</span></div>
                   </div>
                   <div className="flex gap-3 items-start">
                     <Mail className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                    <div><span className="block font-bold text-white">Email Resmi</span><span className="break-all">{schoolConfig.email}</span></div>
+                    <div><span class="block font-bold text-white">Email Resmi</span><span className="break-all">{schoolConfig.email}</span></div>
                   </div>
                 </div>
               </div>
+
               <div className="bg-slate-950 border border-slate-850 p-6 rounded-3xl flex flex-col justify-between min-h-[220px]">
                 <div>
                   <span className="bg-amber-400 text-slate-950 font-bold text-[9px] px-2 py-0.5 rounded uppercase">PETA LOKASI</span>
@@ -1028,72 +1177,96 @@ export default function App() {
             </div>
           </div>
         )}
+
       </main>
 
-      {/* --- FLOATING WIDGETS --- */}
+      {/* ==================== WIDGET HELLO DRAJAT & KI DRAJAT CHATBOT ==================== */}
+      
+      {/* 🛡️ HELLO DRAJAT */}
       <div className="fixed bottom-20 right-4 md:bottom-6 md:right-6 z-50 flex flex-col gap-2">
-        <button onClick={() => setIsHelloOpen(!isHelloOpen)} className="bg-emerald-600 hover:bg-emerald-700 text-slate-950 font-black p-3.5 rounded-full shadow-2xl flex items-center gap-2 group">
-          <ShieldAlert className="w-5 h-5 text-slate-950" />
-          <span className="text-xs font-bold pr-1.5 hidden sm:inline">Hello Drajat</span>
+        <button 
+          onClick={() => setIsHelloOpen(!isHelloOpen)}
+          className="bg-emerald-600 hover:bg-emerald-700 text-slate-950 font-black p-3.5 rounded-full shadow-2xl border border-emerald-450 flex items-center gap-2 group transform hover:scale-105 transition-all"
+        >
+          <ShieldAlert className="w-5 h-5 animate-pulse text-slate-950" />
+          <span className="text-xs font-black pr-1.5 hidden sm:inline font-bold">Hello Drajat</span>
         </button>
       </div>
 
       {isHelloOpen && (
-        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-xs flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-fadeIn">
           <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-md w-full space-y-4 shadow-2xl">
             <div className="flex justify-between items-center border-b border-slate-800 pb-2">
-              <h3 className="font-black text-white text-base flex items-center gap-2 text-emerald-400"><ShieldCheck className="w-5 h-5" /> HELLO DRAJAT</h3>
-              <button onClick={() => setIsHelloOpen(false)} className="text-slate-400 hover:text-white text-lg">×</button>
+              <h3 className="font-black text-white text-base flex items-center gap-2 text-emerald-400">
+                <ShieldCheck className="w-5 h-5" /> 🛡️ HELLO DRAJAT
+              </h3>
+              <button onClick={() => setIsHelloOpen(false)} className="text-slate-400 hover:text-white font-bold text-lg">×</button>
             </div>
+
             <form onSubmit={handleSendHello} className="space-y-4 text-xs">
               <div className="space-y-1">
-                <label className="block text-slate-400 font-bold">SASARAN</label>
+                <label className="block text-slate-400 font-bold">PILIH SISTEM PENERIMA ASPIRASI</label>
                 <div className="grid grid-cols-2 gap-2">
-                  <button type="button" onClick={() => setHelloData({ ...helloData, target: "SapaAdmin" })} className={`py-2 rounded-xl border text-center font-bold ${helloData.target === 'SapaAdmin' ? 'bg-emerald-500 text-slate-950' : 'bg-slate-950 text-slate-400'}`}>Sapa Admin</button>
-                  <button type="button" onClick={() => setHelloData({ ...helloData, target: "KiDrajat" })} className={`py-2 rounded-xl border text-center font-bold ${helloData.target === 'KiDrajat' ? 'bg-emerald-500 text-slate-950' : 'bg-slate-950 text-slate-400'}`}>Ki Drajat</button>
+                  <button type="button" onClick={() => setHelloData({ ...helloData, target: "SapaAdmin" })} className={`py-2 rounded-xl border text-center font-bold ${helloData.target === 'SapaAdmin' ? 'bg-emerald-500 text-slate-950 border-emerald-400' : 'bg-slate-950 border-slate-800 text-slate-400'}`}>⭐ Sapa Admin</button>
+                  <button type="button" onClick={() => setHelloData({ ...helloData, target: "KiDrajat" })} className={`py-2 rounded-xl border text-center font-bold ${helloData.target === 'KiDrajat' ? 'bg-emerald-500 text-slate-950 border-emerald-400' : 'bg-slate-950 border-slate-800 text-slate-400'}`}>🤖 Ki Drajat Assistant</button>
                 </div>
               </div>
+
               <div className="space-y-1">
-                <label className="block text-slate-400 font-bold">KATEGORI</label>
+                <label className="block text-slate-400 font-bold">KATEGORI PELAYANAN</label>
                 <select value={helloData.category} onChange={(e) => setHelloData({ ...helloData, category: e.target.value })} className="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-white">
-                  <option value="Pengaduan">Pengaduan Pelayanan</option>
-                  <option value="Saran">Saran Perbaikan</option>
+                  <option value="Pengaduan">📣 Pengaduan Pelayanan</option>
+                  <option value="Saran">💡 Saran Perbaikan</option>
+                  <option value="Kritik">✍️ Kritik Sekolah</option>
+                  <option value="Tanya Info">❓ Tanya Informasi Sekolah</option>
                 </select>
               </div>
+
               <div className="space-y-1">
-                <label className="block text-slate-400 font-bold">PESAN</label>
-                <textarea rows="3" required value={helloData.message} onChange={(e) => setHelloData({ ...helloData, message: e.target.value })} placeholder="Tulis laporan..." className="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-white focus:outline-none" />
+                <label className="block text-slate-400 font-bold">ISI PESAN LAPORAN / KELUHAN</label>
+                <textarea rows="3" required value={helloData.message} onChange={(e) => setHelloData({ ...helloData, message: e.target.value })} placeholder="Tulis keluhan, kritik, atau pertanyaan Anda di sini..." className="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-white focus:outline-none focus:border-emerald-505" />
               </div>
-              <button type="submit" className="w-full bg-emerald-600 text-slate-950 font-black py-2.5 rounded-xl flex items-center justify-center gap-2">
-                <Phone className="w-4 h-4" /> Kirim ke WhatsApp
+
+              <button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700 text-slate-950 font-black py-2.5 rounded-xl flex items-center justify-center gap-2">
+                <Phone className="w-4 h-4" /> Kirim Pengaduan ke WhatsApp
               </button>
             </form>
           </div>
         </div>
       )}
 
-      {/* CHATBOT WIDGET */}
-      <div className="fixed bottom-20 left-4 md:bottom-6 md:right-48 z-45">
-        <button onClick={() => setIsKiDrajatOpen(!isKiDrajatOpen)} className="bg-slate-950 text-emerald-400 p-3.5 rounded-full border border-emerald-500/40 flex items-center gap-2">
-          <MessageSquare className="w-5 h-5" />
+      {/* 🤖 KI DRAJAT CHATBOT INTERACTIVE WIDGET */}
+      <div className="fixed bottom-20 left-4 md:bottom-6 md:left-auto md:right-48 z-45">
+        <button 
+          onClick={() => setIsKiDrajatOpen(!isKiDrajatOpen)}
+          className="bg-slate-950 text-emerald-400 p-3.5 rounded-full shadow-2xl border border-emerald-500/40 flex items-center gap-2 hover:scale-105 transition-all"
+        >
+          <MessageSquare className="w-5 h-5 animate-pulse" />
           <span className="text-xs font-black pr-1 hidden sm:inline">Tanya Ki Drajat</span>
         </button>
+
         {isKiDrajatOpen && (
-          <div className="absolute bottom-16 right-0 bg-slate-950 border border-slate-800 w-[280px] sm:w-[325px] rounded-3xl p-4 shadow-2xl space-y-4">
+          <div className="absolute bottom-16 right-0 bg-slate-950 border border-slate-800 w-[280px] sm:w-[325px] rounded-3xl p-4 shadow-2xl space-y-4 animate-slideUp">
             <div className="flex justify-between items-center border-b border-slate-800 pb-2">
-              <span className="font-extrabold text-xs text-white">🤖 Ki Drajat Assistant</span>
-              <button onClick={() => setIsKiDrajatOpen(false)} className="text-slate-500 hover:text-white">&times;</button>
+              <span className="font-extrabold text-xs text-white flex items-center gap-1.5 animate-pulse">
+                🤖 Ki Drajat Assistant
+              </span>
+              <button onClick={() => setIsKiDrajatOpen(false)} className="text-slate-500 hover:text-white font-bold">&times;</button>
             </div>
-            <div className="space-y-3 h-48 overflow-y-auto text-xs">
+
+            {/* Chat Bubble Container */}
+            <div className="space-y-3 h-48 overflow-y-auto pr-1 text-xs">
               {chatMessages.map((msg, idx) => (
                 <div key={idx} className={`p-2.5 rounded-2xl max-w-[85%] ${msg.sender === 'bot' ? 'bg-slate-900 text-slate-300 mr-auto' : 'bg-emerald-500 text-slate-950 ml-auto font-bold'}`}>
                   {msg.text}
                 </div>
               ))}
             </div>
+
+            {/* Quick Answer Buttons */}
             <div className="grid grid-cols-2 gap-2 text-[10px] font-bold">
               {["🏫 Profil", "📋 HELLO Drajat", "🏕️ Pramuka", "📋 PPDB / SPMB"].map((opt) => (
-                <button key={opt} onClick={() => handleBotOptionClick(opt)} className="bg-slate-900 p-2 rounded-xl text-center border border-slate-800 text-emerald-400">{opt}</button>
+                <button key={opt} onClick={() => handleBotOptionClick(opt)} className="bg-slate-900 hover:bg-slate-850 p-2 rounded-xl text-center border border-slate-800 text-emerald-400">{opt}</button>
               ))}
             </div>
           </div>
@@ -1102,51 +1275,308 @@ export default function App() {
 
       {/* 5. SECURE ADMIN PANEL */}
       <div className="fixed bottom-20 left-4 md:bottom-6 md:left-6 z-50">
-        <button onClick={() => setIsAdminPanelOpen(!isAdminPanelOpen)} className="bg-slate-950 text-white p-3.5 rounded-full border border-amber-500 flex items-center gap-2">
-          {isUnlocked ? <Unlock className="w-5 h-5 text-emerald-400" /> : <Lock className="w-5 h-5 text-amber-500" />}
-          <span className="text-xs font-black pr-1.5 hidden sm:inline">Pusat Kustomisasi</span>
+        <button 
+          onClick={() => setIsAdminPanelOpen(!isAdminPanelOpen)}
+          className="bg-slate-950 text-white p-3.5 rounded-full shadow-2xl hover:scale-105 transition-all border border-amber-500 flex items-center gap-2"
+          title="Buka panel kustomisasi web"
+        >
+          {isUnlocked ? <Unlock className="w-5 h-5 text-emerald-400 animate-pulse" /> : <Lock className="w-5 h-5 text-amber-500" />}
+          <span className="text-xs font-black pr-1.5 hidden sm:inline font-bold">Pusat Kustomisasi</span>
         </button>
+
         {isAdminPanelOpen && (
-          <div className="absolute left-0 bottom-16 bg-slate-900 border border-slate-800 rounded-3xl p-6 w-[310px] sm:w-[450px] max-h-[70vh] overflow-y-auto space-y-4 text-xs">
+          <div className="absolute left-0 bottom-16 bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl p-6 w-[310px] sm:w-[450px] max-h-[70vh] overflow-y-auto space-y-4 text-xs animate-slideIn">
+            
             <div className="flex justify-between items-center border-b border-slate-800 pb-2.5">
               <div>
-                <h3 className="font-extrabold text-white text-sm">Editor Konten Mandiri</h3>
+                <h3 className="font-extrabold text-white text-sm flex items-center gap-2.5"><Settings className="w-4 h-4 text-amber-400 animate-spin-slow" /> Editor Konten Mandiri</h3>
                 <p className="text-[10px] text-slate-500">Sesuaikan website sekolah Anda secara real-time</p>
               </div>
-              <button onClick={() => setIsAdminPanelOpen(false)} className="text-slate-400 text-base p-1">×</button>
+              <button onClick={() => setIsAdminPanelOpen(false)} className="text-slate-400 hover:text-white font-bold text-base p-1">×</button>
             </div>
 
             {!isUnlocked ? (
               <form onSubmit={handleVerifyPassword} className="space-y-3 py-2">
-                <p className="text-[10px] text-amber-400 bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/20">Masukkan sandi administrator untuk membuka kontrol pengeditan.</p>
-                <input type="password" required value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} placeholder="Sandi Keamanan..." className="w-full bg-slate-950 border border-slate-850 rounded-xl p-3 text-white focus:outline-none" />
+                <p className="text-[10px] text-amber-400 bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/20 leading-relaxed flex gap-2">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-amber-500" /> 
+                  Kustomisasi Terkunci! Masukkan sandi pengaman administrator sekolah untuk membuka kontrol penuh pengeditan data.
+                </p>
+                <input 
+                  type="password" 
+                  required 
+                  value={passwordInput} 
+                  onChange={(e) => setPasswordInput(e.target.value)} 
+                  placeholder="Masukkan Sandi Keamanan..." 
+                  className="w-full bg-slate-950 border border-slate-850 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-amber-500" 
+                />
                 {passwordError && <p className="text-[10px] text-rose-500 font-bold">❌ Sandi salah!</p>}
-                <button type="submit" className="w-full bg-amber-500 text-slate-950 font-black py-2.5 rounded-xl flex items-center justify-center gap-1.5"><Unlock className="w-4 h-4" /> Buka Kunci</button>
+                <button type="submit" className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-2.5 rounded-xl transition-colors flex items-center justify-center gap-1.5"><Unlock className="w-4 h-4" /> Buka Kunci Editor</button>
               </form>
             ) : (
               <div className="space-y-4 pt-1">
+                
+                {/* Image Media Settings */}
                 <div className="bg-slate-950/50 p-3.5 rounded-2xl border border-slate-800 space-y-3">
-                  <span className="block text-[11px] font-black text-amber-400 uppercase tracking-wider flex items-center gap-1"><ImageIcon className="w-4 h-4" /> Media Utama</span>
-                  <input type="text" placeholder="Link Logo Sekolah URL" value={schoolConfig.logoUrl} onChange={(e) => setSchoolConfig({ ...schoolConfig, logoUrl: e.target.value })} className="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white text-[10px]" />
-                  <input type="text" placeholder="Link Foto Kepala Sekolah URL" value={schoolConfig.principalPhotoUrl} onChange={(e) => setSchoolConfig({ ...schoolConfig, principalPhotoUrl: e.target.value })} className="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white text-[10px]" />
+                  <span className="block text-[11px] font-black text-amber-400 uppercase tracking-wider flex items-center gap-1">
+                    <ImageIcon className="w-4 h-4" /> Pengelola Gambar & Media Utama
+                  </span>
+                  <div className="space-y-1">
+                    <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">Link Logo Sekolah (URL .png/.jpg)</label>
+                    <input type="text" value={schoolConfig.logoUrl} onChange={(e) => setSchoolConfig({ ...schoolConfig, logoUrl: e.target.value })} className="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white text-[10px]" />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">Link Foto Kepala Sekolah (URL .jpg)</label>
+                    <input type="text" value={schoolConfig.principalPhotoUrl} onChange={(e) => setSchoolConfig({ ...schoolConfig, principalPhotoUrl: e.target.value })} className="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white text-[10px]" />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">Link Gambar Latar (Hero BG)</label>
+                    <input type="text" value={schoolConfig.heroBgUrl} onChange={(e) => setSchoolConfig({ ...schoolConfig, heroBgUrl: e.target.value })} className="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white text-[10px]" />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">Link Logo Cerdas Berkarakter</label>
+                    <input type="text" value={schoolConfig.cerdasBerkarakterLogoUrl} onChange={(e) => setSchoolConfig({ ...schoolConfig, cerdasBerkarakterLogoUrl: e.target.value })} className="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white text-[10px]" />
+                  </div>
                 </div>
 
+                {/* DYNAMIC LOGO AFILIASI / MITRA MANAGER (FLEXIBLE) */}
                 <div className="bg-slate-950/50 p-3.5 rounded-2xl border border-slate-800 space-y-3">
-                  <span className="block text-[11px] font-black text-teal-400 uppercase tracking-wider flex items-center gap-1"><BookIcon className="w-4 h-4" /> Tambah Fasilitas Baru</span>
-                  <input type="text" placeholder="Nama Fasilitas..." value={newFacilityInput.title} onChange={(e) => setNewFacilityInput({ ...newFacilityInput, title: e.target.value })} className="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white text-[10px]" />
-                  <select value={newFacilityInput.category} onChange={(e) => setNewFacilityInput({ ...newFacilityInput, category: e.target.value })} className="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white text-[10px]">
-                    <option value="Pembelajaran">Sarana Pembelajaran</option>
-                    <option value="Infrastruktur">Sarana Infrastruktur</option>
-                  </select>
-                  <input type="text" placeholder="Link Gambar URL..." value={newFacilityInput.image} onChange={(e) => setNewFacilityInput({ ...newFacilityInput, image: e.target.value })} className="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white text-[10px]" />
-                  <textarea placeholder="Deskripsi..." value={newFacilityInput.desc} onChange={(e) => setNewFacilityInput({ ...newFacilityInput, desc: e.target.value })} className="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white text-[10px]" />
-                  <button onClick={handleAddFacility} className="w-full bg-emerald-500 text-slate-950 font-bold py-1.5 rounded text-[10px]">+ Simpan Fasilitas</button>
+                  <span className="block text-[11px] font-black text-amber-400 uppercase tracking-wider flex items-center gap-1">
+                    <HandshakeIcon className="w-4 h-4" /> Pengelola Logo Kemitraan
+                  </span>
+                  <div className="bg-slate-900/60 p-2.5 rounded-xl space-y-2 border border-slate-850">
+                    <input type="text" placeholder="Nama Lembaga/Mitra..." value={newPartnerInput.name} onChange={(e) => setNewPartnerInput({ ...newPartnerInput, name: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]" />
+                    <input type="text" placeholder="Link Logo Mitra (URL)..." value={newPartnerInput.url} onChange={(e) => setNewPartnerInput({ ...newPartnerInput, url: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]" />
+                    <button onClick={handleAddPartner} className="w-full bg-amber-500 text-slate-950 font-bold py-1.5 rounded text-[10px]">+ Daftarkan Mitra</button>
+                  </div>
+                  
+                  {/* List Mitra Aktif */}
+                  <div className="space-y-1.5 max-h-[110px] overflow-y-auto pr-1">
+                    {partnerLogos.map(partner => (
+                      <div key={partner.id} className="flex justify-between items-center bg-slate-900 p-2 rounded text-[11px] border border-slate-850">
+                        <span className="truncate max-w-[240px] text-slate-300 font-semibold">{partner.name}</span>
+                        <button onClick={() => handleDeletePartner(partner.id)} className="text-rose-400 hover:text-rose-500 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
+
+                {/* DYNAMIC FASILITAS MANAGER */}
+                <div className="bg-slate-950/50 p-3.5 rounded-2xl border border-slate-800 space-y-3">
+                  <span className="block text-[11px] font-black text-teal-400 uppercase tracking-wider flex items-center gap-1">
+                    <BookIcon className="w-4 h-4" /> Pengelola Fasilitas & Sarana
+                  </span>
+                  <div className="bg-slate-900/60 p-2.5 rounded-xl space-y-2 border border-slate-850">
+                    <input type="text" placeholder="Nama Fasilitas..." value={newFacilityInput.title} onChange={(e) => setNewGalleryFacility({ ...newFacilityInput, title: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]" />
+                    <select value={newFacilityInput.category} onChange={(e) => setNewGalleryFacility({ ...newFacilityInput, category: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]">
+                      <option value="Pembelajaran">Sarana Pembelajaran</option>
+                      <option value="Infrastruktur">Sarana Infrastruktur</option>
+                    </select>
+                    <input type="text" placeholder="Link Gambar (URL)..." value={newFacilityInput.image} onChange={(e) => setNewGalleryFacility({ ...newFacilityInput, image: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]" />
+                    <input type="text" placeholder="Deskripsi..." value={newFacilityInput.desc} onChange={(e) => setNewGalleryFacility({ ...newFacilityInput, desc: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]" />
+                    <button onClick={handleAddFacility} className="w-full bg-teal-500 text-slate-950 font-bold py-1.5 rounded text-[10px]">+ Daftarkan Fasilitas</button>
+                  </div>
+                  <div className="space-y-1.5 max-h-[110px] overflow-y-auto pr-1">
+                    {facilitiesList.map(item => (
+                      <div key={item.id} className="flex justify-between items-center bg-slate-900 p-2 rounded text-[11px] border border-slate-850">
+                        <span className="truncate max-w-[240px] text-slate-300 font-semibold">{item.title} ({item.category})</span>
+                        <button onClick={() => setFacilitiesList(facilitiesList.filter(f => f.id !== item.id))} className="text-rose-400 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* DYNAMIC STANDAR LAYANAN (SOP) MANAGER */}
+                <div className="bg-slate-950/50 p-3.5 rounded-2xl border border-slate-800 space-y-3">
+                  <span className="block text-[11px] font-black text-emerald-400 uppercase tracking-wider flex items-center gap-1">
+                    <Briefcase className="w-4 h-4" /> Pengelola SOP Layanan
+                  </span>
+                  <div className="bg-slate-900/60 p-2.5 rounded-xl space-y-2 border border-slate-850">
+                    <input type="text" placeholder="Nama SOP (Misal: Pengurusan PIP)..." value={newServiceInput.title} onChange={(e) => setNewServiceInput({ ...newServiceInput, title: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]" />
+                    <select value={newServiceInput.category} onChange={(e) => setNewServiceInput({ ...newServiceInput, category: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]">
+                      <option value="spmb">SPMB (PPDB Online)</option>
+                      <option value="legalisir">Legalisir Dokumen</option>
+                      <option value="mutasi">Mutasi Murid</option>
+                    </select>
+                    <input type="text" placeholder="Deskripsi Prosedur..." value={newServiceInput.desc} onChange={(e) => setNewServiceInput({ ...newServiceInput, desc: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]" />
+                    <input type="text" placeholder="Waktu Penyelesaian..." value={newServiceInput.time} onChange={(e) => setNewServiceInput({ ...newServiceInput, time: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]" />
+                    <input type="text" placeholder="Biaya (Misal: Gratis)..." value={newServiceInput.cost} onChange={(e) => setNewServiceInput({ ...newServiceInput, cost: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]" />
+                    <button onClick={handleAddService} className="w-full bg-emerald-500 text-slate-950 font-bold py-1.5 rounded text-[10px]">+ Daftarkan SOP</button>
+                  </div>
+                  <div className="space-y-1.5 max-h-[110px] overflow-y-auto pr-1">
+                    {servicesList.map(item => (
+                      <div key={item.id} className="flex justify-between items-center bg-slate-900 p-2 rounded text-[11px] border border-slate-850">
+                        <span className="truncate max-w-[240px] text-slate-300 font-semibold">{item.title}</span>
+                        <button onClick={() => setServicesList(servicesList.filter(s => s.id !== item.id))} className="text-rose-400 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* PTK Dewan Guru */}
+                <div className="bg-slate-950/50 p-3.5 rounded-2xl border border-slate-800 space-y-3">
+                  <span className="block text-[11px] font-black text-teal-400 uppercase tracking-wider flex items-center gap-1">
+                    <Users className="w-4 h-4" /> Pengelola Dewan Guru & Staf
+                  </span>
+                  <div className="bg-slate-900/60 p-2.5 rounded-xl space-y-2 border border-slate-850">
+                    <input type="text" placeholder="Nama Lengkap Guru..." value={newTeacherInput.name} onChange={(e) => setNewTeacherInput({ ...newTeacherInput, name: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]" />
+                    <input type="text" placeholder="Jabatan..." value={newTeacherInput.role} onChange={(e) => setNewTeacherInput({ ...newTeacherInput, role: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]" />
+                    <input type="text" placeholder="Link Foto..." value={newTeacherInput.photo} onChange={(e) => setNewTeacherInput({ ...newTeacherInput, photo: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]" />
+                    <button onClick={handleAddTeacher} className="w-full bg-teal-500 text-slate-950 font-bold py-1.5 rounded text-[10px]">+ Daftarkan Guru</button>
+                  </div>
+                  <div className="space-y-1.5 max-h-[110px] overflow-y-auto pr-1">
+                    {teachersList.map(item => (
+                      <div key={item.id} className="flex justify-between items-center bg-slate-900 p-2 rounded text-[11px] border border-slate-850">
+                        <span className="truncate max-w-[240px] text-slate-300 font-semibold">{item.name}</span>
+                        <button onClick={() => setTeachersList(teachersList.filter(t => t.id !== item.id))} className="text-rose-400 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Galeri Pramuka */}
+                <div className="bg-slate-950/50 p-3.5 rounded-2xl border border-slate-800 space-y-3">
+                  <span className="block text-[11px] font-black text-emerald-400 uppercase tracking-wider flex items-center gap-1">
+                    <Camera className="w-4 h-4" /> Pengelola Galeri & Pramuka
+                  </span>
+                  <div className="bg-slate-900/60 p-2.5 rounded-xl space-y-2 border border-slate-850">
+                    <input type="text" placeholder="Nama Kegiatan..." value={newGalleryInput.title} onChange={(e) => setNewGalleryInput({ ...newGalleryInput, title: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]" />
+                    <select value={newGalleryInput.category} onChange={(e) => setNewGalleryInput({ ...newGalleryInput, category: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]">
+                      <option value="Pramuka Siaga">Pramuka Siaga (Kls 1-3)</option>
+                      <option value="Pramuka Penggalang">Pramuka Penggalang (Kls 4-6)</option>
+                      <option value="Pembiasaan">Program Pembiasaan</option>
+                      <option value="Pembelajaran">Proses Kelas / Belajar</option>
+                    </select>
+                    <input type="text" placeholder="Link Foto..." value={newGalleryInput.image} onChange={(e) => setNewGalleryInput({ ...newGalleryInput, image: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]" />
+                    <input type="text" placeholder="Deskripsi..." value={newGalleryInput.desc} onChange={(e) => setNewGalleryInput({ ...newGalleryInput, desc: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white text-[10px]" />
+                    <button onClick={handleAddGallery} className="w-full bg-emerald-500 text-slate-950 font-bold py-1.5 rounded text-[10px]">+ Tambahkan ke Galeri</button>
+                  </div>
+                  <div className="space-y-1.5 max-h-[110px] overflow-y-auto pr-1">
+                    {galleryList.map(item => (
+                      <div key={item.id} className="flex justify-between items-center bg-slate-900 p-2 rounded text-[11px] border border-slate-850">
+                        <span className="truncate max-w-[240px] text-slate-300 font-semibold">{item.title}</span>
+                        <button onClick={() => setGalleryList(galleryList.filter(g => g.id !== item.id))} className="text-rose-400 p-1"><Trash2 className="w-3.5 h-3.5" /></button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Text Configs */}
+                {[
+                  { key: 'name', label: 'Nama Lembaga Sekolah' },
+                  { key: 'principalName', label: 'Nama Kepala Sekolah' },
+                  { key: 'tagline', label: 'Slogan Utama (Hero Banner)' },
+                  { key: 'welcomeText', label: 'Teks Selamat Datang (Hero)', isTextArea: true },
+                  { key: 'announcement', label: 'Teks Info Berjalan (Capsule ticker)', isTextArea: true },
+                  { key: 'address', label: 'Alamat Lengkap' },
+                  { key: 'phone', label: 'Nomor Telepon Hubungi' },
+                  { key: 'whatsappAduan', label: 'Nomor WA Pengaduan HELLO DRAJAT (Awali 62)' },
+                  { key: 'numPTK', label: 'Jumlah PTK (Tenaga Pendidik)' },
+                  { key: 'numRombel', label: 'Rombongan Belajar' },
+                  { key: 'numStudents', label: 'Jumlah Murid' },
+                  { key: 'accreditation', label: 'Akreditasi Sekolah' },
+                ].map(item => (
+                  <div key={item.key} className="space-y-1">
+                    <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">{item.label}</label>
+                    {item.isTextArea ? (
+                      <textarea rows="3" value={schoolConfig[item.key]} onChange={(e) => setSchoolConfig({ ...schoolConfig, [item.key]: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-white focus:outline-none text-[11px]" />
+                    ) : (
+                      <input type="text" value={schoolConfig[item.key]} onChange={(e) => setSchoolConfig({ ...schoolConfig, [item.key]: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-white focus:outline-none text-[11px]" />
+                    )}
+                  </div>
+                ))}
+                
+                {/* TEMA WARNA */}
+                <div className="space-y-1">
+                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">Tema Warna Web</label>
+                  <select value={schoolConfig.colorTheme} onChange={(e) => setSchoolConfig({ ...schoolConfig, colorTheme: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-white">
+                    <option value="teal">Emerald Teal (Hijau Toska)</option>
+                    <option value="emerald">Classic Emerald (Hijau Klasik)</option>
+                    <option value="blue">Sapphire Blue (Biru Elektrik)</option>
+                    <option value="indigo">Indigo Blue (Biru Gelap Mewah)</option>
+                  </select>
+                </div>
+
+                {/* UBAH PASSWORD */}
+                <form onSubmit={handleUpdatePassword} className="bg-slate-950/60 p-3 rounded-2xl border border-slate-850 space-y-2">
+                  <span className="block text-[10px] font-bold text-white uppercase tracking-wider">Ubah Sandi Keamanan</span>
+                  <input type="text" required value={newPasswordSetting} onChange={(e) => setNewPasswordSetting(e.target.value)} placeholder="Sandi baru (min 4 karakter)..." className="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white focus:outline-none" />
+                  <button type="submit" className="w-full bg-amber-500 text-slate-950 font-bold py-1.5 rounded-lg text-[11px]">Simpan Sandi Baru</button>
+                  {passwordChangeSuccess && <p className="text-[9px] text-emerald-400 font-semibold text-center">✓ Sandi pengaman diperbarui!</p>}
+                </form>
+
               </div>
             )}
+
           </div>
         )}
       </div>
+
+      {/* 6. MOBILE BOTTOM NAVIGATION */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-slate-950 border-t border-slate-800 py-2.5 px-3 flex items-center justify-around z-30 shadow-2xl">
+        {[
+          { id: 'beranda', label: 'Beranda', icon: Home },
+          { id: 'layanan', label: 'Layanan', icon: BookOpen },
+          { id: 'skm', label: 'Isi SKM', icon: HeartHandshake, pulse: true },
+          { id: 'kontak', label: 'Kontak', icon: Phone },
+        ].map(tab => {
+          const IconComp = tab.icon;
+          const isActive = activeTab === tab.id;
+          return (
+            <button key={tab.id} onClick={() => { setActiveTab(tab.id); setActiveSubTab(''); }} className={`flex flex-col items-center gap-1 text-[10px] ${ isActive ? 'text-emerald-400 font-bold' : 'text-slate-400' }`}>
+              <IconComp className={`w-5 h-5 ${tab.pulse && !isActive ? 'animate-pulse' : ''}`} />
+              <span>{tab.label}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* 7. FOOTER */}
+      <footer className="bg-slate-950 text-xs py-12 border-t border-slate-800 text-slate-500 mt-12">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-8">
+          
+          {/* Logo-logo Afiliasi Dinamis */}
+          <div className="border-b border-slate-900 pb-8">
+            <p className="text-center text-[10px] text-slate-600 font-extrabold uppercase tracking-widest mb-6">
+              Sinergi Gerakan Nasional Pendidikan Republik Indonesia
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-10">
+              {partnerLogos.map((partner) => (
+                <img 
+                  key={partner.id} 
+                  src={partner.url} 
+                  alt={partner.name} 
+                  title={partner.name}
+                  className="h-10 object-contain opacity-55 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 duration-300"
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Grid Kaki Web Utama */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="space-y-3 text-center md:text-left">
+              <h5 className="font-extrabold text-white text-sm tracking-widest">{schoolConfig.name}</h5>
+              <p className="text-slate-400 text-xs leading-relaxed max-w-sm mx-auto md:mx-0">
+                SD Negeri Drajat berkomitmen memberikan pengalaman belajar optimal agar murid menemukenali potensi diri dan tumbuh merdeka sesuai kodratnya.
+              </p>
+            </div>
+            <div className="space-y-2 text-center">
+              <h5 className="font-extrabold text-white text-sm">Pilar Well-Being Murid</h5>
+              <p className="text-slate-550 max-w-xs mx-auto text-slate-500">
+                Menjamin kesejahteraan emosional, sosial, dan akademik tumbuh seimbang demi masa depan murid yang bahagia dan selamat.
+              </p>
+            </div>
+            <div className="space-y-2 text-center md:text-right font-bold text-slate-600">
+              <h5 className="font-extrabold text-white text-sm">Pengembangan Platform</h5>
+              <p className="text-[11px] text-slate-400">
+                Website diciptakan oleh <strong className="text-emerald-400 font-black">Damay</strong> powered by <strong className="text-emerald-400 font-black">Gemini</strong>.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </footer>
 
     </div>
   );
