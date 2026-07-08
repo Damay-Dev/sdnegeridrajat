@@ -761,13 +761,17 @@
         <!-- Teks Utama & Statistik -->
         <div class="space-y-2">
           <div><label class="text-[9px] font-bold text-slate-400 uppercase">Nama Lembaga</label><input id="edit-name" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></div>
-          <div><label class="text-[9px] font-bold text-slate-400 uppercase">Slogan Sekolah</label><input id="edit-tagline" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></div>
+          <div><label class="text-[9px] font-bold text-slate-400 uppercase">Slogan Slogan</label><input id="edit-tagline" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></div>
           <div><label class="text-[9px] font-bold text-slate-400 uppercase">Kepala Sekolah</label><input id="edit-principalName" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></div>
           <div><label class="text-[9px] font-bold text-slate-400 uppercase">Alamat Lengkap</label><input id="edit-address" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></div>
           <div><label class="text-[9px] font-bold text-slate-400 uppercase">Warta Utama</label><textarea id="edit-announcement" rows="2" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></textarea></div>
           <div class="grid grid-cols-2 gap-2">
             <div><label class="text-[9px] text-slate-400 uppercase font-bold">Jumlah Murid</label><input id="edit-numStudents" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-1.5"></div>
             <div><label class="text-[9px] text-slate-400 uppercase font-bold">Jumlah PTK</label><input id="edit-numPTK" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-1.5"></div>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div><label class="text-[9px] text-slate-400 uppercase font-bold">Akreditasi</label><input id="edit-accreditation" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-1.5"></div>
+            <div><label class="text-[9px] text-slate-400 uppercase font-bold">Jumlah Rombel</label><input id="edit-numRombel" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-1.5"></div>
           </div>
         </div>
 
@@ -1217,6 +1221,8 @@
         document.getElementById('edit-announcement').value = CONFIG.announcement;
         document.getElementById('edit-numStudents').value = CONFIG.numStudents;
         document.getElementById('edit-numPTK').value = CONFIG.numPTK;
+        document.getElementById('edit-accreditation').value = CONFIG.accreditation;
+        document.getElementById('edit-numRombel').value = CONFIG.numRombel;
 
         renderAdminPartners();
       } else {
@@ -1265,6 +1271,8 @@
       CONFIG.announcement = document.getElementById('edit-announcement').value;
       CONFIG.numStudents = document.getElementById('edit-numStudents').value;
       CONFIG.numPTK = document.getElementById('edit-numPTK').value;
+      CONFIG.accreditation = document.getElementById('edit-accreditation').value;
+      CONFIG.numRombel = document.getElementById('edit-numRombel').value;
 
       localStorage.setItem('sdn_drajat_config', JSON.stringify(CONFIG));
       localStorage.setItem('sdn_drajat_partners', JSON.stringify(PARTNERS));
