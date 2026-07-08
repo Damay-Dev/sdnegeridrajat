@@ -319,7 +319,7 @@
             <div class="space-y-3">
               <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-500/10 text-cyan-400"><i data-lucide="shield-check" class="w-5 h-5"></i></div>
               <h4 class="font-extrabold text-white text-sm">Sekolah Sehat</h4>
-              <p class="text-xs text-slate-400 leading-relaxed">Sinergi pembiasaan harian terintegrasi penuh di SDN Drajat.</p>
+              <p class="text-xs text-slate-400 leading-relaxed">Sinergi pembiasaan harian terintegrasi penuh di SD Negeri Drajat.</p>
             </div>
           </div>
         </div>
@@ -836,8 +836,8 @@
     ];
 
     let NEWS = [
-      { id: 1, title: "Menyambut Fajar Baru: MPLS Ramah Murid SDN Drajat Hangatkan Langkah Awal Murid Hebat!", date: "06 Juli 2026", category: "MPLS Ramah", summary: "Hari pertama masuk sekolah di SD Negeri Drajat dihiasi senyum ramah dan pelukan hangat para guru. Program Masa Pengenalan Lingkungan Sekolah (MPLS) didesain menyenangkan tanpa tekanan fisik maupun mental, mengedepankan lingkungan asri yang ramah murid." },
-      { id: 2, title: "Implementasi Gerakan 7 Kebiasaan Anak Indonesia Hebat Guna Membentuk Karakter Unggul", date: "04 Juli 2026", category: "Karakter", summary: "Menyambut tahun ajaran baru, SDN Drajat mengadopsi penuh program prioritas Cerdas Berkarakter Kemendikdasmen. Melalui sinergi guru dan wali murid, kami membiasakan 7 aktivitas harian positif di sekolah maupun rumah." }
+      { id: 1, title: "Menyambut Fajar Baru: MPLS Ramah Murid SD Negeri Drajat Hangatkan Langkah Awal Murid Hebat!", date: "06 Juli 2026", category: "MPLS Ramah", summary: "Hari pertama masuk sekolah di SD Negeri Drajat dihiasi senyum ramah dan pelukan hangat para guru. Program Masa Pengenalan Lingkungan Sekolah (MPLS) didesain menyenangkan tanpa tekanan fisik maupun mental, mengedepankan lingkungan asri yang ramah murid." },
+      { id: 2, title: "Implementasi Gerakan 7 Kebiasaan Anak Indonesia Hebat Guna Membentuk Karakter Unggul", date: "04 Juli 2026", category: "Karakter", summary: "Menyambut tahun ajaran baru, SD Negeri Drajat mengadopsi penuh program prioritas Cerdas Berkarakter Kemendikdasmen. Melalui sinergi guru dan wali murid, kami membiasakan 7 aktivitas harian positif di sekolah maupun rumah." }
     ];
 
     // --- STATE KEAMANAN ---
@@ -1126,7 +1126,7 @@
 
       if (!text.trim()) return;
 
-      const formatted = `*HELLO DRAJAT - SDN Drajat*\n----------------------------------------\n*Kategori:* ${cat}\n*Sistem:* ${helloTarget === 'Admin' ? 'Sapa Admin' : 'Ki Drajat Bot'}\n\n*Pesan / Aspirasi:*\n"${text}"\n\n----------------------------------------\n_Dikirim otomatis via Portal Hello Drajat_`;
+      const formatted = `*HELLO DRAJAT – SD Negeri Drajat*\n----------------------------------------\n*Kategori:* ${cat}\n*Sistem:* ${helloTarget === 'Admin' ? 'Sapa Admin' : 'Ki Drajat Bot'}\n\n*Pesan / Aspirasi:*\n"${text}"\n\n----------------------------------------\n_Dikirim otomatis via Portal Hello Drajat_`;
       const waUrl = `https://api.whatsapp.com/send?phone=${CONFIG.whatsappAduan}&text=${encodeURIComponent(formatted)}`;
       window.open(waUrl, '_blank');
       toggleHelloDrawer();
@@ -1164,7 +1164,7 @@
       } else if (option === '📋 HELLO Drajat') {
         ans = "Layanan digital terintegrasi yang mempermudah legalisir ijazah cepat, PPDB online, hingga sarana pelaporan wali murid langsung ke admin via WhatsApp.";
       } else if (option === '🏕️ Pramuka') {
-        ans = "Pengembangan Pramuka di SDN Drajat dibagi menjadi Pramuka Siaga (kelas 1-3) untuk kemandirian, dan Pramuka Penggalang (kelas 4-6) untuk kepemimpinan.";
+        ans = "Pengembangan Pramuka di SD Negeri Drajat dibagi menjadi Pramuka Siaga (kelas 1-3) untuk kemandirian, dan Pramuka Penggalang (kelas 4-6) untuk kepemimpinan.";
       } else {
         ans = "PPDB Tahun Ajaran Baru di SD Negeri Drajat telah resmi dibuka secara online bebas biaya. Hubungi admin via HELLO Drajat untuk panduan berkas.";
       }
