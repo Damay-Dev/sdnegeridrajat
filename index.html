@@ -217,7 +217,7 @@
           <span class="text-[9px] text-emerald-400 font-extrabold uppercase tracking-widest bg-emerald-950/80 px-4 py-1.5 rounded-full border border-emerald-800/40 font-outfit">
             FILOSOFI KI HADJAR DEWANTARA
           </span>
-          <h3 class="text-2xl md:text-3xl font-black text-white leading-snug">
+          <h3 class="text-2xl md:text-3xl font-black text-white leading-snug font-outfit">
             Menuntun Tumbuh Kembang Setiap Jiwa Murid
           </h3>
           <p class="text-xs text-slate-400 leading-relaxed">
@@ -263,7 +263,7 @@
           <div class="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-full text-xs font-bold text-emerald-400 font-outfit">
             <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Program Prioritas Kementerian
           </div>
-          <h3 class="text-2xl md:text-3xl font-black text-white font-serif-elegant">7 Kebiasaan Anak Indonesia Hebat</h3>
+          <h3 class="text-2xl md:text-3xl font-black text-white font-outfit">7 Kebiasaan Anak Indonesia Hebat</h3>
           <p class="text-xs text-slate-400 leading-relaxed">SD Negeri Drajat membiasakan tujuh aktivitas harian positif guna membentuk generasi emas yang tangguh secara mental, sosial, dan spiritual.</p>
         </div>
 
@@ -333,7 +333,7 @@
         <div class="lg:col-span-8 space-y-4 relative z-10">
           <div class="border-l-4 border-emerald-500 pl-4">
             <span class="text-[10px] text-emerald-400 font-bold uppercase block tracking-wider font-outfit">Aspirasi Pemimpin</span>
-            <h3 class="text-xl md:text-2xl font-black text-white">Sambutan Kepala Sekolah</h3>
+            <h3 class="text-xl md:text-2xl font-black text-white font-outfit">Sambutan Kepala Sekolah</h3>
           </div>
           <p class="text-slate-300 text-xs md:text-sm leading-relaxed italic font-serif bg-slate-950/40 p-5 rounded-2xl border border-slate-850">
             "Menghadapi tantangan transformasi digital nasional, SD Negeri Drajat berkomitmen menyelenggarakan layanan kependidikan ramah murid, berwawasan lingkungan hijau, serta mengedepankan transparansi administrasi tanpa pungutan biaya."
@@ -361,20 +361,33 @@
     </div>
 
     <!-- SUB-TAB 2: PROFIL -->
-    <div id="tab-profil" class="tab-view hidden max-w-4xl mx-auto space-y-12 animate-fadeIn">
+    <div id="tab-profil" class="tab-view hidden max-w-5xl mx-auto space-y-12 animate-fadeIn">
       <div class="text-center space-y-2">
         <span class="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700 font-outfit">KENALI KAMI</span>
-        <h2 class="text-2xl md:text-4xl font-extrabold text-white">Visi, Misi & Dewan Guru</h2>
+        <h2 class="text-2xl md:text-4xl font-extrabold text-white font-outfit">Visi, Misi & Dewan Guru</h2>
         <div class="w-20 h-1 bg-emerald-500 mx-auto rounded-full"></div>
       </div>
-      <div class="bg-slate-900 border border-slate-850 p-6 md:p-8 rounded-3xl space-y-6">
-        <div class="space-y-3">
-          <h3 class="font-extrabold text-white text-base border-l-4 border-emerald-500 pl-3">Visi Sekolah</h3>
-          <p id="vision-text-display" class="text-slate-300 font-serif italic text-sm p-4 bg-slate-950/40 rounded-xl border border-slate-850 leading-relaxed"></p>
+      
+      <div class="bg-slate-900 border border-slate-850 p-6 md:p-8 rounded-3xl space-y-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+          <!-- Kolom Visi -->
+          <div class="md:col-span-5 space-y-4">
+            <h3 class="font-extrabold text-white text-base border-l-4 border-emerald-500 pl-3 font-outfit">Visi Sekolah</h3>
+            <p id="vision-text-display" class="text-slate-300 font-serif italic text-sm p-4 bg-slate-950/40 rounded-xl border border-slate-850 leading-relaxed"></p>
+          </div>
+          <!-- Kolom Misi -->
+          <div class="md:col-span-7 space-y-4">
+            <h3 class="font-extrabold text-white text-base border-l-4 border-emerald-500 pl-3 font-outfit">Misi Sekolah</h3>
+            <div id="mission-text-display" class="space-y-3">
+              <!-- Will be loaded dynamically from MISSION -->
+            </div>
+          </div>
         </div>
-        <div class="space-y-3 pt-4 border-t border-slate-850">
-          <h3 id="teachers-section-header" class="font-extrabold text-white text-base border-l-4 border-emerald-500 pl-3 mb-4">Dewan Guru & Staf Pengajar</h3>
-          <div id="teachers-view-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-6"></div>
+        
+        <!-- Section Staf Pengajar -->
+        <div class="space-y-3 pt-6 border-t border-slate-850">
+          <h3 id="teachers-section-header" class="font-extrabold text-white text-base border-l-4 border-emerald-500 pl-3 mb-4 font-outfit">Dewan Guru & Staf Pengajar</h3>
+          <div id="teachers-view-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"></div>
         </div>
       </div>
     </div>
@@ -383,7 +396,7 @@
     <div id="tab-fasilitas" class="tab-view hidden space-y-8 animate-fadeIn">
       <div class="text-center space-y-2">
         <span class="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700 font-outfit">SARANA PRASARANA</span>
-        <h2 id="facility-title-page" class="text-2xl md:text-3xl font-extrabold text-white">Fasilitas Sekolah</h2>
+        <h2 id="facility-title-page" class="text-2xl md:text-3xl font-extrabold text-white font-outfit">Fasilitas Sekolah</h2>
       </div>
       <div id="facilities-view-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </div>
@@ -392,7 +405,7 @@
     <div id="tab-pengembangan" class="tab-view hidden space-y-12 animate-fadeIn">
       <div class="text-center space-y-2">
         <span class="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700 font-outfit">PENGEMBANGAN DIRI</span>
-        <h2 id="pengembangan-title-page" class="text-2xl md:text-3xl font-extrabold text-white">Pramuka & Pembiasaan</h2>
+        <h2 id="pengembangan-title-page" class="text-2xl md:text-3xl font-extrabold text-white font-outfit">Pramuka & Pembiasaan</h2>
       </div>
       
       <!-- Prioritas Pendidikan Karakter Kemendikdasmen -->
@@ -402,7 +415,7 @@
           <div class="bg-slate-950 border border-slate-800 rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between hover:border-emerald-500/40 transition-all duration-300">
             <div class="space-y-4">
               <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-xl text-amber-400 font-black font-outfit">01</div>
-              <h3 class="text-lg font-black text-white">Gerakan 7 Kebiasaan Anak Indonesia Hebat</h3>
+              <h3 class="text-lg font-black text-white font-outfit">Gerakan 7 Kebiasaan Anak Indonesia Hebat</h3>
               <p class="text-xs text-slate-400 leading-relaxed">Pembiasaan harian terstruktur yang membimbing murid mengoptimalkan potensi fisik, spiritual, sosial, dan akademik.</p>
               <div class="space-y-2 pt-2 text-[11px] text-slate-300">
                 <div class="flex items-center gap-2 bg-slate-900/60 p-2 rounded-xl border border-slate-850"><i data-lucide="sun" class="w-3.5 h-3.5 text-amber-400"></i> <span>Fajar: Bangun pagi & Beribadah</span></div>
@@ -415,7 +428,7 @@
           <div class="bg-slate-950 border border-slate-800 rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between hover:border-emerald-500/40 transition-all duration-300">
             <div class="space-y-4">
               <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-xl text-emerald-400 font-black font-outfit">02</div>
-              <h3 class="text-lg font-black text-white">Budaya Aman dan Nyaman</h3>
+              <h3 class="text-lg font-black text-white font-outfit">Budaya Aman dan Nyaman</h3>
               <p class="text-xs text-slate-400 leading-relaxed">Pencegahan dini perundungan, kekerasan fisik, verbal, maupun siber demi tercapainya kebahagiaan belajar (*well-being*).</p>
               <div class="space-y-2 pt-2 text-[11px] text-slate-300">
                 <div class="flex items-center gap-2 bg-slate-900/60 p-2 rounded-xl border border-slate-850"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i> <span>Pembentukan Satgas anti-perundungan</span></div>
@@ -427,7 +440,7 @@
           <div class="bg-slate-950 border border-slate-800 rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between hover:border-emerald-500/40 transition-all duration-300">
             <div class="space-y-4">
               <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-xl text-blue-400 font-black font-outfit">03</div>
-              <h3 class="text-lg font-black text-white">Penguatan Inklusivitas & Kebinekaan</h3>
+              <h3 class="text-lg font-black text-white font-outfit">Penguatan Inklusivitas & Kebinekaan</h3>
               <p class="text-xs text-slate-400 leading-relaxed">Merajut harmoni tanpa memandang perbedaan, ramah anak disabilitas, serta menanamkan jiwa toleransi kebudayaan ketimuran.</p>
               <div class="space-y-2 pt-2 text-[11px] text-slate-300">
                 <div class="flex items-center gap-2 bg-slate-900/60 p-2 rounded-xl border border-slate-850"><i data-lucide="compass" class="w-3.5 h-3.5 text-blue-400"></i> <span>Penerimaan inklusif tanpa syarat diskriminatif</span></div>
@@ -445,7 +458,7 @@
     <div id="tab-layanan" class="tab-view hidden max-w-4xl mx-auto space-y-8 animate-fadeIn">
       <div class="text-center space-y-2">
         <span class="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700 font-outfit">HELLO DRAJAT</span>
-        <h2 id="layanan-title-page" class="text-2xl md:text-3xl font-extrabold text-white">SOP Layanan</h2>
+        <h2 id="layanan-title-page" class="text-2xl md:text-3xl font-extrabold text-white font-outfit">SOP Layanan</h2>
       </div>
       <div id="services-view-list" class="space-y-6"></div>
     </div>
@@ -454,7 +467,7 @@
     <div id="tab-skm" class="tab-view hidden space-y-8 animate-fadeIn">
       <div class="text-center space-y-2">
         <span class="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700 font-outfit">SURVEI KEPUASAN MASYARAKAT</span>
-        <h2 class="text-2xl md:text-4xl font-extrabold text-white">Indeks Kepuasan Publik Mandiri</h2>
+        <h2 class="text-2xl md:text-4xl font-extrabold text-white font-outfit">Indeks Kepuasan Publik Mandiri</h2>
         <div class="w-20 h-1 bg-emerald-500 mx-auto rounded-full"></div>
       </div>
 
@@ -527,7 +540,7 @@
     <div id="tab-kontak" class="tab-view hidden max-w-4xl mx-auto space-y-8">
       <div class="text-center space-y-2">
         <span class="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700 font-outfit">HUBUNGI KAMI</span>
-        <h2 class="text-2xl md:text-3xl font-extrabold text-white">Hubungi Sekolah & Sekretariat</h2>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white font-outfit">Hubungi Sekolah & Sekretariat</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -563,7 +576,7 @@
     <div id="tab-informasi" class="tab-view hidden max-w-4xl mx-auto space-y-8 animate-fadeIn">
       <div class="text-center space-y-2">
         <span class="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700 font-outfit">PORTAL BERITA</span>
-        <h2 class="text-2xl md:text-3xl font-extrabold text-white">Warta & Berita Sekolah</h2>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white font-outfit">Warta & Berita Sekolah</h2>
       </div>
       <div id="berita-full-list" class="space-y-6"></div>
     </div>
@@ -730,7 +743,7 @@
 
         <!-- Tab Internal Navigation -->
         <div class="flex overflow-x-auto gap-1 border-b border-slate-800 pb-2 custom-scrollbar">
-          <button onclick="switchAdminTab('umum')" id="btn-atab-umum" class="atab-btn px-3 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-bold shrink-0">⚙️ Umum</button>
+          <button onclick="switchAdminTab('umum')" id="btn-atab-umum" class="atab-btn px-3 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-bold shrink-0">⚙️ Umum & Visi Misi</button>
           <button onclick="switchAdminTab('guru')" id="btn-atab-guru" class="atab-btn px-3 py-1.5 rounded-lg bg-slate-950 text-slate-300 font-bold shrink-0">👩‍🏫 Guru</button>
           <button onclick="switchAdminTab('fasilitas')" id="btn-atab-fasilitas" class="atab-btn px-3 py-1.5 rounded-lg bg-slate-950 text-slate-300 font-bold shrink-0">🏫 Fasilitas</button>
           <button onclick="switchAdminTab('kegiatan')" id="btn-atab-kegiatan" class="atab-btn px-3 py-1.5 rounded-lg bg-slate-950 text-slate-300 font-bold shrink-0">🏕️ Kegiatan</button>
@@ -739,16 +752,29 @@
           <button onclick="switchAdminTab('mitra')" id="btn-atab-mitra" class="atab-btn px-3 py-1.5 rounded-lg bg-slate-950 text-slate-300 font-bold shrink-0">🤝 Mitra</button>
         </div>
 
-        <!-- TAB-CONTENT 1: INFO UMUM & STATISTIK -->
+        <!-- TAB-CONTENT 1: INFO UMUM, VISI & MISI -->
         <div id="atab-content-umum" class="admin-tab-view space-y-3">
           <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1">IDENTITAS & LOGO</h4>
           <div><label class="text-[9px] font-bold text-slate-400 uppercase">Nama Lembaga</label><input id="edit-name" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></div>
           <div><label class="text-[9px] font-bold text-slate-400 uppercase">Slogan Slogan</label><input id="edit-tagline" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></div>
           <div><label class="text-[9px] font-bold text-slate-400 uppercase">Sambut Kepala Sekolah</label><input id="edit-principalName" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></div>
-          <div><label class="text-[9px] font-bold text-slate-400 uppercase">Visi Sekolah</label><textarea id="edit-vision" rows="2" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></textarea></div>
           <div><label class="text-[9px] font-bold text-slate-400 uppercase">Alamat Lengkap</label><input id="edit-address" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></div>
           <div><label class="text-[9px] font-bold text-slate-400 uppercase">Pengumuman Atas (Warta Utama)</label><textarea id="edit-announcement" rows="2" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></textarea></div>
           
+          <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1 pt-2">VISI & KELOLA MISI DINAMIS</h4>
+          <div><label class="text-[9px] font-bold text-slate-400 uppercase">Visi Sekolah</label><textarea id="edit-vision" rows="2" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></textarea></div>
+          
+          <!-- Pengelola Misi Dinamis (CMS) -->
+          <div class="bg-slate-950/50 p-3 rounded-xl border border-slate-800 space-y-2 mt-1">
+            <span class="block text-[10px] font-bold text-emerald-400 uppercase tracking-wider">Kelola Misi Sekolah (Dinamis)</span>
+            <div class="space-y-1.5 bg-slate-900 p-2.5 rounded-lg border border-slate-850">
+              <input id="add-mission-title" type="text" placeholder="Judul Misi (cth: Membentuk Karakter Tangguh)" class="w-full bg-slate-950 border border-slate-800 rounded p-1.5 text-xs text-white">
+              <textarea id="add-mission-desc" rows="2" placeholder="Deskripsi Misi..." class="w-full bg-slate-950 border border-slate-800 rounded p-1.5 text-xs text-white"></textarea>
+              <button type="button" onclick="addMissionDirect()" class="w-full bg-emerald-500 text-slate-950 font-black py-1.5 rounded text-[11px]">+ Tambahkan Misi Baru</button>
+            </div>
+            <div id="admin-missions-list" class="space-y-1 max-h-32 overflow-y-auto custom-scrollbar"></div>
+          </div>
+
           <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1 pt-2">MEDIA UTAMA</h4>
           <div><label class="text-[9px] font-bold text-slate-400 uppercase">Link Logo Sekolah (URL)</label><input id="edit-logoUrl" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></div>
           <div><label class="text-[9px] font-bold text-slate-400 uppercase">Link Foto Kepala Sekolah (URL)</label><input id="edit-principalPhoto" type="text" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white"></div>
@@ -771,7 +797,7 @@
           <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1">TAMBAH DEWAN GURU BARU</h4>
           <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-850 space-y-2">
             <div><label class="text-[9px] text-slate-400">NAMA LENGKAP & GELAR</label><input id="add-teacher-name" type="text" placeholder="Contoh: Budi Santoso, S.Pd." class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></div>
-            <div><label class="text-[9px] text-slate-400">JABATAN / PERAN GURU</label><input id="add-teacher-role" type="text" placeholder="Contoh: Guru Kelas IV / PJOK" class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></div>
+            <div><label class="text-[9px] text-slate-400">JABATAN / PERAN GURU</label><input id="add-teacher-role" type="text" placeholder="Contoh: Guru Kelas IV" class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></div>
             <div><label class="text-[9px] text-slate-400">URL FOTO GURU</label><input id="add-teacher-photo" type="text" placeholder="Pautkan url foto di sini..." class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></div>
             <button type="button" onclick="addTeacherDirect()" class="w-full bg-emerald-500 text-slate-950 font-black py-2 rounded">+ Daftarkan Guru</button>
           </div>
@@ -845,9 +871,9 @@
         <div id="atab-content-berita" class="admin-tab-view space-y-3 hidden">
           <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1">TERBITKAN WARTA BARU</h4>
           <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-850 space-y-2">
-            <div><label class="text-[9px] text-slate-400">JUDUL WARTA UTAMA</label><input id="add-news-title" type="text" placeholder="Tulis judul berita yang menarik..." class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></div>
-            <div><label class="text-[9px] text-slate-400">KATEGORI WARTA</label><input id="add-news-category" type="text" placeholder="Contoh: MPLS, Karakter, Prestasi, Berita" class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></div>
-            <div><label class="text-[9px] text-slate-400">ISI RANGKUMAN / SUMMARY</label><textarea id="add-news-summary" rows="3" placeholder="Uraikan laporan berita secara lengkap..." class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></textarea></div>
+            <div><label class="text-[9px] text-slate-400">JUDUL WARTA UTAMA</label><input id="add-news-title" type="text" placeholder="Tulis judul berita..." class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></div>
+            <div><label class="text-[9px] text-slate-400">KATEGORI WARTA</label><input id="add-news-category" type="text" placeholder="Contoh: MPLS, Karakter, Prestasi" class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></div>
+            <div><label class="text-[9px] text-slate-400">ISI RANGKUMAN / SUMMARY</label><textarea id="add-news-summary" rows="3" placeholder="Uraikan berita lengkap..." class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></textarea></div>
             <div><label class="text-[9px] text-slate-400">TANGGAL TERBIT</label><input id="add-news-date" type="text" placeholder="Contoh: 08 Juli 2026" class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></div>
             <button type="button" onclick="addNewsDirect()" class="w-full bg-emerald-500 text-slate-950 font-black py-2 rounded">Terbitkan Berita Baru 📢</button>
           </div>
@@ -930,6 +956,14 @@
       }
     ];
 
+    // Misi Sekolah Terintegrasi (Dinamis)
+    let MISSION = [
+      { id: 1, title: "Mengoptimalkan Potensi Sejak Dini", desc: "Mengenali, mengasah, dan melejitkan bakat, minat, serta potensi unik setiap murid secara optimal." },
+      { id: 2, title: "Membentuk Karakter Tangguh", desc: "Menanamkan daya juang yang tinggi dan mentalitas pantang menyerah dalam menghadapi tantangan." },
+      { id: 3, title: "Mewujudkan Iklim Sekolah yang Kondusif", desc: "Memastikan lingkungan belajar mendukung murid agar dapat bertumbuh secara sehat, adaptif, dan bahagia (well-being)." },
+      { id: 4, title: "Melahirkan Generasi yang Berdampak", desc: "Mendidik murid agar menjadi pribadi yang mandiri dan mampu memberikan manfaat nyata bagi diri sendiri serta lingkungan sekitarnya." }
+    ];
+
     let TEACHERS = [
       { id: 1, name: "SURATI, S.Pd.", role: "Kepala Sekolah", photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300" },
       { id: 2, name: "NURUL HIDAYAH, S.Pd.SD", role: "Guru Kelas VI", photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=300" },
@@ -989,6 +1023,7 @@
       const lGallery = localStorage.getItem('sdn_drajat_gallery');
       const lServices = localStorage.getItem('sdn_drajat_services');
       const lNews = localStorage.getItem('sdn_drajat_news');
+      const lMission = localStorage.getItem('sdn_drajat_mission');
       
       if (lConfig) CONFIG = JSON.parse(lConfig);
       if (lPartners) PARTNERS = JSON.parse(lPartners);
@@ -998,6 +1033,7 @@
       if (lGallery) GALLERY = JSON.parse(lGallery);
       if (lServices) SERVICES = JSON.parse(lServices);
       if (lNews) NEWS = JSON.parse(lNews);
+      if (lMission) MISSION = JSON.parse(lMission);
 
       renderAllViews();
       lucide.createIcons();
@@ -1037,13 +1073,30 @@
       document.getElementById('contact-email').innerText = CONFIG.email;
       document.getElementById('vision-text-display').innerText = CONFIG.visionText;
 
-      // 4. Statistik
+      // 4. Render Misi Dinamis
+      const missionDisplay = document.getElementById('mission-text-display');
+      missionDisplay.innerHTML = '';
+      if (MISSION.length === 0) {
+        missionDisplay.innerHTML = `<p class="text-xs text-slate-500 italic">Misi Sekolah belum ditambahkan.</p>`;
+      } else {
+        MISSION.forEach((m, idx) => {
+          missionDisplay.innerHTML += `
+            <div class="bg-slate-950/45 p-4 rounded-xl border border-slate-850 space-y-1 hover:border-emerald-500/30 transition-all">
+              <span class="text-[10px] text-emerald-400 font-extrabold tracking-wider font-outfit uppercase">MISI ${idx + 1}</span>
+              <h4 class="font-bold text-white text-xs md:text-sm font-outfit">${m.title}</h4>
+              <p class="text-xs text-slate-400 leading-relaxed font-sans">${m.desc}</p>
+            </div>
+          `;
+        });
+      }
+
+      // 5. Statistik
       document.getElementById('stat-ptk').innerText = CONFIG.numPTK;
       document.getElementById('stat-rombel').innerText = CONFIG.numRombel;
       document.getElementById('stat-accreditation').innerText = CONFIG.accreditation;
       document.getElementById('stat-students').innerText = CONFIG.numStudents;
 
-      // 5. Render Dewan Guru
+      // 6. Render Dewan Guru
       const teachersGrid = document.getElementById('teachers-view-grid');
       teachersGrid.innerHTML = '';
       TEACHERS.forEach(t => {
@@ -1061,7 +1114,7 @@
       });
       document.getElementById('teachers-section-header').innerText = `Dewan Guru & Staf Pengajar (${TEACHERS.length} PTK)`;
 
-      // 6. Render Berita Pendek di Beranda (Maksimal 2 warta teranyar)
+      // 7. Render Berita Pendek di Beranda (Maksimal 2 warta teranyar)
       const beritaHome = document.getElementById('berita-home-grid');
       beritaHome.innerHTML = '';
       const recentNews = NEWS.slice(0, 2);
@@ -1081,7 +1134,7 @@
         `;
       });
 
-      // 7. Render Berita di halaman Informasi Lengkap
+      // 8. Render Berita di halaman Informasi Lengkap
       const beritaFullList = document.getElementById('berita-full-list');
       if (beritaFullList) {
         beritaFullList.innerHTML = '';
@@ -1099,7 +1152,7 @@
         });
       }
 
-      // 8. Render Logo Kemitraan (Footer)
+      // 9. Render Logo Kemitraan (Footer)
       const partnersView = document.getElementById('partners-view');
       partnersView.innerHTML = '';
       PARTNERS.forEach(p => {
@@ -1372,12 +1425,10 @@
       container.appendChild(toast);
       lucide.createIcons();
       
-      // Animasi masuk
       setTimeout(() => {
         toast.classList.remove('translate-x-20', 'opacity-0');
       }, 50);
 
-      // Otomatis hapus setelah 3,5 detik
       setTimeout(() => {
         toast.classList.add('translate-x-20', 'opacity-0');
         setTimeout(() => toast.remove(), 300);
@@ -1407,7 +1458,7 @@
         document.getElementById('admin-fields').classList.remove('hidden');
         document.getElementById('admin-icon').className = "w-5 h-5 text-emerald-400 animate-pulse";
 
-        // Isi form edit Info Umum
+        // Isi form edit Info Umum & Visi
         document.getElementById('edit-logoUrl').value = CONFIG.logoUrl;
         document.getElementById('edit-principalPhoto').value = CONFIG.principalPhotoUrl;
         document.getElementById('edit-heroBg').value = CONFIG.heroBgUrl;
@@ -1424,6 +1475,7 @@
         document.getElementById('edit-numRombel').value = CONFIG.numRombel;
 
         // Render editor lists
+        renderAdminMissions();
         renderAdminTeachers();
         renderAdminFacilities();
         renderAdminGallery();
@@ -1436,6 +1488,54 @@
         document.getElementById('admin-error-text').classList.remove('hidden');
         showToast("Sandi Pengaman Salah!", "error");
       }
+    }
+
+    // --- MANAJEMEN MISI SEKOLAH (Dinamis CRUD) ---
+    function renderAdminMissions() {
+      const container = document.getElementById('admin-missions-list');
+      container.innerHTML = '';
+      MISSION.forEach(m => {
+        container.innerHTML += `
+          <div class="flex justify-between items-center bg-slate-950 p-2 rounded-xl border border-slate-850 gap-2">
+            <span class="truncate text-slate-300 font-semibold text-[11px]">${m.title}</span>
+            <button onclick="deleteMissionDirect(${m.id})" class="text-rose-400 hover:text-rose-500 font-bold shrink-0 text-[10px]">Hapus</button>
+          </div>
+        `;
+      });
+    }
+
+    function addMissionDirect() {
+      const title = document.getElementById('add-mission-title').value;
+      const desc = document.getElementById('add-mission-desc').value;
+
+      if (!title.trim() || !desc.trim()) {
+        showToast("Judul dan deskripsi misi wajib diisi!", "error");
+        return;
+      }
+
+      const newMission = {
+        id: Date.now(),
+        title: title,
+        desc: desc
+      };
+
+      MISSION.push(newMission);
+      localStorage.setItem('sdn_drajat_mission', JSON.stringify(MISSION));
+
+      document.getElementById('add-mission-title').value = '';
+      document.getElementById('add-mission-desc').value = '';
+
+      renderAdminMissions();
+      renderAllViews();
+      showToast("Misi baru berhasil didaftarkan!", "success");
+    }
+
+    function deleteMissionDirect(id) {
+      MISSION = MISSION.filter(m => m.id !== id);
+      localStorage.setItem('sdn_drajat_mission', JSON.stringify(MISSION));
+      renderAdminMissions();
+      renderAllViews();
+      showToast("Misi berhasil dihapus!", "success");
     }
 
     // --- MANAJEMEN GURU ENGINE (CRUD) ---
@@ -1690,7 +1790,7 @@
         date: date.trim() ? date.trim() : new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })
       };
 
-      NEWS = [newNews, ...NEWS]; // Taruh berita teranyar di atas
+      NEWS = [newNews, ...NEWS];
       localStorage.setItem('sdn_drajat_news', JSON.stringify(NEWS));
 
       document.getElementById('add-news-title').value = '';
@@ -1771,6 +1871,7 @@
       localStorage.setItem('sdn_drajat_gallery', JSON.stringify(GALLERY));
       localStorage.setItem('sdn_drajat_services', JSON.stringify(SERVICES));
       localStorage.setItem('sdn_drajat_news', JSON.stringify(NEWS));
+      localStorage.setItem('sdn_drajat_mission', JSON.stringify(MISSION));
 
       renderAllViews();
       toggleAdminPanel();
@@ -1821,6 +1922,7 @@
       // Gantikan script default database bawaan dengan data kustomisasi terkini
       processedHTML = processedHTML.replace(/let CONFIG = \{[\s\S]*?\};/, `let CONFIG = ${JSON.stringify(CONFIG, null, 2)};`);
       processedHTML = processedHTML.replace(/let PARTNERS = \[[\s\S]*?\];/, `let PARTNERS = ${JSON.stringify(PARTNERS, null, 2)};`);
+      processedHTML = processedHTML.replace(/let MISSION = \[[\s\S]*?\];/, `let MISSION = ${JSON.stringify(MISSION, null, 2)};`);
       processedHTML = processedHTML.replace(/let TEACHERS = \[[\s\S]*?\];/, `let TEACHERS = ${JSON.stringify(TEACHERS, null, 2)};`);
       processedHTML = processedHTML.replace(/let FACILITIES = \[[\s\S]*?\];/, `let FACILITIES = ${JSON.stringify(FACILITIES, null, 2)};`);
       processedHTML = processedHTML.replace(/let GALLERY = \[[\s\S]*?\];/, `let GALLERY = ${JSON.stringify(GALLERY, null, 2)};`);
