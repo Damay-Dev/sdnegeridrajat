@@ -86,7 +86,8 @@
 
   <!-- ==================== 2. HEADER & GLASS NAVIGATION BAR ==================== -->
   <header class="bg-slate-950/90 backdrop-blur-md border-b border-slate-800/60 sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between gap-4">
+    <!-- Baris Utama: Brand Identitas & Program Kemitraan (Dan Hamburger Menu di Mobile) -->
+    <div class="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between gap-4">
       
       <!-- Brand Identitas (Trigger Klik 2x untuk Editor) - Skala Logo Diperbesar Signifikan -->
       <div class="flex items-center gap-4 cursor-pointer shrink-0" onclick="switchTab('beranda')" ondblclick="toggleAdminPanel()" title="Ketuk 2x untuk Editor">
@@ -108,61 +109,65 @@
         <img src="https://lh3.googleusercontent.com/d/1wlivek8f1uyhO2XjpPflH5ej2CZq8Xw-" class="h-10 object-contain filter drop-shadow-[0_4px_12px_rgba(16,185,129,0.25)]" title="Supporting Student Wellbeing">
       </div>
 
-      <!-- Desktop Navigation Links - Disetel 'lg:flex' untuk Laptop & Tablet Lebar -->
-      <nav class="hidden lg:flex items-center gap-1.5 bg-slate-900 border border-slate-800 p-1.5 rounded-full text-xs font-bold shadow-2xl shrink-0">
-        <button onclick="switchTab('beranda')" id="btn-nav-beranda" class="nav-item-btn px-4 py-2 rounded-full transition-all">Beranda</button>
-        <button onclick="switchTab('profil')" id="btn-nav-profil" class="nav-item-btn px-4 py-2 rounded-full transition-all">Profil &amp; Guru</button>
-        
-        <!-- Dropdown Fasilitas -->
-        <div class="relative group">
-          <button id="btn-nav-fasilitas" class="nav-item-btn px-3.5 py-2 rounded-full text-slate-300 hover:text-white flex items-center gap-1 hover:bg-slate-800 transition-all">
-            Fasilitas <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
-          </button>
-          <!-- Jembatan sensorik tanpa jeda top-full pt-2 -->
-          <div class="absolute left-0 top-full pt-2 w-48 hidden group-hover:block z-50">
-            <div class="bg-slate-950 border border-slate-800 rounded-2xl py-2 shadow-2xl">
-              <button onclick="switchTab('fasilitas', 'infra')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">Sarana Infrastruktur</button>
-              <button onclick="switchTab('fasilitas', 'belajar')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">Sarana Pembelajaran</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Dropdown Pengembangan -->
-        <div class="relative group">
-          <button id="btn-nav-pengembangan" class="nav-item-btn px-3.5 py-2 rounded-full text-slate-300 hover:text-white flex items-center gap-1 hover:bg-slate-800 transition-all">
-            Pengembangan <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
-          </button>
-          <div class="absolute left-0 top-full pt-2 w-56 hidden group-hover:block z-50">
-            <div class="bg-slate-950 border border-slate-800 rounded-2xl py-2 shadow-2xl">
-              <button onclick="switchTab('pengembangan', 'siaga')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">Pramuka Siaga (Kls 1-3)</button>
-              <button onclick="switchTab('pengembangan', 'penggalang')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">Pramuka Penggalang (Kls 4-6)</button>
-              <button onclick="switchTab('pengembangan', 'pembiasaan')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">Program &amp; Pembiasaan</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Dropdown Layanan -->
-        <div class="relative group">
-          <button id="btn-nav-layanan" class="nav-item-btn px-3.5 py-2 rounded-full text-slate-300 hover:text-white flex items-center gap-1 hover:bg-slate-800 transition-all">
-            Layanan <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
-          </button>
-          <div class="absolute right-0 top-full pt-2 w-52 hidden group-hover:block z-50">
-            <div class="bg-slate-950 border border-slate-800 rounded-2xl py-2 shadow-2xl">
-              <button onclick="switchTab('layanan', 'spmb')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">SPMB (PPDB Online)</button>
-              <button onclick="switchTab('layanan', 'legalisir')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">Legalisir Dokumen</button>
-              <button onclick="switchTab('layanan', 'mutasi')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">Mutasi Murid</button>
-            </div>
-          </div>
-        </div>
-
-        <button onclick="switchTab('skm')" id="btn-nav-skm" class="nav-item-btn px-4 py-2 rounded-full transition-all">Survei SKM</button>
-        <button onclick="switchTab('kontak')" id="btn-nav-kontak" class="nav-item-btn px-4 py-2 rounded-full transition-all">Kontak</button>
-      </nav>
-
       <!-- Mobile Hamburger Trigger - Disetel 'lg:hidden' untuk Ponsel dan Tablet -->
       <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-slate-200">
         <i id="mobile-menu-icon" data-lucide="menu" class="w-5 h-5"></i>
       </button>
+    </div>
+
+    <!-- Baris Bawah: Menu Navigasi Desktop yang Luas & Dinamis di bawah Brand Logo (Khusus layar Desktop besar) -->
+    <div class="hidden lg:block border-t border-slate-900/80 bg-slate-950/40 py-2.5 px-4 md:px-8">
+      <div class="max-w-7xl mx-auto flex justify-start">
+        <nav class="flex items-center gap-1.5 bg-slate-900/80 border border-slate-800/60 p-1.5 rounded-full text-xs font-bold shadow-2xl shrink-0">
+          <button onclick="switchTab('beranda')" id="btn-nav-beranda" class="nav-item-btn px-4 py-2 rounded-full transition-all">Beranda</button>
+          <button onclick="switchTab('profil')" id="btn-nav-profil" class="nav-item-btn px-4 py-2 rounded-full transition-all">Profil &amp; Guru</button>
+          
+          <!-- Dropdown Fasilitas -->
+          <div class="relative group">
+            <button id="btn-nav-fasilitas" class="nav-item-btn px-3.5 py-2 rounded-full text-slate-300 hover:text-white flex items-center gap-1 hover:bg-slate-800 transition-all">
+              Fasilitas <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+            </button>
+            <!-- Jembatan sensorik tanpa jeda top-full pt-2 -->
+            <div class="absolute left-0 top-full pt-2 w-48 hidden group-hover:block z-50">
+              <div class="bg-slate-950 border border-slate-800 rounded-2xl py-2 shadow-2xl">
+                <button onclick="switchTab('fasilitas', 'infra')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">Sarana Infrastruktur</button>
+                <button onclick="switchTab('fasilitas', 'belajar')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">Sarana Pembelajaran</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dropdown Pengembangan -->
+          <div class="relative group">
+            <button id="btn-nav-pengembangan" class="nav-item-btn px-3.5 py-2 rounded-full text-slate-300 hover:text-white flex items-center gap-1 hover:bg-slate-800 transition-all">
+              Pengembangan <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+            </button>
+            <div class="absolute left-0 top-full pt-2 w-56 hidden group-hover:block z-50">
+              <div class="bg-slate-950 border border-slate-800 rounded-2xl py-2 shadow-2xl">
+                <button onclick="switchTab('pengembangan', 'siaga')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">Pramuka Siaga (Kls 1-3)</button>
+                <button onclick="switchTab('pengembangan', 'penggalang')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">Pramuka Penggalang (Kls 4-6)</button>
+                <button onclick="switchTab('pengembangan', 'pembiasaan')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">Program &amp; Pembiasaan</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dropdown Layanan -->
+          <div class="relative group">
+            <button id="btn-nav-layanan" class="nav-item-btn px-3.5 py-2 rounded-full text-slate-300 hover:text-white flex items-center gap-1 hover:bg-slate-800 transition-all">
+              Layanan <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+            </button>
+            <div class="absolute right-0 top-full pt-2 w-52 hidden group-hover:block z-50">
+              <div class="bg-slate-950 border border-slate-800 rounded-2xl py-2 shadow-2xl">
+                <button onclick="switchTab('layanan', 'spmb')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">SPMB (PPDB Online)</button>
+                <button onclick="switchTab('layanan', 'legalisir')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">Legalisir Dokumen</button>
+                <button onclick="switchTab('layanan', 'mutasi')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">Mutasi Murid</button>
+              </div>
+            </div>
+          </div>
+
+          <button onclick="switchTab('skm')" id="btn-nav-skm" class="nav-item-btn px-4 py-2 rounded-full transition-all">Survei SKM</button>
+          <button onclick="switchTab('kontak')" id="btn-nav-kontak" class="nav-item-btn px-4 py-2 rounded-full transition-all">Kontak</button>
+        </nav>
+      </div>
     </div>
 
     <!-- ==================== MOBILE DRAWER (MENU SELULER LENGKAP) ==================== -->
