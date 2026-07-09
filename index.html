@@ -219,13 +219,13 @@
           PORTAL RESMI AKADEMIK
         </span>
         <h2 id="hero-tagline" class="text-3xl md:text-5xl font-black text-white leading-tight font-outfit">Menuntun Kodrat Anak, Merajut Harmoni Kebinekaan, Menggapai Selamat dan Bahagia</h2>
-        <p id="hero-welcome" class="text-sm md:text-base text-slate-400 leading-relaxed max-w-xl">Selamat datang di gerbang digital resmi SD Negeri Drajat. Bersama program Cerdas Berkarakter Kemendikdasmen dan asas luhur Ki Hadjar Dewantara, kami berkomitmen membersamai tumbuh kembang murid dalam atmosfer yang aman, inklusif, dan bebas perundungan.</p>
+        <p id="hero-welcome" class="text-sm md:text-base text-slate-400 leading-relaxed max-w-xl">Selamat datang di gerbang digital resmi SD Negeri Drajat. Bersama program Cerdas Berkarakter Kemendikdasmen dan asas luhur Ki Hadjar Dewantara, kami berkomitmen membersamai tumbuh kembang murid dalam atmosfer yang aman, inclusif, dan bebas perundungan.</p>
         <div class="flex flex-wrap justify-center lg:justify-start gap-4">
           <button onclick="switchTab('skm')" class="bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 font-black text-xs md:text-sm py-3 px-6 rounded-2xl shadow-xl flex items-center gap-2 hover:scale-105 transition-all">
             <i data-lucide="heart-handshake" class="w-4 h-4"></i> Berikan Survei SKM
           </button>
-          <button onclick="switchTab('layanan', 'spmb')" class="bg-slate-800 hover:bg-slate-700 text-white font-extrabold text-xs md:text-sm py-3 px-6 rounded-2xl border border-slate-700/85 transition-all">
-            Pendaftaran SPMB Online
+          <button onclick="openMplsModal()" class="bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-black text-xs md:text-sm py-3 px-6 rounded-2xl shadow-xl flex items-center gap-2 hover:scale-105 transition-all">
+            <i data-lucide="shield-alert" class="w-4 h-4"></i> Program MPLS Ramah Anak
           </button>
         </div>
       </div>
@@ -863,6 +863,107 @@
   <!-- TOAST NOTIFICATION WIDGET -->
   <div id="toast-container" class="fixed top-24 right-4 z-[999] pointer-events-none flex flex-col gap-2 max-w-sm"></div>
 
+  <!-- ==================== 7. MODAL INTERAKTIF: MPLS RAMAH ANAK ==================== -->
+  <div id="mpls-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fadeIn">
+    <div class="bg-slate-900 border border-slate-800 rounded-[2.5rem] p-6 md:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar relative shadow-2xl space-y-6">
+      <!-- Header Modal -->
+      <div class="flex justify-between items-start">
+        <div class="space-y-1">
+          <span class="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full font-outfit">KAMPANYE NASIONAL</span>
+          <h3 class="text-xl md:text-2xl font-black text-white font-outfit flex items-center gap-2"><i data-lucide="shield" class="text-amber-400 w-6 h-6"></i> Komitmen MPLS Ramah Anak 2026</h3>
+        </div>
+        <button onclick="closeMplsModal()" class="text-slate-400 hover:text-white p-1.5 rounded-full hover:bg-slate-800 transition-colors">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <!-- Isi Panduan -->
+      <div class="space-y-4 text-xs md:text-sm text-slate-300 leading-relaxed font-sans">
+        <p>Selamat datang calon siswa baru! SD Negeri Drajat berkomitmen penuh menyelenggarakan Masa Pengenalan Lingkungan Sekolah (MPLS) yang aman, inklusif, menyenangkan, serta sepenuhnya **bebas dari kekerasan fisik, verbal, perundungan (bullying), dan perpeloncoan**.</p>
+        
+        <!-- 4 Pilar Inklusif MPLS -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-850 flex gap-3 items-start">
+            <span class="text-lg">🤝</span>
+            <div>
+              <h5 class="font-extrabold text-white text-xs">Anti Perundungan</h5>
+              <p class="text-[11px] text-slate-400 leading-relaxed">Menjamin atmosfer saling menghormati antarsesama rekan sejawat.</p>
+            </div>
+          </div>
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-850 flex gap-3 items-start">
+            <span class="text-lg">💖</span>
+            <div>
+              <h5 class="font-extrabold text-white text-xs">Aman &amp; Nyaman</h5>
+              <p class="text-[11px] text-slate-400 leading-relaxed">Pemberian wawasan edukatif yang aman dan tanpa ketegangan fisik.</p>
+            </div>
+          </div>
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-850 flex gap-3 items-start">
+            <span class="text-lg">🌱</span>
+            <div>
+              <h5 class="font-extrabold text-white text-xs">Inklusif Setara</h5>
+              <p class="text-[11px] text-slate-400 leading-relaxed">Penerimaan seutuhnya bagi keberagaman latar belakang fisik &amp; mental murid.</p>
+            </div>
+          </div>
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-850 flex gap-3 items-start">
+            <span class="text-lg">🎨</span>
+            <div>
+              <h5 class="font-extrabold text-white text-xs">Kreativitas Ceria</h5>
+              <p class="text-[11px] text-slate-400 leading-relaxed">Metode pengenalan sekolah interaktif lewat permainan gembira.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Petisi Digital Dukungan -->
+        <div class="bg-slate-950 p-4 rounded-2xl border border-amber-500/20 space-y-3">
+          <h4 class="font-bold text-white text-xs flex items-center gap-2 text-amber-400 font-outfit"><i data-lucide="edit-3" class="w-4 h-4"></i> Petisi Digital Wali Murid &amp; Alumni</h4>
+          <p class="text-[11px] text-slate-400 leading-relaxed">Mari ikut menyuarakan komitmen dan dukungan penuh Anda untuk mengawal ekosistem sekolah ramah anak bebas bullying di SD Negeri Drajat.</p>
+          
+          <div class="flex items-center gap-3 bg-slate-900 p-3 rounded-xl border border-slate-850">
+            <input type="checkbox" id="mpls-pledge-check" class="w-4 h-4 rounded text-amber-500 focus:ring-amber-500 bg-slate-950 border-slate-800" onchange="toggleMplsCommitment()">
+            <label for="mpls-pledge-check" class="text-[11px] font-bold text-slate-300 cursor-pointer select-none">Saya berkomitmen mendukung terwujudnya MPLS Ramah Anak di SD Negeri Drajat!</label>
+          </div>
+          <div id="mpls-pledge-success" class="hidden text-center text-xs font-bold text-emerald-400 bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/20">
+            🎉 Terima kasih! Komitmen Anda telah resmi tersemat dalam petisi digital sekolah.
+          </div>
+        </div>
+
+        <!-- Agenda Lengkap MPLS Ramah 5 Hari -->
+        <div class="space-y-2 pt-1">
+          <h4 class="font-extrabold text-white text-xs border-l-4 border-amber-500 pl-2 font-outfit">Agenda Kegiatan Resmi MPLS Ramah (5 Hari):</h4>
+          <ul class="space-y-3 text-[11px] text-slate-400 list-none font-sans">
+            <li class="bg-slate-950 p-3 rounded-xl border border-slate-850">
+              <strong class="text-amber-400 block text-[10px] uppercase font-outfit">Hari Ke-1: Kenali Diri, Teman &amp; Sekolah</strong>
+              <span class="text-slate-300 leading-relaxed block mt-0.5">Salam sapa hangat, pengondisian kelas, aktivitas "Kenali Teman dan Guru", makan sehat bergizi bersama, serta Tur Sekolah bertema "Menemukan Harta Karun" &amp; Kesiapsiagaan Bencana.</span>
+            </li>
+            <li class="bg-slate-950 p-3 rounded-xl border border-slate-850">
+              <strong class="text-amber-400 block text-[10px] uppercase font-outfit">Hari Ke-2: Kesehatan Fisik &amp; Sekolah ASRI</strong>
+              <span class="text-slate-300 leading-relaxed block mt-0.5">Pertemuan Pagi Ceria (cek denyut jantung &amp; tes fleksibilitas), makan sehat bersama, aktivitas pengenalan "Sekolahku ASRI", serta pembiasaan gotong royong "Operasi Semut".</span>
+            </li>
+            <li class="bg-slate-950 p-3 rounded-xl border border-slate-850">
+              <strong class="text-amber-400 block text-[10px] uppercase font-outfit">Hari Ke-3: Jelajah Belajar &amp; Dongeng Karakter</strong>
+              <span class="text-slate-300 leading-relaxed block mt-0.5">Aktivitas "Jelajah Belajar Seru" untuk mengenali metode pembelajaran sekolah, makan sehat bersama, dilanjutkan dengan sesi interaktif mendongeng (*storytelling*) bertema 7 Kebiasaan Anak Indonesia Hebat.</span>
+            </li>
+            <li class="bg-slate-950 p-3 rounded-xl border border-slate-850">
+              <strong class="text-amber-400 block text-[10px] uppercase font-outfit">Hari Ke-4: Tata Tertib, Perlindungan Fisik &amp; Literasi Digital</strong>
+              <span class="text-slate-300 leading-relaxed block mt-0.5">Pertemuan Pagi Ceria &amp; Jingle MPLS Ramah, sosialisasi tata tertib "Sekolahku Hebat", edukasi perlindungan fisik, serta materi keadaban digital "Batasi Main Gawai".</span>
+            </li>
+            <li class="bg-slate-950 p-3 rounded-xl border border-slate-850">
+              <strong class="text-amber-400 block text-[10px] uppercase font-outfit">Hari Ke-5: Pengenalan Kepanduan &amp; Komitmen Bersama</strong>
+              <span class="text-slate-300 leading-relaxed block mt-0.5">Pengenalan gerakan Pramuka Kepanduan &amp; Ekstrakurikuler sekolah, diakhiri dengan Deklarasi Kesepakatan Bersama "Sekolahku Aman, Sehat, dan Nyaman" demi lingkungan bebas perundungan.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Modal -->
+      <div class="border-t border-slate-800 pt-4 flex justify-end">
+        <button onclick="closeMplsModal()" class="bg-slate-800 hover:bg-slate-700 text-white font-extrabold text-xs py-2.5 px-5 rounded-xl transition-all">
+          Tutup Panduan
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- ==================== 6. PUSAT KUSTOMISASI AMAN (CMS PANEL - MODE TERSEMBUNYI) ==================== -->
   <div id="admin-drawer" class="fixed left-4 bottom-24 md:left-6 md:bottom-28 bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl p-6 w-[310px] sm:w-[500px] md:w-[700px] max-h-[80vh] overflow-y-auto space-y-4 text-xs custom-scrollbar z-50 hidden font-sans">
     <div class="flex justify-between items-center border-b border-slate-800 pb-2.5">
@@ -1298,6 +1399,33 @@
     let selectedEmoji = "Sangat Puas";
     let activeTab = "beranda";
     let activeHubTab = "bot";
+
+    // --- MPLS MODAL CONTROLS ---
+    function openMplsModal() {
+      const modal = document.getElementById('mpls-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+
+    function closeMplsModal() {
+      const modal = document.getElementById('mpls-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    function toggleMplsCommitment() {
+      const checkbox = document.getElementById('mpls-pledge-check');
+      const successAlert = document.getElementById('mpls-pledge-success');
+      if (checkbox.checked) {
+        successAlert.classList.remove('hidden');
+        showToast("Dukungan petisi digital Anda berhasil tercatat!", "success");
+      } else {
+        successAlert.classList.add('hidden');
+      }
+    }
 
     window.onload = function() {
       // Muat ulang dari penyimpanan lokal
