@@ -336,7 +336,7 @@
             <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 text-lg font-bold">🌿</div>
             <div class="space-y-1">
               <h4 class="font-extrabold text-white text-xs uppercase tracking-wider text-emerald-400 font-outfit">Kesejahteraan Murid (Well-being)</h4>
-              <p class="text-xs text-slate-400 leading-relaxed">Lingkungan belajar asri, sejuk, and inklusif yang melahirkan rasa bahagia belajar sepanjang hayat.</p>
+              <p class="text-xs text-slate-400 leading-relaxed">Lingkungan belajar asri, sejuk, dan inklusif yang melahirkan rasa bahagia belajar sepanjang hayat.</p>
             </div>
           </div>
         </div>
@@ -1026,10 +1026,15 @@
 
       <!-- TAB-CONTENT 1: INFO UMUM, VISI & MISI -->
       <div id="atab-content-umum" class="admin-tab-view space-y-3 hidden">
-        <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1 font-outfit">SINKRONISASI GOOGLE SHEETS</h4>
+        <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1 font-outfit">SINKRONISASI GOOGLE SHEETS &amp; AI KEY</h4>
         <div>
           <label class="text-[9px] font-bold text-slate-400 uppercase">Google Web App URL (Apps Script)</label>
-          <input id="edit-googleScriptUrl" type="text" placeholder="https://script.google.com/macros/s/.../exec" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white">
+          <input id="edit-googleScriptUrl" type="text" placeholder="https://script.google.com/macros/s/.../exec" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white mb-2">
+        </div>
+        <div>
+          <label class="text-[9px] font-bold text-slate-400 uppercase">Gemini API Key (Untuk AI Ki Drajat Bot)</label>
+          <input id="edit-geminiApiKey" type="password" placeholder="Masukkan API Key Gemini di sini..." class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white">
+          <p class="text-[8px] text-slate-500 mt-1">Kosongkan jika ingin menggunakan kecerdasan lokal gratis tanpa memerlukan API Key eksternal.</p>
         </div>
 
         <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1 pt-2 font-outfit">IDENTITAS &amp; LOGO</h4>
@@ -1202,7 +1207,8 @@
       "principalPhotoUrl": "https://lh3.googleusercontent.com/d/1BbM-M8mdsPJXmWho9h8qjqcPJPW2E7Kl",
       "cerdasBerkarakterLogoUrl": "https://lh3.googleusercontent.com/d/1XYCQfw13CJYjxUUT6wqQeoFRJtKAMnjL",
       "visionText": "Mewujudkan ekosistem sekolah yang kondusif agar murid dapat bertumbuh secara sehat, adaptif, dan bahagia (well-being).",
-      "googleScriptUrl": "https://script.google.com/macros/s/AKfycbz55lr87Zlo_evbsl-73dNB227BgOHKoeqLMC8Nv24TCgDN-gbdDju5z6LAaieJpSTV/exec"
+      "googleScriptUrl": "https://script.google.com/macros/s/AKfycbz55lr87Zlo_evbsl-73dNB227BgOHKoeqLMC8Nv24TCgDN-gbdDju5z6LAaieJpSTV/exec",
+      "geminiApiKey": ""
     };
 
     let PARTNERS = [
@@ -1237,12 +1243,12 @@
       {
         "id": 1,
         "title": "Mengoptimalkan Potensi Sejak Dini",
-        "desc": "Mengenali, mengasah, and melejitkan bakat, minat, serta potensi unik setiap murid secara optimal."
+        "desc": "Mengenali, mengasah, dan melejitkan bakat, minat, serta potensi unik setiap murid secara optimal."
       },
       {
         "id": 2,
         "title": "Membentuk Karakter Tangguh",
-        "desc": "Menanamkan daya juang yang tinggi and mentalitas pantang menyerah dalam menghadapi tantangan."
+        "desc": "Menanamkan daya juang yang tinggi dan mentalitas pantang menyerah dalam menghadapi tantangan."
       },
       {
         "id": 3,
@@ -1917,7 +1923,7 @@
 
     function initBotMessages() {
       botMessages = [
-        { sender: 'bot', text: `Halo! Saya **Ki Drajat** 🤖, asisten AI pintar SD Negeri Drajat. Saya mengerti segalanya tentang sekolah ini.\n\nSilakan tanyakan visi-misi, daftar dewan guru, fasilitas sekolah, PPDB/SPMB online, atau apa pun yang ingin Anda ketahui!` }
+        { sender: 'bot', text: `Halo! Saya **Ki Drajat** 🤖, asisten AI pintar SD Negeri Drajat. Saya mengerti segalanya tentang sekolah ini.\n\nSilakan tanyakan visi-misi, dewan guru, fasilitas, pendaftaran PPDB online, atau apa pun yang ingin Anda ketahui!` }
       ];
       renderChatMessages();
     }
@@ -1929,7 +1935,7 @@
       botMessages.forEach(m => {
         const isBot = m.sender === 'bot';
         container.innerHTML += `
-          <div class="p-3 rounded-2xl max-w-[85%] leading-relaxed ${isBot ? 'bg-slate-900 text-slate-300 mr-auto border border-slate-850' : 'bg-emerald-500 text-slate-950 ml-auto font-bold'}">
+          <div class="p-3 rounded-2xl max-w-[85%] leading-relaxed ${isBot ? 'bg-slate-900 text-slate-300 mr-auto border border-slate-850 text-left' : 'bg-emerald-500 text-slate-950 ml-auto font-bold text-right'}">
             ${formatMessageText(m.text)}
           </div>
         `;
@@ -1938,7 +1944,63 @@
     }
 
     function formatMessageText(text) {
-      return text.replace(/\*\*(.*?)\*\"/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+      return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+    }
+
+    // --- KECERDASAN LOKAL INSTAN (FALLBACK ENGINE) ---
+    function getLocalBotResponse(query) {
+      const q = query.toLowerCase();
+      
+      if (q.includes('visi') || q.includes('misi')) {
+        let misiHtml = MISSION.map((m, i) => `\n${i+1}. **${m.title}**: ${m.desc}`).join('');
+        return `🏫 **Visi & Misi ${CONFIG.name}**:\n\n*Visi:* "${CONFIG.visionText}"\n\n*Misi:*${misiHtml}`;
+      }
+      
+      if (q.includes('guru') || q.includes('staf') || q.includes('pengajar') || q.includes('ptk') || q.includes('dewan')) {
+        let guruHtml = TEACHERS.map(t => `\n• **${t.name}** (${t.role})`).join('');
+        return `👩‍🏫 **Dewan Guru & Staf Pengajar (${TEACHERS.length} PTK)**:\n${guruHtml}\n\nDipimpin oleh Kepala Sekolah kami, **${CONFIG.principalName}**.`;
+      }
+      
+      if (q.includes('kepala sekolah') || q.includes('kepsek') || q.includes('surati')) {
+        return `👩‍🏫 Kepala Sekolah ${CONFIG.name} saat ini adalah **${CONFIG.principalName}**.\n\nBeliau berkomitmen penuh untuk menyelenggarakan layanan pendidikan inklusif, ramah anak, dan bebas dari segala bentuk perundungan (bullying) serta pungutan liar.`;
+      }
+      
+      if (q.includes('ppdb') || q.includes('spmb') || q.includes('daftar') || q.includes('murid baru') || q.includes('pendaftaran') || q.includes('masuk')) {
+        return `📋 **Informasi PPDB / SPMB Online ${CONFIG.name}**:\n\nPendaftaran murid baru dapat dilakukan dengan sangat mudah!\n\n*Prosedur:*\n1. Hubungi Admin Sekolah secara instan melalui tab **"Hello Drajat"** di panel kanan atas.\n2. Berkas pendaftaran akan diverifikasi dalam waktu singkat (**15 Menit**).\n3. Seluruh proses pendaftaran **Gratis (Rp 0)** tanpa dipungut biaya apapun!\n\nYuk daftar sekarang!`;
+      }
+      
+      if (q.includes('biaya') || q.includes('gratis') || q.includes('bayar') || q.includes('pungutan') || q.includes('mahal')) {
+        return `💰 **Komitmen Bebas Biaya**:\n\nSeluruh layanan administrasi, PPDB, legalisir, dan kegiatan MPLS di ${CONFIG.name} diselenggarakan secara **100% GRATIS (Rp 0)**. Kami menjunjung tinggi transparansi tanpa adanya pungutan liar.`;
+      }
+      
+      if (q.includes('pramuka') || q.includes('siaga') || q.includes('penggalang') || q.includes('kegiatan') || q.includes('ekstra') || q.includes('kemah')) {
+        let kegHtml = GALLERY.map(g => `\n🏕️ **${g.title}** (${g.category}): ${g.desc}`).join('');
+        return `🏕️ **Aktivitas & Pramuka di ${CONFIG.name}**:\n${kegHtml}\n\nKami memiliki program Pramuka Golongan Siaga (Kls 1-3) dan Pramuka Golongan Penggalang (Kls 4-6) yang sangat aktif melatih jiwa kepemimpinan mandiri.`;
+      }
+      
+      if (q.includes('fasilitas') || q.includes('kelas') || q.includes('taman') || q.includes('perpus') || q.includes('lobi') || q.includes('sarana')) {
+        let fasHtml = FACILITIES.map(f => `\n• **${f.title}**: ${f.desc}`).join('');
+        return `🏫 **Fasilitas & Sarana Prasarana**:\n${fasHtml}`;
+      }
+      
+      if (q.includes('alamat') || q.includes('lokasi') || q.includes('peta') || q.includes('dimana') || q.includes('rute') || q.includes('desa')) {
+        return `📍 **Lokasi Resmi Sekolah**:\n\n${CONFIG.address}\n\nSekolah kami terletak di Kecamatan Baureno, Kabupaten Bojonegoro. Lokasinya sangat strategis, asri, dan mudah diakses.`;
+      }
+      
+      if (q.includes('kontak') || q.includes('telepon') || q.includes('nomor') || q.includes('email') || q.includes('whatsapp') || q.includes('hubungi') || q.includes('no')) {
+        return `📞 **Kontak Resmi ${CONFIG.name}**:\n\n• **WhatsApp/Telp Admin:** ${CONFIG.phone}\n• **Email Resmi:** ${CONFIG.email}\n\nAnda juga bisa mengirim pesan aduan atau saran langsung ke WhatsApp Admin melalui tab **"Hello Drajat (WA)"** di panel ini!`;
+      }
+      
+      if (q.includes('bullying') || q.includes('perundungan') || q.includes('ramah anak') || q.includes('mpls') || q.includes('kasar') || q.includes('aman')) {
+        return `🤝 **Sekolah Ramah Anak & Anti Bullying**:\n\nKami mengawal ketat agar lingkungan sekolah aman, nyaman, dan ramah anak. Program MPLS 2026 kami dirancang menyenangkan tanpa tekanan fisik atau verbal, serta diawasi langsung oleh Tim Satgas Anti Perundungan sekolah.`;
+      }
+      
+      if (q.includes('halo') || q.includes('hai') || q.includes('pagi') || q.includes('siang') || q.includes('sore') || q.includes('malam') || q.includes('assalamualaikum') || q.includes('p') || q.includes('halo')) {
+        return `👋 Halo! Saya **Ki Drajat AI**.\n\nSenang bertemu dengan Anda. Ada yang bisa saya bantu hari ini? Tanyakan saja tentang Visi Misi, Dewan Guru, PPDB, Fasilitas, atau Kontak kami!`;
+      }
+      
+      // Default fallback lokal jika tidak ada kecocokan kata kunci
+      return `🤖 Saya mengerti pertanyaan Anda mengenai hal tersebut.\n\nSebagai asisten cerdas **${CONFIG.name}**, saya menyarankan Anda untuk menanyakan:\n\n• 🏫 *Visi Misi Sekolah*\n• 👩‍🏫 *Dewan Guru Aktif*\n• 📋 *Cara Pendaftaran PPDB/SPMB*\n• 🏕 *Kegiatan Pramuka & Karakter*\n• 📞 *Informasi Kontak & Alamat*\n\nAtau hubungi WhatsApp Admin kami secara langsung melalui tab **"Hello Drajat"** di samping kanan atas!`;
     }
 
     async function submitBotMessage(e) {
@@ -1977,6 +2039,21 @@
       chatBox.appendChild(typingDiv);
       chatBox.scrollTop = chatBox.scrollHeight;
 
+      const apiKey = CONFIG.geminiApiKey ? CONFIG.geminiApiKey.trim() : "";
+      
+      // Jika API Key kosong, langsung gunakan mesin pencari lokal tanpa delay berlebih
+      if (!apiKey || apiKey === "") {
+        setTimeout(() => {
+          const indicator = document.getElementById('typing-indicator');
+          if (indicator) indicator.remove();
+          
+          const localResponse = getLocalBotResponse(userQuery);
+          botMessages.push({ sender: 'bot', text: localResponse });
+          renderChatMessages();
+        }, 500);
+        return;
+      }
+
       const systemInstruction = `Anda adalah "Ki Drajat", asisten virtual kecerdasan buatan resmi dari sekolah SD Negeri Drajat, Baureno, Bojonegoro. 
       Tugas Anda adalah menyambut, mendidik, dan menginformasikan tentang sekolah kepada wali murid, masyarakat umum, alumni, serta instansi pendidikan dengan gaya bahasa yang ramah, sopan, komunikatif, solutif, serta mencerminkan karakter ketimuran yang luhur berlandaskan asas Ki Hadjar Dewantara.
 
@@ -2001,7 +2078,6 @@
       4. Jika pertanyaan di luar konteks sekolah, tetap jawab dengan santun, namun ingatkan peran Anda sebagai asisten resmi SD Negeri Drajat.`;
 
       try {
-        const apiKey = ""; 
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
 
         const payload = {
@@ -2026,13 +2102,18 @@
         if (generatedText) {
           botMessages.push({ sender: 'bot', text: generatedText });
         } else {
-          botMessages.push({ sender: 'bot', text: "Maaf, Ki Drajat mengalami sedikit kendala memahami pesan tersebut. Silakan gunakan opsi tombol cepat di bawah atau hubungi kami via WhatsApp!" });
+          // Fallback lokal jika respons AI kosong
+          const localResponse = getLocalBotResponse(userQuery);
+          botMessages.push({ sender: 'bot', text: localResponse });
         }
       } catch (err) {
         console.error("Gemini API Error:", err);
         const indicator = document.getElementById('typing-indicator');
         if (indicator) indicator.remove();
-        botMessages.push({ sender: 'bot', text: "Aduh, Ki Drajat sedang offline karena kendala koneksi internet. Anda dapat langsung berkonsultasi melalui menu tab 'Hello Drajat' di samping kanan!" });
+        
+        // Fallback lokal otomatis jika API Key salah atau kuota habis
+        const localResponse = getLocalBotResponse(userQuery);
+        botMessages.push({ sender: 'bot', text: localResponse });
       }
 
       renderChatMessages();
@@ -2115,6 +2196,7 @@
         document.getElementById('edit-accreditation').value = CONFIG.accreditation;
         document.getElementById('edit-numRombel').value = CONFIG.numRombel;
         document.getElementById('edit-googleScriptUrl').value = CONFIG.googleScriptUrl || "";
+        document.getElementById('edit-geminiApiKey').value = CONFIG.geminiApiKey || "";
 
         renderAdminMissions();
         renderAdminTeachers();
@@ -2544,6 +2626,7 @@
       CONFIG.accreditation = document.getElementById('edit-accreditation').value;
       CONFIG.numRombel = document.getElementById('edit-numRombel').value;
       CONFIG.googleScriptUrl = document.getElementById('edit-googleScriptUrl').value;
+      CONFIG.geminiApiKey = document.getElementById('edit-geminiApiKey').value;
 
       localStorage.setItem('sdn_drajat_config', JSON.stringify(CONFIG));
       renderAllViews();
