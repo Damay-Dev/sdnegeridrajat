@@ -11,7 +11,7 @@
   <!-- Google Fonts: Inter & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Outfit:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
   
   <script>
     tailwind.config = {
@@ -86,13 +86,12 @@
 
   <!-- ==================== 2. HEADER & GLASS NAVIGATION BAR ==================== -->
   <header class="bg-slate-950/90 backdrop-blur-md border-b border-slate-800/60 sticky top-0 z-40">
-    <!-- Baris Atas: Brand Identitas & Program Kemitraan (Dan Hamburger Menu di Mobile) -->
     <div class="max-w-7xl mx-auto px-4 md:px-8 py-3.5 flex items-center justify-between gap-4">
       
-      <!-- Brand Identitas (Trigger Klik 2x untuk Editor) - Skala Logo Diperbesar Signifikan -->
+      <!-- Brand Identitas (Ketuk 2x untuk Editor) -->
       <div class="flex items-center gap-4 cursor-pointer shrink-0" onclick="switchTab('beranda')" ondblclick="toggleAdminPanel()" title="Ketuk 2x untuk Editor">
         <div id="school-logo-container" class="bg-gradient-to-br from-emerald-400 via-emerald-500 to-teal-600 text-slate-950 p-2.5 rounded-2xl shadow-[0_10px_30px_rgba(16,185,129,0.3)] flex items-center justify-center w-16 h-16 md:w-20 md:h-20 border-2 border-emerald-500/25 relative transition-transform hover:scale-105 duration-300">
-          <img src="https://lh3.googleusercontent.com/d/1T6JE6h7y-KmkqfgmvQARvx-UGKKbdhhT" class="w-full h-full object-cover rounded-xl">
+          <img src="https://lh3.googleusercontent.com/d/1T6JE6h7y-KmkqfgmvQARvx-UGKKbdhhT" class="w-full h-full object-cover rounded-xl" alt="Logo">
         </div>
         <div>
           <div class="flex items-center gap-2">
@@ -102,35 +101,33 @@
         </div>
       </div>
 
-      <!-- Sisi Kanan: Lencana Kemitraan & Mobile Hamburger Trigger -->
       <div class="flex items-center gap-4">
-        <!-- Badges Resmi Program Kemitraan Khas Header (Cerdas Berkarakter & Student Wellbeing) -->
+        <!-- Badges Kemitraan -->
         <div class="hidden lg:flex items-center gap-4 bg-slate-900/60 border border-slate-800/80 px-4 py-2.5 rounded-2xl shrink-0">
           <img src="https://lh3.googleusercontent.com/d/1XYCQfw13CJYjxUUT6wqQeoFRJtKAMnjL" class="h-10 object-contain filter drop-shadow-[0_4px_12px_rgba(16,185,129,0.25)]" title="Cerdas Berkarakter">
           <div class="w-px h-6 bg-slate-800"></div>
           <img src="https://lh3.googleusercontent.com/d/1wlivek8f1uyhO2XjpPflH5ej2CZq8Xw-" class="h-10 object-contain filter drop-shadow-[0_4px_12px_rgba(16,185,129,0.25)]" title="Supporting Student Wellbeing">
         </div>
 
-        <!-- Mobile Hamburger Trigger - Disetel 'lg:hidden' untuk Ponsel dan Tablet -->
+        <!-- Mobile Hamburger -->
         <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-slate-200">
-          <i id="mobile-menu-icon" data-lucide="menu" class="w-5 h-5"></i>
+          <i data-lucide="menu" class="w-5 h-5"></i>
         </button>
       </div>
     </div>
 
-    <!-- Baris Bawah: Menu Navigasi Desktop yang Luas & Dinamis di bawah Brand Logo (Khusus layar Desktop besar) -->
+    <!-- Menu Navigasi Desktop -->
     <div class="hidden lg:block border-t border-slate-900/80 bg-slate-950/40 py-2.5 px-4 md:px-8">
       <div class="max-w-7xl mx-auto flex justify-start">
         <nav class="flex items-center gap-1.5 bg-slate-900/80 border border-slate-800/60 p-1.5 rounded-full text-xs font-bold shadow-2xl shrink-0">
-          <button onclick="switchTab('beranda')" id="btn-nav-beranda" class="nav-item-btn px-4 py-2 rounded-full transition-all">Beranda</button>
-          <button onclick="switchTab('profil')" id="btn-nav-profil" class="nav-item-btn px-4 py-2 rounded-full transition-all">Profil &amp; Guru</button>
+          <button onclick="switchTab('beranda')" id="btn-nav-beranda" class="nav-item-btn px-4 py-2 rounded-full transition-all bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 font-black">Beranda</button>
+          <button onclick="switchTab('profil')" id="btn-nav-profil" class="nav-item-btn px-4 py-2 rounded-full transition-all text-slate-300 hover:text-white hover:bg-slate-800">Profil &amp; Guru</button>
           
           <!-- Dropdown Fasilitas -->
           <div class="relative group">
-            <button id="btn-nav-fasilitas" class="nav-item-btn px-3.5 py-2 rounded-full text-slate-300 hover:text-white flex items-center gap-1 hover:bg-slate-800 transition-all">
+            <button id="btn-nav-fasilitas" class="nav-item-btn px-4 py-2 rounded-full transition-all text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-1">
               Fasilitas <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
             </button>
-            <!-- Jembatan sensorik tanpa jeda top-full pt-2 -->
             <div class="absolute left-0 top-full pt-2 w-48 hidden group-hover:block z-50">
               <div class="bg-slate-950 border border-slate-800 rounded-2xl py-2 shadow-2xl">
                 <button onclick="switchTab('fasilitas', 'infra')" class="w-full text-left px-4 py-2 text-[11px] font-semibold text-slate-300 hover:text-white hover:bg-slate-900">Sarana Infrastruktur</button>
@@ -141,7 +138,7 @@
 
           <!-- Dropdown Pengembangan -->
           <div class="relative group">
-            <button id="btn-nav-pengembangan" class="nav-item-btn px-3.5 py-2 rounded-full text-slate-300 hover:text-white flex items-center gap-1 hover:bg-slate-800 transition-all">
+            <button id="btn-nav-pengembangan" class="nav-item-btn px-4 py-2 rounded-full transition-all text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-1">
               Pengembangan <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
             </button>
             <div class="absolute left-0 top-full pt-2 w-56 hidden group-hover:block z-50">
@@ -155,7 +152,7 @@
 
           <!-- Dropdown Layanan -->
           <div class="relative group">
-            <button id="btn-nav-layanan" class="nav-item-btn px-3.5 py-2 rounded-full text-slate-300 hover:text-white flex items-center gap-1 hover:bg-slate-800 transition-all">
+            <button id="btn-nav-layanan" class="nav-item-btn px-4 py-2 rounded-full transition-all text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-1">
               Layanan <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
             </button>
             <div class="absolute right-0 top-full pt-2 w-52 hidden group-hover:block z-50">
@@ -167,13 +164,13 @@
             </div>
           </div>
 
-          <button onclick="switchTab('skm')" id="btn-nav-skm" class="nav-item-btn px-4 py-2 rounded-full transition-all">Survei SKM</button>
-          <button onclick="switchTab('kontak')" id="btn-nav-kontak" class="nav-item-btn px-4 py-2 rounded-full transition-all">Kontak</button>
+          <button onclick="switchTab('skm')" id="btn-nav-skm" class="nav-item-btn px-4 py-2 rounded-full transition-all text-slate-300 hover:text-white hover:bg-slate-800">Survei SKM</button>
+          <button onclick="switchTab('kontak')" id="btn-nav-kontak" class="nav-item-btn px-4 py-2 rounded-full transition-all text-slate-300 hover:text-white hover:bg-slate-800">Kontak</button>
         </nav>
       </div>
     </div>
 
-    <!-- ==================== MOBILE DRAWER (MENU SELULER LENGKAP) ==================== -->
+    <!-- Mobile Drawer -->
     <div id="mobile-drawer" class="hidden lg:hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur-lg px-4 py-4 space-y-1 font-bold text-xs max-h-[80vh] overflow-y-auto custom-scrollbar">
       <button onclick="switchTab('beranda'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 flex items-center gap-2"><i data-lucide="home" class="w-4 h-4 text-emerald-400"></i> Beranda</button>
       <button onclick="switchTab('profil'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 flex items-center gap-2"><i data-lucide="user" class="w-4 h-4 text-emerald-400"></i> Profil &amp; Guru</button>
@@ -201,8 +198,8 @@
         <button onclick="switchTab('layanan', 'mutasi'); toggleMobileMenu()" class="w-full text-left px-6 py-2.5 rounded-xl hover:bg-slate-900 flex items-center gap-2 text-slate-300"><i data-lucide="repeat" class="w-3.5 h-3.5 text-emerald-500"></i> Mutasi Murid</button>
       </div>
 
-      <div class="border-t border-slate-900 my-1 pt-1">
-        <button onclick="switchTab('skm'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 flex items-center gap-2 text-emerald-400"><i data-lucide="heart-handshake" class="w-4 h-4 text-emerald-400"></i> Survei SKM</button>
+      <div class="border-t border-slate-900 my-1 py-1">
+        <button onclick="switchTab('skm'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 flex items-center gap-2 text-emerald-400"><i data-lucide="heart-handshake" class="w-4 h-4"></i> Survei SKM</button>
         <button onclick="switchTab('kontak'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-emerald-400"></i> Kontak</button>
       </div>
     </div>
@@ -219,7 +216,7 @@
           PORTAL RESMI AKADEMIK
         </span>
         <h2 id="hero-tagline" class="text-3xl md:text-5xl font-black text-white leading-tight font-outfit">Menuntun Kodrat Anak, Merajut Harmoni Kebinekaan, Menggapai Selamat dan Bahagia</h2>
-        <p id="hero-welcome" class="text-sm md:text-base text-slate-400 leading-relaxed max-w-xl">Selamat datang di gerbang digital resmi SD Negeri Drajat. Bersama program Cerdas Berkarakter Kemendikdasmen dan asas luhur Ki Hadjar Dewantara, kami berkomitmen membersamai tumbuh kembang murid dalam atmosfer yang aman, inclusif, dan bebas perundungan.</p>
+        <p id="hero-welcome" class="text-sm md:text-base text-slate-400 leading-relaxed max-w-xl">Selamat datang di gerbang digital resmi SD Negeri Drajat. Bersama program Cerdas Berkarakter Kemendikdasmen dan asas luhur Ki Hadjar Dewantara, kami berkomitmen membersamai tumbuh kembang murid dalam atmosfer yang aman, inklusif, dan bebas perundungan.</p>
         <div class="flex flex-wrap justify-center lg:justify-start gap-4">
           <button onclick="switchTab('skm')" class="bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 font-black text-xs md:text-sm py-3 px-6 rounded-2xl shadow-xl flex items-center gap-2 hover:scale-105 transition-all">
             <i data-lucide="heart-handshake" class="w-4 h-4"></i> Berikan Survei SKM
@@ -230,28 +227,23 @@
         </div>
       </div>
 
-      <!-- KAMPANYE PROMOSI UTAMA (EMBLEM MEWAH & BADGES SINKRON + WIDGET STATISTIK) -->
+      <!-- KAMPANYE PROMOSI UTAMA -->
       <div class="lg:col-span-5 space-y-6">
-        
-        <!-- Emblem Raksasa SD Negeri Drajat (Dominan Mutlak) -->
         <div class="bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-emerald-500/20 p-6 rounded-[2.5rem] shadow-[0_25px_60px_-15px_rgba(16,185,129,0.25)] relative overflow-hidden text-center group hover:border-emerald-500/40 transition-all duration-500">
           <div class="absolute -top-12 -left-12 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl"></div>
           <div class="absolute -bottom-12 -right-12 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl"></div>
           
-          <!-- Master Emblem Bundar Menyala -->
           <div class="relative mx-auto w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-tr from-emerald-400 to-teal-500 p-1.5 shadow-[0_15px_45px_rgba(16,185,129,0.4)] group-hover:scale-105 transition-transform duration-500">
             <div class="w-full h-full bg-slate-950 rounded-full p-1.5 overflow-hidden flex items-center justify-center">
               <img id="hero-showcase-logo" src="https://lh3.googleusercontent.com/d/1T6JE6h7y-KmkqfgmvQARvx-UGKKbdhhT" class="w-full h-full object-cover rounded-full">
             </div>
           </div>
           
-          <!-- Teks Dominasi Publik -->
           <div class="mt-5 space-y-1 relative z-10">
             <h3 class="text-xl md:text-2xl font-black tracking-wider text-white font-outfit">SD NEGERI DRAJAT</h3>
             <p class="text-[10px] md:text-xs text-emerald-400 font-extrabold tracking-widest uppercase">Cerdas, Berkarakter &amp; Inklusif</p>
           </div>
 
-          <!-- Kemitraan Pendukung -->
           <div class="mt-6 pt-6 border-t border-slate-800/80 flex items-center justify-center gap-6 relative z-10">
             <div class="flex flex-col items-center gap-1.5">
               <img src="https://lh3.googleusercontent.com/d/1XYCQfw13CJYjxUUT6wqQeoFRJtKAMnjL" class="h-10 md:h-12 object-contain filter drop-shadow-[0_2px_8px_rgba(16,185,129,0.15)]" alt="Cerdas Berkarakter">
@@ -265,7 +257,7 @@
           </div>
         </div>
 
-        <!-- WIDGET STATISTIK RE-ORGANIZED -->
+        <!-- WIDGET STATISTIK -->
         <div class="grid grid-cols-2 gap-4">
           <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl text-center shadow-md">
             <span id="stat-ptk" class="text-xl md:text-2xl font-black text-emerald-400 block font-outfit">11</span>
@@ -284,7 +276,6 @@
             <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Jumlah Murid</span>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -462,7 +453,7 @@
         
         <!-- Section Staf Pengajar -->
         <div class="space-y-3 pt-6 border-t border-slate-850">
-          <h3 id="teachers-section-header" class="font-extrabold text-white text-base border-l-4 border-emerald-500 pl-3 mb-4 font-outfit">Dewan Guru &amp; Staf Pengajar (11 PTK)</h3>
+          <h3 id="teachers-section-header" class="font-extrabold text-white text-base border-l-4 border-emerald-500 pl-3 mb-4 font-outfit">Dewan Guru &amp; Staf Pengajar (8 PTK)</h3>
           <div id="teachers-view-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"></div>
         </div>
       </div>
@@ -694,7 +685,7 @@
         </div>
       </div>
 
-      <!-- Baris Hak Cipta Resmi (Clean, Minimalist, Elegant) -->
+      <!-- Baris Hak Cipta Resmi -->
       <div class="border-t border-slate-900/60 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-600">
         <p class="font-medium">© 2026 SD Negeri Drajat. Hak Cipta Dilindungi.</p>
         <div class="flex items-center gap-4 text-slate-500 font-semibold">
@@ -707,13 +698,13 @@
     </div>
   </footer>
 
-  <!-- ==================== WIDGETS MELAYANG TERPADU (KI DRAJAT 3D HUB) ==================== -->
+  <!-- ==================== WIDGETS MELAYANG TERPADU (KI DRAJAT HUB) ==================== -->
   <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
     
-    <!-- PANEL UTAMA TERPADU (KI DRAJAT HUB) -->
+    <!-- PANEL UTAMA TERPADU -->
     <div id="kidrajat-hub-panel" class="hidden w-[320px] sm:w-[380px] bg-slate-950/95 backdrop-blur-xl border border-slate-800/80 rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col transition-all duration-300 transform scale-95 origin-bottom-right max-h-[520px]">
       
-      <!-- HEADER PANEL DENGAN GRADIEN GLASSMOPHISM -->
+      <!-- HEADER PANEL -->
       <div class="bg-gradient-to-r from-emerald-600/30 to-teal-600/30 p-5 border-b border-slate-800/60 relative overflow-hidden shrink-0">
         <div class="absolute -right-6 -top-6 w-24 h-24 bg-emerald-500/10 rounded-full blur-2xl"></div>
         <div class="flex items-center gap-3 relative z-10">
@@ -723,33 +714,28 @@
               <svg viewBox="0 0 100 100" class="w-9 h-9">
                 <defs>
                   <radialGradient id="avatarGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#34d399"/>
-                    <stop offset="100%" stop-color="#059669"/>
+                    <stop offset="0%" stop-color="#34d399"></stop>
+                    <stop offset="100%" stop-color="#059669"></stop>
                   </radialGradient>
                   <linearGradient id="avatarCap" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#10b981"/>
-                    <stop offset="100%" stop-color="#047857"/>
+                    <stop offset="0%" stop-color="#10b981"></stop>
+                    <stop offset="100%" stop-color="#047857"></stop>
                   </linearGradient>
                 </defs>
-                <!-- Cap/Peci 3D -->
-                <path d="M20,35 Q50,20 80,35 L80,45 Q50,30 20,45 Z" fill="url(#avatarCap)" />
-                <!-- Robot Face -->
-                <rect x="25" y="42" width="50" height="38" rx="14" fill="url(#avatarGlow)" />
-                <!-- Eyes Screen -->
-                <rect x="33" y="50" width="34" height="15" rx="6" fill="#0f172a" />
-                <!-- Glowing Cyan Eyes -->
-                <circle cx="42" cy="57" r="4.5" fill="#22d3ee" class="animate-pulse" />
-                <circle cx="58" cy="57" r="4.5" fill="#22d3ee" class="animate-pulse" />
-                <!-- Head Antena -->
-                <line x1="50" y1="42" x2="50" y2="28" stroke="#10b981" stroke-width="4" />
-                <circle cx="50" cy="26" r="6" fill="#34d399" />
+                <path d="M20,35 Q50,20 80,35 L80,45 Q50,30 20,45 Z" fill="url(#avatarCap)"></path>
+                <rect x="25" y="42" width="50" height="38" rx="14" fill="url(#avatarGlow)"></rect>
+                <rect x="33" y="50" width="34" height="15" rx="6" fill="#0f172a"></rect>
+                <circle cx="42" cy="57" r="4.5" fill="#22d3ee" class="animate-pulse"></circle>
+                <circle cx="58" cy="57" r="4.5" fill="#22d3ee" class="animate-pulse"></circle>
+                <line x1="50" y1="42" x2="50" y2="28" stroke="#10b981" stroke-width="4"></line>
+                <circle cx="50" cy="26" r="6" fill="#34d399"></circle>
               </svg>
             </div>
           </div>
           <div class="text-left">
             <h3 class="font-black text-sm text-white tracking-wide font-outfit">Pusat Layanan Ki Drajat</h3>
             <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center gap-1.5 mt-0.5">
-              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Virtual Assistant SD Negeri Drajat
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Virtual Assistant
             </p>
           </div>
           <button onclick="toggleKiDrajatHub()" class="ml-auto text-slate-400 hover:text-white p-1.5 rounded-full hover:bg-slate-900 transition-colors">
@@ -758,7 +744,7 @@
         </div>
       </div>
 
-      <!-- TABS SWITCHER (BOT VS HELLO WA) -->
+      <!-- TABS SWITCHER -->
       <div class="grid grid-cols-2 p-2 bg-slate-900 border-b border-slate-800 shrink-0 text-xs font-bold">
         <button id="tab-btn-bot" onclick="switchHubTab('bot')" class="py-2.5 rounded-xl text-center flex items-center justify-center gap-2 transition-all bg-emerald-500 text-slate-950 font-black shadow-md">
           <i data-lucide="bot" class="w-4 h-4"></i> Ki Drajat Bot (AI)
@@ -768,43 +754,39 @@
         </button>
       </div>
 
-      <!-- TAB CONTENT 1: CHATBOT PINTAR (KI DRAJAT BOT) -->
+      <!-- TAB CONTENT 1: CHATBOT PINTAR -->
       <div id="hub-content-bot" class="flex-1 flex flex-col overflow-hidden min-h-[300px] max-h-[350px]">
-        <!-- Container Chat -->
-        <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar text-xs">
-          <!-- Chat awal di-inject dinamis -->
-        </div>
+        <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar text-xs"></div>
 
-        <!-- Tombol Opsi Cepat (Penyaji Informasi Kilat) -->
+        <!-- Tombol Opsi Cepat -->
         <div class="px-4 py-2 bg-slate-900/40 border-t border-slate-850 shrink-0">
           <p class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-1.5 font-outfit">Pertanyaan Sering Diajukan:</p>
           <div class="flex gap-1.5 overflow-x-auto pb-1.5 custom-scrollbar text-[10px] font-bold shrink-0 font-sans">
-            <button onclick="clickBotOption('🏫 Apa Visi Misi Sekolah?')" class="bg-slate-950 hover:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-800 text-emerald-400 shrink-0 transition-colors">🏫 Visi Misi</button>
-            <button onclick="clickBotOption('👩‍🏫 Siapa Kepala Sekolah & Guru?')" class="bg-slate-950 hover:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-800 text-emerald-400 shrink-0 transition-colors">👩‍🏫 Guru Aktif</button>
-            <button onclick="clickBotOption('📋 Bagaimana cara PPDB / SPMB Online?')" class="bg-slate-950 hover:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-800 text-emerald-400 shrink-0 transition-colors">📋 Daftar PPDB</button>
-            <button onclick="clickBotOption('🏕️ Apa saja kegiatan Pramuka?')" class="bg-slate-950 hover:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-800 text-emerald-400 shrink-0 transition-colors">🏕️ Pramuka</button>
+            <button onclick="clickBotOption('🏫 Apa Visi Misi Sekolah?')" class="bg-slate-950 hover:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-800 text-emerald-400 shrink-0 transition-colors font-sans">🏫 Visi Misi</button>
+            <button onclick="clickBotOption('👩‍🏫 Siapa Kepala Sekolah &amp; Guru?')" class="bg-slate-950 hover:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-800 text-emerald-400 shrink-0 transition-colors font-sans">👩‍🏫 Guru Aktif</button>
+            <button onclick="clickBotOption('📋 Bagaimana cara PPDB / SPMB Online?')" class="bg-slate-950 hover:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-800 text-emerald-400 shrink-0 transition-colors font-sans">📋 Daftar PPDB</button>
+            <button onclick="clickBotOption('🏕️ Apa saja kegiatan Pramuka?')" class="bg-slate-950 hover:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-800 text-emerald-400 shrink-0 transition-colors font-sans">🏕️ Pramuka</button>
           </div>
         </div>
 
-        <!-- Kolom Input Ketik Bebas (AI Terkoneksi Gemini) -->
         <form onsubmit="submitBotMessage(event)" class="p-3 bg-slate-950 border-t border-slate-800 flex gap-2 shrink-0">
-          <input id="bot-input-field" type="text" placeholder="Tanyakan apa saja kepada Ki Drajat..." required class="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500" />
+          <input id="bot-input-field" type="text" placeholder="Tanyakan apa saja kepada Ki Drajat..." required="" class="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 font-sans">
           <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-slate-950 font-black p-2 rounded-xl transition-all shadow-md flex items-center justify-center">
             <i data-lucide="send" class="w-4 h-4"></i>
           </button>
         </form>
       </div>
 
-      <!-- TAB CONTENT 2: HELLO DRAJAT (PENGADUAN & ASPIRASI WHATSAPP) -->
+      <!-- TAB CONTENT 2: HELLO DRAJAT -->
       <div id="hub-content-wa" class="hidden p-5 space-y-4 overflow-y-auto max-h-[350px] custom-scrollbar text-xs">
         <div class="bg-emerald-500/5 p-3 rounded-2xl border border-emerald-500/20">
-          <p class="text-[10px] text-emerald-400 font-bold flex gap-1.5 items-start leading-relaxed">
+          <p class="text-[10px] text-emerald-400 font-bold flex gap-1.5 items-start leading-relaxed font-sans">
             <i data-lucide="shield-check" class="w-4 h-4 shrink-0 text-emerald-400 animate-pulse"></i>
             Hello Drajat menghubungkan pesan aduan, kritik, saran, atau konsultasi Anda langsung ke nomor WhatsApp resmi sekolah secara transparan dan aman.
           </p>
         </div>
 
-        <form onsubmit="sendHelloMessage(event)" class="space-y-3">
+        <form onsubmit="sendHelloMessage(event)" class="space-y-3 font-sans">
           <div class="space-y-1">
             <label class="block text-slate-400 font-extrabold uppercase text-[9px] tracking-wider font-outfit">KATEGORI PELAYANAN</label>
             <select id="hello-category" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white font-semibold focus:outline-none focus:border-emerald-500">
@@ -817,10 +799,10 @@
 
           <div class="space-y-1">
             <label class="block text-slate-400 font-extrabold uppercase text-[9px] tracking-wider font-outfit">ISI PESAN LAPORAN</label>
-            <textarea id="hello-message" rows="3" required placeholder="Tuliskan keluhan atau saran Anda secara rinci..." class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white focus:outline-none focus:border-emerald-500 placeholder-slate-600"></textarea>
+            <textarea id="hello-message" rows="3" required="" placeholder="Tuliskan keluhan atau saran Anda secara rinci..." class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white focus:outline-none focus:border-emerald-500 placeholder-slate-600"></textarea>
           </div>
 
-          <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-slate-950 font-black py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all text-xs">
+          <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-slate-950 font-black py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all text-xs font-outfit">
             <i data-lucide="phone" class="w-4 h-4"></i> Kirim Pesan ke WhatsApp Admin
           </button>
         </form>
@@ -828,55 +810,43 @@
 
     </div>
 
-    <!-- TOMBOL PEMICU 3D INTERAKTIF (MASCOT KI DRAJAT) -->
+    <!-- TOMBOL PEMICU MASCOT -->
     <button onclick="toggleKiDrajatHub()" id="kidrajat-trigger" class="relative group w-16 h-16 rounded-full bg-gradient-to-tr from-slate-950 via-slate-900 to-slate-850 border-2 border-emerald-400/80 shadow-[0_10px_35px_rgba(16,185,129,0.4)] hover:shadow-[0_15px_45px_rgba(16,185,129,0.6)] flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1 active:scale-95 active:translate-y-0">
-      <!-- 3D Glow Pulse Ring -->
       <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-400/20 opacity-75 animate-ping"></span>
-      
-      <!-- Mascot Robot 3D Claymorphism (SVG) -->
       <svg viewBox="0 0 100 100" class="w-11 h-11 relative z-10 filter drop-shadow-[0_4px_6px_rgba(0,0,0,0.3)] transform transition-transform group-hover:rotate-12 duration-300">
         <defs>
-          <!-- Radial gradients for 3D depth and clay finish -->
           <radialGradient id="clayBody" cx="45%" cy="35%" r="60%">
-            <stop offset="0%" stop-color="#34d399"/>
-            <stop offset="70%" stop-color="#059669"/>
-            <stop offset="100%" stop-color="#047857"/>
+            <stop offset="0%" stop-color="#34d399"></stop>
+            <stop offset="70%" stop-color="#059669"></stop>
+            <stop offset="100%" stop-color="#047857"></stop>
           </radialGradient>
           <radialGradient id="clayPeci" cx="45%" cy="30%" r="65%">
-            <stop offset="0%" stop-color="#10b981"/>
-            <stop offset="85%" stop-color="#047857"/>
-            <stop offset="100%" stop-color="#022c22"/>
+            <stop offset="0%" stop-color="#10b981"></stop>
+            <stop offset="85%" stop-color="#047857"></stop>
+            <stop offset="100%" stop-color="#022c22"></stop>
           </radialGradient>
           <radialGradient id="eyesScreen" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#1e293b"/>
-            <stop offset="100%" stop-color="#0f172a"/>
+            <stop offset="0%" stop-color="#1e293b"></stop>
+            <stop offset="100%" stop-color="#0f172a"></stop>
           </radialGradient>
         </defs>
-
-        <!-- Cap / Blangkon Modern (3D Hat) -->
-        <path d="M15,38 Q50,18 85,38 L85,46 Q50,28 15,46 Z" fill="url(#clayPeci)" stroke="#022c22" stroke-width="1.5" />
-        <!-- Robot Rounded Head -->
-        <rect x="20" y="44" width="60" height="44" rx="18" fill="url(#clayBody)" stroke="#022c22" stroke-width="1.5" />
-        <!-- Digital Face Screen -->
-        <rect x="28" y="52" width="44" height="20" rx="8" fill="url(#eyesScreen)" />
-        <!-- Digital Glowing Cyan Eyes -->
-        <circle cx="40" cy="62" r="5" fill="#22d3ee" class="animate-pulse" />
-        <circle cx="60" cy="62" r="5" fill="#22d3ee" class="animate-pulse" />
-        <!-- Antenna -->
-        <line x1="50" y1="44" x2="50" y2="24" stroke="#059669" stroke-width="4.5" stroke-linecap="round" />
-        <circle cx="50" cy="21" r="7" fill="#34d399" stroke="#047857" stroke-width="1.5" class="animate-bounce" />
+        <path d="M15,38 Q50,18 85,38 L85,46 Q50,28 15,46 Z" fill="url(#clayPeci)" stroke="#022c22" stroke-width="1.5"></path>
+        <rect x="20" y="44" width="60" height="44" rx="18" fill="url(#clayBody)" stroke="#022c22" stroke-width="1.5"></rect>
+        <rect x="28" y="52" width="44" height="20" rx="8" fill="url(#eyesScreen)"></rect>
+        <circle cx="40" cy="62" r="5" fill="#22d3ee" class="animate-pulse"></circle>
+        <circle cx="60" cy="62" r="5" fill="#22d3ee" class="animate-pulse"></circle>
+        <line x1="50" y1="44" x2="50" y2="24" stroke="#059669" stroke-width="4.5" stroke-linecap="round"></line>
+        <circle cx="50" cy="21" r="7" fill="#34d399" stroke="#047857" stroke-width="1.5" class="animate-bounce"></circle>
       </svg>
     </button>
 
   </div>
 
-  <!-- TOAST NOTIFICATION WIDGET -->
   <div id="toast-container" class="fixed top-24 right-4 z-[999] pointer-events-none flex flex-col gap-2 max-w-sm"></div>
 
   <!-- ==================== 7. MODAL INTERAKTIF: MPLS RAMAH ANAK ==================== -->
   <div id="mpls-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fadeIn">
     <div class="bg-slate-900 border border-slate-800 rounded-[2.5rem] p-6 md:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar relative shadow-2xl space-y-6">
-      <!-- Header Modal -->
       <div class="flex justify-between items-start">
         <div class="space-y-1">
           <span class="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full font-outfit">KAMPANYE NASIONAL</span>
@@ -887,11 +857,9 @@
         </button>
       </div>
 
-      <!-- Isi Panduan -->
       <div class="space-y-4 text-xs md:text-sm text-slate-300 leading-relaxed font-sans">
         <p>Selamat datang calon siswa baru! SD Negeri Drajat berkomitmen penuh menyelenggarakan Masa Pengenalan Lingkungan Sekolah (MPLS) yang aman, inklusif, menyenangkan, serta sepenuhnya **bebas dari kekerasan fisik, verbal, perundungan (bullying), dan perpeloncoan**.</p>
         
-        <!-- 4 Pilar Inklusif MPLS -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
           <div class="bg-slate-950 p-4 rounded-2xl border border-slate-850 flex gap-3 items-start">
             <span class="text-lg">🤝</span>
@@ -927,7 +895,7 @@
         <div class="bg-slate-950 p-4 rounded-2xl border border-amber-500/20 space-y-3">
           <h4 class="font-bold text-white text-xs flex items-center justify-between text-amber-400 font-outfit">
             <span class="flex items-center gap-2"><i data-lucide="edit-3" class="w-4 h-4"></i> Petisi Digital Wali Murid &amp; Alumni</span>
-            <span class="bg-amber-500/20 text-amber-300 text-[10px] px-2 py-0.5 rounded-full font-black"><span id="pledge-count-display">42</span> Pendukung</span>
+            <span class="bg-amber-500/20 text-amber-300 text-[10px] px-2 py-0.5 rounded-full font-black"><span id="pledge-count-display">43</span> Pendukung</span>
           </h4>
           <p class="text-[11px] text-slate-400 leading-relaxed">Mari ikut menyuarakan komitmen dan dukungan penuh Anda untuk mengawal ekosistem sekolah ramah anak bebas bullying di SD Negeri Drajat.</p>
           
@@ -935,40 +903,10 @@
             <input type="checkbox" id="mpls-pledge-check" class="w-4 h-4 rounded text-amber-500 focus:ring-amber-500 bg-slate-950 border-slate-800" onchange="toggleMplsCommitment()">
             <label for="mpls-pledge-check" class="text-[11px] font-bold text-slate-300 cursor-pointer select-none">Saya berkomitmen mendukung terwujudnya MPLS Ramah Anak di SD Negeri Drajat!</label>
           </div>
-          <div id="mpls-pledge-success" class="hidden text-center text-xs font-bold text-emerald-400 bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/20">
-            🎉 Terima kasih! Komitmen Anda telah resmi tersemat dalam petisi digital sekolah.
-          </div>
-        </div>
-
-        <!-- Agenda Lengkap MPLS Ramah 5 Hari -->
-        <div class="space-y-2 pt-1">
-          <h4 class="font-extrabold text-white text-xs border-l-4 border-amber-500 pl-2 font-outfit">Agenda Kegiatan Resmi MPLS Ramah (5 Hari):</h4>
-          <ul class="space-y-3 text-[11px] text-slate-400 list-none font-sans">
-            <li class="bg-slate-950 p-3 rounded-xl border border-slate-850">
-              <strong class="text-amber-400 block text-[10px] uppercase font-outfit">Hari Ke-1: Kenali Diri, Teman &amp; Sekolah</strong>
-              <span class="text-slate-300 leading-relaxed block mt-0.5">Salam sapa hangat, pengondisian kelas, aktivitas "Kenali Teman dan Guru", makan sehat bergizi bersama, serta Tur Sekolah bertema "Menemukan Harta Karun" &amp; Kesiapsiagaan Bencana.</span>
-            </li>
-            <li class="bg-slate-950 p-3 rounded-xl border border-slate-850">
-              <strong class="text-amber-400 block text-[10px] uppercase font-outfit">Hari Ke-2: Kesehatan Fisik &amp; Sekolah ASRI</strong>
-              <span class="text-slate-300 leading-relaxed block mt-0.5">Pertemuan Pagi Ceria (cek denyut jantung &amp; tes fleksibilitas), makan sehat bersama, aktivitas pengenalan "Sekolahku ASRI", serta pembiasaan gotong royong "Operasi Semut".</span>
-            </li>
-            <li class="bg-slate-950 p-3 rounded-xl border border-slate-850">
-              <strong class="text-amber-400 block text-[10px] uppercase font-outfit">Hari Ke-3: Jelajah Belajar &amp; Dongeng Karakter</strong>
-              <span class="text-slate-300 leading-relaxed block mt-0.5">Aktivitas "Jelajah Belajar Seru" untuk mengenali metode pembelajaran sekolah, makan sehat bersama, dilanjutkan dengan sesi interaktif mendongeng (*storytelling*) bertema 7 Kebiasaan Anak Indonesia Hebat.</span>
-            </li>
-            <li class="bg-slate-950 p-3 rounded-xl border border-slate-850">
-              <strong class="text-amber-400 block text-[10px] uppercase font-outfit">Hari Ke-4: Tata Tertib, Perlindungan Fisik &amp; Literasi Digital</strong>
-              <span class="text-slate-300 leading-relaxed block mt-0.5">Pertemuan Pagi Ceria &amp; Jingle MPLS Ramah, sosialisasi tata tertib "Sekolahku Hebat", edukasi perlindungan fisik, serta materi keadaban digital "Batasi Main Gawai".</span>
-            </li>
-            <li class="bg-slate-950 p-3 rounded-xl border border-slate-850">
-              <strong class="text-amber-400 block text-[10px] uppercase font-outfit">Hari Ke-5: Pengenalan Kepanduan &amp; Komitmen Bersama</strong>
-              <span class="text-slate-300 leading-relaxed block mt-0.5">Pengenalan gerakan Pramuka Kepanduan &amp; Ekstrakurikuler sekolah, diakhiri dengan Deklarasi Kesepakatan Bersama "Sekolahku Aman, Sehat, dan Nyaman" demi lingkungan bebas perundungan.</span>
-            </li>
-          </ul>
+          <div id="mpls-pledge-success" class="text-center text-xs font-bold text-emerald-400 bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/20 hidden"></div>
         </div>
       </div>
 
-      <!-- Footer Modal -->
       <div class="border-t border-slate-800 pt-4 flex justify-end">
         <button onclick="closeMplsModal()" class="bg-slate-800 hover:bg-slate-700 text-white font-extrabold text-xs py-2.5 px-5 rounded-xl transition-all">
           Tutup Panduan
@@ -977,12 +915,12 @@
     </div>
   </div>
 
-  <!-- ==================== 6. PUSAT KUSTOMISASI AMAN (CMS PANEL - MODE TERSEMBUNYI) ==================== -->
-  <div id="admin-drawer" class="fixed left-4 bottom-24 md:left-6 md:bottom-28 bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl p-6 w-[310px] sm:w-[500px] md:w-[700px] max-h-[80vh] overflow-y-auto space-y-4 text-xs custom-scrollbar z-50 hidden font-sans">
+  <!-- ==================== 6. PUSAT KUSTOMISASI AMAN (CMS PANEL) ==================== -->
+  <div id="admin-drawer" class="fixed left-4 bottom-24 md:left-6 md:bottom-28 bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl p-6 w-[310px] sm:w-[500px] md:w-[700px] max-h-[80vh] overflow-y-auto space-y-4 text-xs custom-scrollbar z-50 font-sans hidden">
     <div class="flex justify-between items-center border-b border-slate-800 pb-2.5">
       <div>
         <h3 class="font-extrabold text-white text-sm flex items-center gap-2.5 font-outfit">
-          <i id="admin-icon" data-lucide="settings" class="w-4 h-4 text-amber-400 animate-spin-slow"></i>
+          <i data-lucide="settings" id="admin-icon" class="w-4 h-4 text-amber-400 animate-spin-slow"></i>
           Editor Konten Mandiri
         </h3>
         <p class="text-[10px] text-slate-400">Kustomisasi website sekolah secara real-time</p>
@@ -990,18 +928,18 @@
       <button onclick="toggleAdminPanel()" class="text-slate-400 hover:text-white font-bold text-base">×</button>
     </div>
 
-    <!-- Kunci Sandi Keamanan -->
+    <!-- Kunci Sandi Keamanan (Terbuka Secara Default Saat Panel Diaktifkan) -->
     <div id="admin-lock-screen" class="space-y-3 py-2">
       <p class="text-[10px] text-amber-400 bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/20 leading-relaxed flex gap-2">
         <i data-lucide="alert-circle" class="w-4 h-4 shrink-0 text-amber-500"></i> 
         Kustomisasi Terkunci! Masukkan sandi pengaman administrator sekolah untuk membuka kontrol penuh.
       </p>
       <input id="admin-pw" type="password" placeholder="Masukkan Sandi Keamanan..." class="w-full bg-slate-950 border border-slate-850 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-amber-500">
-      <button onclick="verifyAdminPassword()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-2.5 rounded-xl transition-colors">Buka Kunci Editor</button>
+      <button onclick="verifyAdminPassword()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-2.5 rounded-xl transition-colors font-outfit">Buka Kunci Editor</button>
       <p id="admin-error-text" class="text-[10px] text-rose-500 font-bold hidden">❌ Sandi salah!</p>
     </div>
 
-    <!-- PANEL KONTEN UTAMA DENGAN TAB INTERNAL (WORK SPACE CMS) -->
+    <!-- PANEL KONTEN UTAMA DENGAN TAB INTERNAL (Disembunyikan Secara Default Sampai Password Benar) -->
     <div id="admin-fields" class="space-y-4 hidden">
       
       <!-- Ekspor Website static untuk GitHub Pages -->
@@ -1015,7 +953,7 @@
 
       <!-- Tab Internal Navigation -->
       <div class="flex overflow-x-auto gap-1 border-b border-slate-800 pb-2 custom-scrollbar">
-        <button onclick="switchAdminTab('umum')" id="btn-atab-umum" class="atab-btn px-3 py-1.5 rounded-lg bg-slate-950 text-slate-300 font-bold shrink-0">⚙️ Umum &amp; Visi Misi</button>
+        <button onclick="switchAdminTab('umum')" id="btn-atab-umum" class="atab-btn px-3 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-black shrink-0">⚙️ Umum &amp; Visi Misi</button>
         <button onclick="switchAdminTab('guru')" id="btn-atab-guru" class="atab-btn px-3 py-1.5 rounded-lg bg-slate-950 text-slate-300 font-bold shrink-0">👩‍🏫 Guru</button>
         <button onclick="switchAdminTab('fasilitas')" id="btn-atab-fasilitas" class="atab-btn px-3 py-1.5 rounded-lg bg-slate-950 text-slate-300 font-bold shrink-0">🏫 Fasilitas</button>
         <button onclick="switchAdminTab('kegiatan')" id="btn-atab-kegiatan" class="atab-btn px-3 py-1.5 rounded-lg bg-slate-950 text-slate-300 font-bold shrink-0">🏕️ Kegiatan</button>
@@ -1025,7 +963,7 @@
       </div>
 
       <!-- TAB-CONTENT 1: INFO UMUM, VISI & MISI -->
-      <div id="atab-content-umum" class="admin-tab-view space-y-3 hidden">
+      <div id="atab-content-umum" class="admin-tab-view space-y-3">
         <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1 font-outfit">SINKRONISASI GOOGLE SHEETS &amp; AI KEY</h4>
         <div>
           <label class="text-[9px] font-bold text-slate-400 uppercase">Google Web App URL (Apps Script)</label>
@@ -1034,7 +972,7 @@
         <div>
           <label class="text-[9px] font-bold text-slate-400 uppercase">Gemini API Key (Untuk AI Ki Drajat Bot)</label>
           <input id="edit-geminiApiKey" type="password" placeholder="Masukkan API Key Gemini di sini..." class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white">
-          <p class="text-[8px] text-slate-500 mt-1">Kosongkan jika ingin menggunakan kecerdasan lokal gratis tanpa memerlukan API Key eksternal.</p>
+          <p class="text-[8px] text-slate-500 mt-1">Sandi ini akan dinonaktifkan otomatis saat diekspor untuk menjaga kerahasiaan Anda di GitHub Pages.</p>
         </div>
 
         <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1 pt-2 font-outfit">IDENTITAS &amp; LOGO</h4>
@@ -1075,17 +1013,21 @@
         </div>
       </div>
 
-      <!-- TAB-CONTENT 2: MANAJEMEN GURU (CRUD DEWAN GURU) -->
+      <!-- TAB-CONTENT 2: MANAJEMEN GURU (CRUD DEWAN GURU - LIVE INLINE EDIT) -->
       <div id="atab-content-guru" class="admin-tab-view space-y-3 hidden">
         <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1 font-outfit">TAMBAH DEWAN GURU BARU</h4>
         <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-850 space-y-2">
-          <div><label class="text-[9px] text-slate-400">NAMA LENGKAP &amp; GELAR</label><input id="add-teacher-name" type="text" placeholder="Contoh: Budi Santoso, S.Pd." class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></div>
-          <div><label class="text-[9px] text-slate-400">JABATAN / PERAN GURU</label><input id="add-teacher-role" type="text" placeholder="Contoh: Guru Kelas IV" class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></div>
-          <div><label class="text-[9px] text-slate-400">URL FOTO GURU</label><input id="add-teacher-photo" type="text" placeholder="Pautkan url foto di sini..." class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></div>
-          <button type="button" onclick="addTeacherDirect()" class="w-full bg-emerald-500 text-slate-950 font-black py-2 rounded font-outfit uppercase">👤 Daftarkan Guru</button>
+          <div><label class="text-[9px] text-slate-400 font-bold block mb-1">NAMA LENGKAP &amp; GELAR</label><input id="add-teacher-name" type="text" placeholder="Contoh: Budi Santoso, S.Pd." class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></div>
+          <div><label class="text-[9px] text-slate-400 font-bold block mb-1">JABATAN / PERAN GURU</label><input id="add-teacher-role" type="text" placeholder="Contoh: Guru Kelas IV atau Guru PJOK" class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></div>
+          <div><label class="text-[9px] text-slate-400 font-bold block mb-1">URL FOTO GURU</label><input id="add-teacher-photo" type="text" placeholder="Pautkan url foto di sini..." class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white"></div>
+          <button type="button" onclick="addTeacherDirect()" class="w-full bg-emerald-500 text-slate-950 font-black py-2 rounded font-outfit uppercase">👤 Daftarkan Guru Baru</button>
         </div>
-        <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1 pt-2 font-outfit">DAFTAR DEWAN GURU AKTIF</h4>
-        <div id="admin-teachers-list" class="space-y-1.5 max-h-48 overflow-y-auto custom-scrollbar"></div>
+        
+        <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1 pt-2 font-outfit">DAFTAR DEWAN GURU (DENGAN EDIT LANGSUNG &amp; SORTING)</h4>
+        <p class="text-[9px] text-amber-400 bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/20 leading-relaxed font-sans">
+          💡 <strong>Tips Editor</strong>: Anda bisa langsung mengetik perubahan nama, jabatan, atau URL foto di kolom input guru di bawah ini. Algoritma akan otomatis mengurutkan ulang saat data disimpan &amp; dirender.
+        </p>
+        <div id="admin-teachers-list" class="space-y-3 max-h-[300px] overflow-y-auto custom-scrollbar"></div>
       </div>
 
       <!-- TAB-CONTENT 3: MANAJEMEN FASILITAS -->
@@ -1187,6 +1129,7 @@
 
   <!-- ==================== JAVASCRIPT STATE CONTROLLER ==================== -->
   <script>
+    // Konfigurasi Awal Default Sekolah
     let CONFIG = {
       "name": "SD NEGERI DRAJAT",
       "subName": "KEC. BAURENO KAB. BOJONEGORO",
@@ -1262,6 +1205,7 @@
       }
     ];
 
+    // Data Guru Awal
     let TEACHERS = [
       {
         "id": 1783580938230,
@@ -1534,8 +1478,8 @@
       if (lMission) MISSION = JSON.parse(lMission);
 
       renderAllViews();
-      updatePledgeUI(); // Sinkronisasi UI petisi pada saat memuat halaman
-      switchTab('beranda'); // Paksa panggil agar semua wadah terinisialisasi
+      updatePledgeUI(); 
+      switchTab('beranda'); 
       lucide.createIcons();
 
       // Pintasan editor rahasia Ctrl+Shift+E
@@ -1547,7 +1491,34 @@
       });
     };
 
+    // --- ALGORITMA PENGURUTAN DEWAN GURU (HIKERARKI AKADEMIK) ---
+    function getTeacherRank(role) {
+      const r = role.toLowerCase();
+      if (r.includes("kepala sekolah") || r.includes("kepsek")) return 0;
+      if (r.includes("kelas vi") || r.includes("kelas 6")) return 1;
+      if (r.includes("kelas v") || r.includes("kelas 5")) return 2;
+      if (r.includes("kelas iv") || r.includes("kelas 4")) return 3;
+      if (r.includes("kelas iii") || r.includes("kelas 3")) return 4;
+      if (r.includes("kelas ii") || r.includes("kelas 2")) return 5;
+      if (r.includes("kelas i") || r.includes("kelas 1")) return 6;
+      if (r.includes("padbp") || r.includes("agama") || r.includes("islam") || r.includes("spiritual")) return 7;
+      if (r.includes("pjok") || r.includes("olahraga") || r.includes("jasmani") || r.includes("penjas")) return 8;
+      if (r.includes("kependidikan") || r.includes("tata usaha") || r.includes("tu") || r.includes("administrasi") || r.includes("staf") || r.includes("staff") || r.includes("mutohar")) return 9;
+      if (r.includes("guru kelas")) return 10;
+      return 11; // Lainnya / Default
+    }
+
+    function sortTeachers() {
+      TEACHERS.sort((a, b) => {
+        return getTeacherRank(a.role) - getTeacherRank(b.role);
+      });
+    }
+
+    // --- RENDER UTAMA ---
     function renderAllViews() {
+      // Selalu urutkan guru sebelum ditampilkan
+      sortTeachers();
+
       // 1. Sinkronisasi Teks & Slogan Utama
       document.getElementById('top-announcement').innerText = CONFIG.announcement;
       document.getElementById('school-title-name').innerText = CONFIG.name;
@@ -1601,7 +1572,7 @@
       document.getElementById('stat-accreditation').innerText = CONFIG.accreditation;
       document.getElementById('stat-students').innerText = CONFIG.numStudents;
 
-      // 6. Render Guru
+      // 6. Render Guru (Urutan Hierarkis)
       const teachersGrid = document.getElementById('teachers-view-grid');
       teachersGrid.innerHTML = '';
       TEACHERS.forEach(t => {
@@ -1781,7 +1752,6 @@
         btn.className = "nav-item-btn px-4 py-2 rounded-full transition-all text-slate-300 hover:text-white hover:bg-slate-800";
       });
 
-      // Berikan warna aktif gradient hijau pada tombol desktop utama yang dipilih
       const activeBtn = document.getElementById('btn-nav-' + tabId);
       if (activeBtn) {
         activeBtn.className = "nav-item-btn px-4 py-2 rounded-full transition-all bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 font-black";
@@ -1947,7 +1917,7 @@
       return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
     }
 
-    // --- KECERDASAN LOKAL INSTAN (FALLBACK ENGINE) ---
+    // KECERDASAN LOKAL INSTAN (FALLBACK ENGINE)
     function getLocalBotResponse(query) {
       const q = query.toLowerCase();
       
@@ -1995,11 +1965,10 @@
         return `🤝 **Sekolah Ramah Anak & Anti Bullying**:\n\nKami mengawal ketat agar lingkungan sekolah aman, nyaman, dan ramah anak. Program MPLS 2026 kami dirancang menyenangkan tanpa tekanan fisik atau verbal, serta diawasi langsung oleh Tim Satgas Anti Perundungan sekolah.`;
       }
       
-      if (q.includes('halo') || q.includes('hai') || q.includes('pagi') || q.includes('siang') || q.includes('sore') || q.includes('malam') || q.includes('assalamualaikum') || q.includes('p') || q.includes('halo')) {
+      if (q.includes('halo') || q.includes('hai') || q.includes('pagi') || q.includes('siang') || q.includes('sore') || q.includes('malam') || q.includes('assalamualaikum') || q.includes('p')) {
         return `👋 Halo! Saya **Ki Drajat AI**.\n\nSenang bertemu dengan Anda. Ada yang bisa saya bantu hari ini? Tanyakan saja tentang Visi Misi, Dewan Guru, PPDB, Fasilitas, atau Kontak kami!`;
       }
       
-      // Default fallback lokal jika tidak ada kecocokan kata kunci
       return `🤖 Saya mengerti pertanyaan Anda mengenai hal tersebut.\n\nSebagai asisten cerdas **${CONFIG.name}**, saya menyarankan Anda untuk menanyakan:\n\n• 🏫 *Visi Misi Sekolah*\n• 👩‍🏫 *Dewan Guru Aktif*\n• 📋 *Cara Pendaftaran PPDB/SPMB*\n• 🏕 *Kegiatan Pramuka & Karakter*\n• 📞 *Informasi Kontak & Alamat*\n\nAtau hubungi WhatsApp Admin kami secara langsung melalui tab **"Hello Drajat"** di samping kanan atas!`;
     }
 
@@ -2041,7 +2010,7 @@
 
       const apiKey = CONFIG.geminiApiKey ? CONFIG.geminiApiKey.trim() : "";
       
-      // Jika API Key kosong, langsung gunakan mesin pencari lokal tanpa delay berlebih
+      // Jika API Key kosong, langsung gunakan mesin pencari lokal
       if (!apiKey || apiKey === "") {
         setTimeout(() => {
           const indicator = document.getElementById('typing-indicator');
@@ -2102,7 +2071,6 @@
         if (generatedText) {
           botMessages.push({ sender: 'bot', text: generatedText });
         } else {
-          // Fallback lokal jika respons AI kosong
           const localResponse = getLocalBotResponse(userQuery);
           botMessages.push({ sender: 'bot', text: localResponse });
         }
@@ -2111,7 +2079,6 @@
         const indicator = document.getElementById('typing-indicator');
         if (indicator) indicator.remove();
         
-        // Fallback lokal otomatis jika API Key salah atau kuota habis
         const localResponse = getLocalBotResponse(userQuery);
         botMessages.push({ sender: 'bot', text: localResponse });
       }
@@ -2165,7 +2132,22 @@
     }
 
     function toggleAdminPanel() {
-      document.getElementById('admin-drawer').classList.toggle('hidden');
+      const panel = document.getElementById('admin-drawer');
+      panel.classList.toggle('hidden');
+      
+      // Saat diaktifkan, selalu kunci kembali & tampilkan layar kunci sandi
+      if (!panel.classList.contains('hidden')) {
+        isUnlocked = false;
+        document.getElementById('admin-lock-screen').classList.remove('hidden');
+        document.getElementById('admin-fields').classList.add('hidden');
+        document.getElementById('admin-pw').value = '';
+        document.getElementById('admin-error-text').classList.add('hidden');
+        
+        const adminIcon = document.getElementById('admin-icon');
+        if (adminIcon) {
+          adminIcon.className = "w-4 h-4 text-amber-400 animate-spin-slow";
+        }
+      }
     }
 
     function verifyAdminPassword() {
@@ -2282,21 +2264,51 @@
       showToast("Misi berhasil dihapus!", "success");
     }
 
-    // --- MANAJEMEN GURU ---
+    // --- MANAJEMEN GURU (CRUD DENGAN EDIT LANGSUNG LIVE & SORTING) ---
     function renderAdminTeachers() {
       const container = document.getElementById('admin-teachers-list');
+      if (!container) return;
       container.innerHTML = '';
-      TEACHERS.forEach(t => {
+      
+      // Selalu urutkan terlebih dahulu saat merender di admin panel agar strukturnya rapi
+      sortTeachers();
+
+      TEACHERS.forEach((t, idx) => {
         container.innerHTML += `
-          <div class="flex justify-between items-center bg-slate-950 p-2 rounded-xl border border-slate-850 gap-2">
-            <div class="flex items-center gap-2 truncate">
-              <img src="${t.photo}" class="w-6 h-6 rounded-full object-cover shrink-0" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200'">
-              <span class="truncate text-slate-300 font-semibold text-[11px]">${t.name} <span class="text-[10px] text-slate-500 italic">(${t.role})</span></span>
+          <div class="bg-slate-950 p-3 rounded-2xl border border-slate-850 space-y-2 relative animate-fadeIn">
+            <!-- Label Urutan/Rank -->
+            <div class="flex justify-between items-center text-[9px] uppercase font-bold text-emerald-400 tracking-wider">
+              <span>Guru Ke-${idx + 1} (Rank: ${getTeacherRank(t.role)})</span>
+              <button onclick="deleteTeacherDirect(${t.id})" class="text-rose-400 hover:text-rose-500 font-bold font-sans">Hapus</button>
             </div>
-            <button onclick="deleteTeacherDirect(${t.id})" class="text-rose-400 hover:text-rose-500 font-bold shrink-0 text-[10px]">Hapus</button>
+            
+            <div class="grid grid-cols-1 gap-2">
+              <div>
+                <label class="text-[8px] font-bold text-slate-500 uppercase block">Nama Lengkap & Gelar</label>
+                <input type="text" value="${t.name}" oninput="updateTeacherLive(${t.id}, 'name', this.value)" class="w-full bg-slate-900 border border-slate-800 rounded p-1.5 text-[11px] text-white focus:border-emerald-500 focus:outline-none">
+              </div>
+              <div>
+                <label class="text-[8px] font-bold text-slate-500 uppercase block">Jabatan / Peran</label>
+                <input type="text" value="${t.role}" oninput="updateTeacherLive(${t.id}, 'role', this.value)" class="w-full bg-slate-900 border border-slate-800 rounded p-1.5 text-[11px] text-white focus:border-emerald-500 focus:outline-none">
+              </div>
+              <div>
+                <label class="text-[8px] font-bold text-slate-500 uppercase block">Link URL Foto</label>
+                <input type="text" value="${t.photo}" oninput="updateTeacherLive(${t.id}, 'photo', this.value)" class="w-full bg-slate-900 border border-slate-800 rounded p-1.5 text-[11px] text-slate-400 focus:border-emerald-500 focus:outline-none">
+              </div>
+            </div>
           </div>
         `;
       });
+    }
+
+    // Fungsi update real-time saat pengguna mengetik di input box guru
+    function updateTeacherLive(id, field, value) {
+      const teacher = TEACHERS.find(t => t.id === id);
+      if (teacher) {
+        teacher[field] = value;
+        // Simpan perubahan sementara ke dalam database local array
+        localStorage.setItem('sdn_drajat_teachers', JSON.stringify(TEACHERS));
+      }
     }
 
     function addTeacherDirect() {
@@ -2603,13 +2615,12 @@
       showToast("Mitra berhasil dihapus!", "success");
     }
 
-    // --- MOBILE MENU ---
     function toggleMobileMenu() {
       const drawer = document.getElementById('mobile-drawer');
       drawer.classList.toggle('hidden');
     }
 
-    // --- SAVE CMS SETTINGS ---
+    // --- SIMPAN KUSTOMISASI KESELURUHAN ---
     function saveKustomisasi() {
       CONFIG.logoUrl = document.getElementById('edit-logoUrl').value;
       CONFIG.principalPhotoUrl = document.getElementById('edit-principalPhoto').value;
@@ -2634,14 +2645,18 @@
       showToast("Kustomisasi berhasil disimpan & diterapkan!", "success");
     }
 
-    // --- EXPORT HTML UNTUK GITHUB PAGES ---
+    // --- EKSPOR HTML UNTUK GITHUB PAGES (PROTEKSI SENSOR API KEY OTOMATIS) ---
     function exportUpdatedHTML() {
       const cloneDoc = document.documentElement.cloneNode(true);
       const scripts = cloneDoc.querySelectorAll('script');
       
+      // Duplikasi konfigurasi dan hilangkan API Key agar aman dari sensor/kebocoran GitHub
+      const secureConfig = { ...CONFIG };
+      secureConfig.geminiApiKey = ""; // API Key otomatis dikosongkan sebelum file terunduh!
+
       scripts.forEach(s => {
         if (s.innerHTML.includes('let CONFIG =')) {
-          s.innerHTML = s.innerHTML.replace(/let CONFIG = \{[\s\S]*?\};/, `let CONFIG = ${JSON.stringify(CONFIG, null, 2)};`);
+          s.innerHTML = s.innerHTML.replace(/let CONFIG = \{[\s\S]*?\};/, `let CONFIG = ${JSON.stringify(secureConfig, null, 2)};`);
           s.innerHTML = s.innerHTML.replace(/let PARTNERS = \[[\s\S]*?\];/, `let PARTNERS = ${JSON.stringify(PARTNERS, null, 2)};`);
           s.innerHTML = s.innerHTML.replace(/let MISSION = \[[\s\S]*?\];/, `let MISSION = ${JSON.stringify(MISSION, null, 2)};`);
           s.innerHTML = s.innerHTML.replace(/let TEACHERS = \[[\s\S]*?\];/, `let TEACHERS = ${JSON.stringify(TEACHERS, null, 2)};`);
@@ -2662,8 +2677,9 @@
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      showToast("File HTML terbaru berhasil diunduh!", "success");
+      showToast("File HTML steril berhasil diunduh!", "success");
     }
   </script>
+
 </body>
 </html>
