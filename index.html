@@ -523,7 +523,7 @@
     </div>
 
     <!-- SUB-TAB 5: LAYANAN -->
-    <div id="tab-layanan" class="tab-view hidden max-w-4xl mx-auto space-y-8 animate-fadeIn">
+    <div id="tab-layanan" class="tab-view hidden space-y-8 animate-fadeIn">
       <div class="text-center space-y-2">
         <span class="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700 font-outfit">HELLO DRAJAT</span>
         <h2 id="layanan-title-page" class="text-2xl md:text-3xl font-extrabold text-white font-outfit">SOP Layanan</h2>
@@ -846,8 +846,8 @@
 
   <!-- ==================== 7. MODAL INTERAKTIF: MPLS RAMAH ANAK ==================== -->
   <div id="mpls-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fadeIn">
-    <div class="bg-slate-900 border border-slate-800 rounded-[2.5rem] p-6 md:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar relative shadow-2xl space-y-6">
-      <div class="flex justify-between items-start">
+    <div class="bg-slate-900 border border-slate-800 rounded-[2.5rem] p-6 md:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar relative shadow-2xl space-y-6">
+      <div class="flex justify-between items-start border-b border-slate-800 pb-4">
         <div class="space-y-1 font-sans">
           <span class="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full font-outfit">KAMPANYE NASIONAL</span>
           <h3 class="text-xl md:text-2xl font-black text-white font-outfit flex items-center gap-2"><i data-lucide="shield" class="text-amber-400 w-6 h-6"></i> Komitmen MPLS Ramah Anak 2026</h3>
@@ -858,8 +858,30 @@
       </div>
 
       <div class="space-y-4 text-xs md:text-sm text-slate-300 leading-relaxed font-sans">
-        <p>Selamat datang calon siswa baru! SD Negeri Drajat berkomitmen penuh menyelenggarakan Masa Pengenalan Lingkungan Sekolah (MPLS) yang aman, inklusif, menyenangkan, serta sepenuhnya **bebas dari kekerasan fisik, verbal, perundungan (bullying), dan perpeloncoan**.</p>
+        <p>Calon murid baru SD Negeri Drajat disambut dengan jaminan Masa Pengenalan Lingkungan Sekolah (MPLS) yang asri, inklusif, menyenangkan, serta sepenuhnya **bebas dari kekerasan fisik, verbal, perundungan (bullying), dan perpeloncoan** sesuai acuan Cerdas Berkarakter Kemendikdasmen.</p>
         
+        <!-- JADWAL INTERAKTIF 5 HARI MPLS CERDAS BERKARAKTER -->
+        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl space-y-4">
+          <div class="border-b border-slate-850 pb-2">
+            <span class="text-[9px] text-amber-400 font-extrabold uppercase tracking-widest font-outfit">Jadwal 5 Hari MPLS Ramah Anak &amp; Ceria</span>
+            <p class="text-[11px] text-slate-400 mt-0.5">Panduan transisi murid yang menyenangkan dan mendasar.</p>
+          </div>
+          
+          <!-- Tombol Navigasi Hari -->
+          <div class="flex gap-1.5 overflow-x-auto pb-2 custom-scrollbar text-[10px] font-black shrink-0 font-sans">
+            <button onclick="switchMplsDay(1)" id="btn-mpls-d1" class="mpls-day-btn bg-amber-500 text-slate-950 px-4 py-2 rounded-xl shrink-0 transition-all font-outfit uppercase">Hari 1</button>
+            <button onclick="switchMplsDay(2)" id="btn-mpls-d2" class="mpls-day-btn bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-2 rounded-xl shrink-0 transition-all font-outfit uppercase">Hari 2</button>
+            <button onclick="switchMplsDay(3)" id="btn-mpls-d3" class="mpls-day-btn bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-2 rounded-xl shrink-0 transition-all font-outfit uppercase">Hari 3</button>
+            <button onclick="switchMplsDay(4)" id="btn-mpls-d4" class="mpls-day-btn bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-2 rounded-xl shrink-0 transition-all font-outfit uppercase">Hari 4</button>
+            <button onclick="switchMplsDay(5)" id="btn-mpls-d5" class="mpls-day-btn bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-2 rounded-xl shrink-0 transition-all font-outfit uppercase">Hari 5</button>
+          </div>
+
+          <!-- Konten Detail Jadwal per Hari -->
+          <div id="mpls-day-content" class="bg-slate-900/60 p-4 rounded-xl border border-slate-850 min-h-[140px] flex flex-col justify-between font-sans">
+            <!-- Konten di-generate secara dinamis via Javascript -->
+          </div>
+        </div>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
           <div class="bg-slate-950 p-4 rounded-2xl border border-slate-850 flex gap-3 items-start">
             <span class="text-lg">🤝</span>
@@ -943,12 +965,20 @@
     <div id="admin-fields" class="space-y-4 hidden">
       
       <!-- Ekspor Website static untuk GitHub Pages -->
-      <div class="bg-amber-500/10 border border-amber-500/20 p-3.5 rounded-2xl space-y-2">
-        <span class="block text-[11px] font-black text-amber-400 uppercase tracking-wider flex items-center gap-1 font-outfit">
+      <div class="bg-slate-950 border border-slate-800/80 p-4 rounded-2xl space-y-2">
+        <span class="block text-[11px] font-black text-emerald-400 uppercase tracking-wider flex items-center gap-1 font-outfit">
           <i data-lucide="download" class="w-4 h-4"></i> Rilis Mandiri ke GitHub Pages
         </span>
-        <p class="text-[10px] text-slate-400 leading-relaxed font-sans">Setelah mengubah teks atau foto di bawah ini, klik tombol di bawah untuk mengunduh kode terbaru Anda. Ganti file index.html di GitHub dengan file yang terunduh tersebut.</p>
-        <button onclick="exportUpdatedHTML()" class="w-full bg-amber-500 text-slate-950 font-black py-2 rounded-xl text-[11px] font-outfit uppercase tracking-wider">Unduh File HTML Terbaru 💾</button>
+        <p class="text-[10px] text-slate-400 leading-relaxed font-sans">Setelah melakukan perubahan data sekolah, Anda wajib menyimpan dan mengunduh kode HTML steril di bawah ini agar website Anda di GitHub Pages terupdate secara permanen.</p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+          <button onclick="exportUpdatedHTML()" class="bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 font-black py-2.5 rounded-xl text-[10px] font-outfit uppercase tracking-wider shadow-lg flex items-center justify-center gap-1.5 hover:scale-105 transition-transform">
+            <i data-lucide="file-down" class="w-4 h-4"></i> Unduh File HTML 💾
+          </button>
+          <button onclick="copyCleanHTMLToClipboard()" class="bg-slate-850 border border-slate-800 text-emerald-400 hover:text-emerald-300 font-black py-2.5 rounded-xl text-[10px] font-outfit uppercase tracking-wider flex items-center justify-center gap-1.5 transition-transform hover:scale-105">
+            <i data-lucide="copy" class="w-4 h-4"></i> Salin Kode HTML 📋
+          </button>
+        </div>
       </div>
 
       <!-- Tab Internal Navigation -->
@@ -1365,12 +1395,12 @@
         "title": "Implementasi Gerakan 7 Kebiasaan Anak Indonesia Hebat Guna Membentuk Karakter Unggul",
         "date": "04 Juli 2026",
         "category": "Karakter",
-        "summary": "Menyambut tahun ajaran baru, SD Negeri Drajat mengadopsi penuh program prioritas Cerdas Berkarakter Kemendikdasmen. Melalui sinergi guru dan wali murid, kami membiasakan 7 aktivitas harian positif di sekolah maupun rumah."
+        "summary": "Menyambut tahun ajaran baru, SD Negeri Drajat mengadopsi penuh program prioritas Cerdas Berkarakter Kemendikdasmen. Melalui sinergi guru and wali murid, kami membiasakan 7 aktivitas harian positif di sekolah maupun rumah."
       }
     ];
 
     let SKM_RESPONSES = [
-      { id: 1, name: "Tamu / Masyarakat Umum Bojonegoro", rating: "Puas", comment: "Prosedur pelayanan informasi publik sudah sangat jelas &amp; transparan.", date: "11 Juli 2026" },
+      { id: 1, name: "Tamu / Masyarakat Umum Bojonegoro", rating: "Puas", comment: "Prosedur pelayanan pelayanan sudah sangat jelas &amp; transparan.", date: "11 Juli 2026" },
       { id: 2, name: "Alumni SD Negeri Drajat", rating: "Puas", comment: "Guru-gurunya sangat sopan, ramah, and peduli terhadap murid.", date: "09 Juli 2026" },
       { id: 3, name: "Wali Murid / Orang Tua Murid", rating: "Sangat Puas", comment: "Pelayanan sangat cepat, ramah, and bebas biaya tambahan.", date: "09 Juli 2026" },
       { id: 4, name: "Wali Murid / Orang Tua Murid", rating: "Sangat Puas", comment: "Sistem Hello Drajat mempermudah kami dalam mengurus surat administrasi. Sangat cepat!", date: "06 Juli 2026" },
@@ -1386,12 +1416,37 @@
     let hasPledged = localStorage.getItem('sdn_drajat_has_pledged') === 'true';
     let basePledgeCount = parseInt(localStorage.getItem('sdn_drajat_pledge_count')) || 42;
 
+    // DATA RESMI JADWAL 5 HARI MPLS CERDAS BERKARAKTER (KEMENDIKDASMEN RI)
+    const MPLS_SCHEDULE = {
+      1: {
+        title: "Hari 1: Kenali Diri, Teman, & Jelajah Harta Karun",
+        desc: "• <strong>Pagi Hari:</strong> Salam sapa hangat, Upacara bendera (sesuai SEB No. 9/2026), Pengondisian kelas, dan jeda ceria yang merangsang kebahagiaan belajar.<br>• <strong>Aktivitas Utama:</strong> Pengenalan diri, berkenalan dengan teman sekelas dan guru kelas baru, serta makan makanan sehat dan bergizi bersama secara teratur.<br>• <strong>Petualangan:</strong> Tur sekolah interaktif bertema petualangan seru \"Menemukan Harta Karun\" (mengenal kelas digital, pojok baca, taman hijau) sekaligus membekali murid tentang kesiapsiagaan mitigasi bencana sejak dini.<br>• <strong>Penutup:</strong> Giat kebersihan \"Operasi Semut\", refleksi ceria, menyanyikan lagu penutup, doa, dan salam hangat."
+      },
+      2: {
+        title: "Hari 2: Kebugaran Jasmani & Kampanye Sekolah ASRI",
+        desc: "• <strong>Pagi Hari:</strong> Salam sapa penuh cinta dilanjutkan Pertemuan Pagi Ceria, mengajak murid cek denyut jantung serta latihan tes fleksibilitas tubuh terpadu.<br>• <strong>Aktivitas Utama:</strong> Makan sehat bergizi bersama secara menyenangkan, diselingi pengondisian kelas and jeda ice-breaking ceria.<br>• <strong>Edukasi Karakter:</strong> Pengenalan konsep Sekolahku ASRI (Aman, Sehat, Resik, dan Indah) lewat metode permainan interaktif \"Siapa Yang Tahu Aturannya?\" demi mencegah kekerasan fisik maupun verbal.<br>• <strong>Penutup:</strong> Giat bersih bersama \"Operasi Semut\", refleksi singkat mengenai pentingnya rasa nyaman, serta doa penutup."
+      },
+      3: {
+        title: "Hari 3: Jelajah Belajar & Dongeng Hebat (G7KAIH)",
+        desc: "• <strong>Pagi Hari:</strong> Salam sapa ceria, menyanyikan lagu kebangsaan Indonesia Raya secara khidmat, serta doa pembuka pelajaran.<br>• <strong>Aktivitas Utama:</strong> Pengondisian kelas and Jelajah Belajar Seru (memperkenalkan gaya dan cara belajar yang menyenangkan di jenjang Sekolah Dasar).<br>• <strong>Edukasi Karakter:</strong> Makan sehat bergizi bersama murid baru dilanjutkan sesi Storytelling edukatif tentang \"Tujuh Kebiasaan Anak Indonesia Hebat\" (G7KAIH) untuk melatih kemandirian dan nalar kritis.<br>• <strong>Penutup:</strong> Aksi bersih kelas \"Operasi Semut\", refleksi harian, doa, dan salam pulang."
+      },
+      4: {
+        title: "Hari 4: Kesehatan Fisik, Keadaban Digital, & Pencegahan Isu",
+        desc: "• <strong>Pagi Hari:</strong> Salam sapa hangat, Pertemuan Pagi Ceria dengan bersama-sama menyanyikan Jingle Resmi MPLS Ramah 2026.<br>• <strong>Aktivitas Utama:</strong> Pengenalan kebiasaan hidup bersih (pemeriksaan kuku & gigi) serta edukasi preventif perlindungan fisik bagi keselamatan anak sejak dini.<br>• <strong>Edukasi Khusus:</strong> Pembekalan Keadaban Digital (\"Batasi Main Gim Daring\") serta materi pilihan pencegahan bahaya NAPZA melalui dongeng bertema \"Permen dari Orang Tak Dikenal\".<br>• <strong>Penutup:</strong> Makan sehat, aksi bersih \"Operasi Semut\", refleksi perasaan harian, doa, dan salam penutup."
+      },
+      5: {
+        title: "Hari 5: Unjuk Karya, Ekstrakurikuler, & Ikrar Damai",
+        desc: "• <strong>Pagi Hari:</strong> Salam sapa ceria, menyanyikan lagu kebangsaan Indonesia Raya secara serempak, doa, serta pengondisian kelas.<br>• <strong>Aktivitas Utama:</strong> Mengenal kepanduan (Pramuka Golongan Siaga) and berbagai wadah minat bakat ekstrakurikuler.<br>• <strong>Puncak Acara:</strong> Penandatanganan kesepakatan bersama \"Sekolahku Aman dan Nyaman\", panggung gembira Unjuk Minat dan Bakat murid baru secara inklusif.<br>• <strong>Penutup:</strong> Makan sehat bergizi, prosesi penutupan \"Akhir yang Ramah dari MPLS\", pembagian apresiasi, refleksi, doa, dan salam penutup."
+      }
+    };
+
     // --- MPLS MODAL CONTROLS ---
     function openMplsModal() {
       const modal = document.getElementById('mpls-modal');
       modal.classList.remove('hidden');
       modal.classList.add('flex');
       document.body.style.overflow = 'hidden';
+      switchMplsDay(1); // Set ke hari pertama secara default
       updatePledgeUI();
       lucide.createIcons();
     }
@@ -1401,6 +1456,30 @@
       modal.classList.add('hidden');
       modal.classList.remove('flex');
       document.body.style.overflow = '';
+    }
+
+    // Navigasi Hari MPLS
+    function switchMplsDay(dayNumber) {
+      document.querySelectorAll('.mpls-day-btn').forEach(btn => {
+        btn.className = "mpls-day-btn bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-2 rounded-xl shrink-0 transition-all font-outfit uppercase";
+      });
+
+      const activeBtn = document.getElementById('btn-mpls-d' + dayNumber);
+      if (activeBtn) {
+        activeBtn.className = "mpls-day-btn bg-amber-500 text-slate-950 px-4 py-2 rounded-xl shrink-0 transition-all font-outfit uppercase font-black shadow-md";
+      }
+
+      const contentBox = document.getElementById('mpls-day-content');
+      const data = MPLS_SCHEDULE[dayNumber];
+      contentBox.innerHTML = `
+        <div class="space-y-2 animate-fadeIn">
+          <h4 class="font-bold text-white text-xs md:text-sm flex items-center gap-2 font-outfit">
+            <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+            ${data.title}
+          </h4>
+          <p class="text-[11px] md:text-xs text-slate-300 leading-relaxed font-sans">${data.desc}</p>
+        </div>
+      `;
     }
 
     function updatePledgeUI() {
@@ -1439,7 +1518,7 @@
         if (CONFIG.googleScriptUrl && CONFIG.googleScriptUrl.trim() !== "") {
           const urlParams = new URLSearchParams();
           urlParams.append('date', new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }));
-          urlParams.append('name', "Petisi Wali Murid (Anonim)");
+          urlParams.append('name', "Petisi Wali Mudik (Anonim)");
           urlParams.append('rating', "PETISI");
           urlParams.append('comment', "Berkomitmen mendukung penuh terwujudnya program MPLS Ramah Anak bebas bullying.");
 
@@ -1987,7 +2066,7 @@
       }
       
       if (q.includes('kontak') || q.includes('telepon') || q.includes('nomor') || q.includes('email') || q.includes('whatsapp') || q.includes('hubungi') || q.includes('no')) {
-        return `📞 **Kontak Resmi ${CONFIG.name}**:\n\n• **WhatsApp/Telp Admin:** ${CONFIG.phone}\n• **Email Resmi:** ${CONFIG.email}\n\nAnda juga bisa mengirim pesan aduan atau saran langsung ke WhatsApp Admin melalui tab **"Hello Drajat (WA)"** di panel ini!`;
+        return `📞 **Kontak Resmi ${CONFIG.name}**:\n\n• **WhatsApp/Telp Admin:** ${CONFIG.phone}\n• **Email Resmi:** ${CONFIG.email}\n\nAnda juga bisa mengirim pesan aduan atau saran langsung ke WhatsApp Admin melalui tab **"Hello Drajat (WA)"** di samping kanan atas!`;
       }
       
       if (q.includes('bullying') || q.includes('perundungan') || q.includes('ramah anak') || q.includes('mpls') || q.includes('kasar') || q.includes('aman')) {
@@ -2002,7 +2081,7 @@
         return `👋 Halo! Saya **Ki Drajat AI**.\n\nSenang bertemu dengan Anda. Ada yang bisa saya bantu hari ini? Tanyakan saja tentang Visi Misi, Dewan Guru, PPDB, Fasilitas, atau Kontak kami!`;
       }
       
-      return `🤖 Saya mengerti pertanyaan Anda mengenai hal tersebut.\n\nSebagai asisten cerdas **${CONFIG.name}**, saya menyarankan Anda untuk menanyakan:\n\n• 🏫 *Visi Misi Sekolah*\n• 👩‍🏫 *Dewan Guru Aktif*\n• 📋 *Cara Pendaftaran PPDB/SPMB*\n• 🎓 *Komitmen Guru Penggerak & Kurikulum Merdeka*\n• 📞 *Informasi Kontak & Alamat*\n\nAtau hubungi WhatsApp Admin kami secara langsung melalui tab **"Hello Drajat"** di samping kanan atas!`;
+      return `🤖 Saya mengerti pertanyaan Anda mengenai hal tersebut.\n\nAsisten cerdas **${CONFIG.name}** menyarankan Anda untuk menanyakan:\n\n• 🏫 *Visi Misi Sekolah*\n• 👩‍🏫 *Dewan Guru Aktif*\n• 📋 *Cara Pendaftaran PPDB/SPMB*\n• 🎓 *Komitmen Guru Penggerak & Kurikulum Merdeka*\n• 📞 *Informasi Kontak & Alamat*\n\nAtau hubungi WhatsApp Admin kami secara langsung melalui tab **"Hello Drajat"** di samping kanan atas!`;
     }
 
     async function callKiDrajatAI(userQuery) {
@@ -2448,6 +2527,14 @@
       showToast("Guru baru berhasil didaftarkan!", "success");
     }
 
+    function deleteTeacherDirect(id) {
+      TEACHERS = TEACHERS.filter(t => t.id !== id);
+      localStorage.setItem('sdn_drajat_teachers', JSON.stringify(TEACHERS));
+      renderAdminTeachers();
+      renderAllViews();
+      showToast("Guru berhasil dihapus!", "success");
+    }
+
     // --- MANAJEMEN FASILITAS ---
     function renderAdminFacilities() {
       const container = document.getElementById('admin-facilities-list');
@@ -2748,54 +2835,110 @@
       showToast("Kustomisasi berhasil disimpan & diterapkan!", "success");
     }
 
-    // --- EKSPOR HTML UNTUK GITHUB PAGES ---
-    function exportUpdatedHTML() {
+    // --- EKSPOR & PENYALINAN DATA HTML STERIL ---
+    
+    // Fungsi pembantu pembuatan dokumen HTML hasil ekspor
+    function generateCleanHTMLExport() {
       const cloneDoc = document.documentElement.cloneNode(true);
       
+      // Kembalikan tampilan drawer kustomisasi ke kondisi terkunci secara default
       const lockScreen = cloneDoc.getElementById('admin-lock-screen');
-      if (lockScreen) {
-        lockScreen.classList.remove('hidden'); 
-      }
+      if (lockScreen) lockScreen.classList.remove('hidden');
       
       const adminFields = cloneDoc.getElementById('admin-fields');
-      if (adminFields) {
-        adminFields.classList.add('hidden'); 
-      }
+      if (adminFields) adminFields.classList.add('hidden');
       
       const adminDrawer = cloneDoc.getElementById('admin-drawer');
-      if (adminDrawer) {
-        adminDrawer.classList.add('hidden'); 
-      }
+      if (adminDrawer) adminDrawer.classList.add('hidden');
 
+      // Ambil objek konfigurasi dan hilangkan kunci API Gemini agar tidak bocor di GitHub Pages
       const secureConfig = { ...CONFIG };
-      secureConfig.geminiApiKey = ""; // Selalu kosongkan kunci API klien saat ekspor demi keamanan
+      secureConfig.geminiApiKey = "";
 
       const scripts = cloneDoc.querySelectorAll('script');
       scripts.forEach(s => {
         if (s.innerHTML.includes('let CONFIG =')) {
-          s.innerHTML = s.innerHTML.replace(/let CONFIG = \{[\s\S]*?\};/, `let CONFIG = ${JSON.stringify(secureConfig, null, 2)};`);
-          s.innerHTML = s.innerHTML.replace(/let PARTNERS = \[[\s\S]*?\];/, `let PARTNERS = ${JSON.stringify(PARTNERS, null, 2)};`);
-          s.innerHTML = s.innerHTML.replace(/let MISSION = \[[\s\S]*?\];/, `let MISSION = ${JSON.stringify(MISSION, null, 2)};`);
-          s.innerHTML = s.innerHTML.replace(/let TEACHERS = \[[\s\S]*?\];/, `let TEACHERS = ${JSON.stringify(TEACHERS, null, 2)};`);
-          s.innerHTML = s.innerHTML.replace(/let FACILITIES = \[[\s\S]*?\];/, `let FACILITIES = ${JSON.stringify(FACILITIES, null, 2)};`);
-          s.innerHTML = s.innerHTML.replace(/let GALLERY = \[[\s\S]*?\];/, `let GALLERY = ${JSON.stringify(GALLERY, null, 2)};`);
-          s.innerHTML = s.innerHTML.replace(/let SERVICES = \[[\s\S]*?\];/, `let SERVICES = ${JSON.stringify(SERVICES, null, 2)};`);
-          s.innerHTML = s.innerHTML.replace(/let NEWS = \[[\s\S]*?\];/, `let NEWS = ${JSON.stringify(NEWS, null, 2)};`);
+          // Bentuk deklarasi ulang variabel berbasis data termutakhir secara rapi
+          const cleanVariablesBlock = `
+    // Konfigurasi Awal Default Sekolah
+    let CONFIG = ${JSON.stringify(secureConfig, null, 2)};
+
+    let PARTNERS = ${JSON.stringify(PARTNERS, null, 2)};
+
+    let MISSION = ${JSON.stringify(MISSION, null, 2)};
+
+    let TEACHERS = ${JSON.stringify(TEACHERS, null, 2)};
+
+    let FACILITIES = ${JSON.stringify(FACILITIES, null, 2)};
+
+    let GALLERY = ${JSON.stringify(GALLERY, null, 2)};
+
+    let SERVICES = ${JSON.stringify(SERVICES, null, 2)};
+
+    let NEWS = ${JSON.stringify(NEWS, null, 2)};
+
+    let SKM_RESPONSES = ${JSON.stringify(SKM_RESPONSES, null, 2)};
+          `;
+
+          const scriptParts = s.innerHTML.split('// --- STATE GLOBAL ---');
+          if (scriptParts.length > 1) {
+            s.innerHTML = cleanVariablesBlock + '\n    // --- STATE GLOBAL ---' + scriptParts[1];
+          }
         }
       });
 
-      const htmlContent = "<!DOCTYPE html>\n" + cloneDoc.outerHTML;
-      const blob = new Blob([htmlContent], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'index.html';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      return "<!DOCTYPE html>\n" + cloneDoc.outerHTML;
+    }
+
+    // 1. Ekspor via Unduhan Otomatis (Download File)
+    function exportUpdatedHTML() {
+      const htmlContent = generateCleanHTMLExport();
       
-      showToast("File HTML aman berhasil disterilkan & diunduh!", "success");
+      try {
+        const blob = new Blob([htmlContent], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'index.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast("Unduhan berkas index.html berhasil diluncurkan!", "success");
+      } catch (err) {
+        console.error("Gagal mengunduh berkas langsung:", err);
+        // Fallback otomatis menyalin kode ke clipboard jika browser sandbox membatasi unduhan
+        copyTextToClipboardFallback(htmlContent, "⚠️ Gagal mengunduh langsung. Kode HTML berhasil disalin ke clipboard!");
+      }
+    }
+
+    // 2. Ekspor via Salinan Clipboard Manual (Sangat andal di Iframe Sandbox)
+    function copyCleanHTMLToClipboard() {
+      const htmlContent = generateCleanHTMLExport();
+      copyTextToClipboardFallback(htmlContent, "Kode HTML steril berhasil disalin ke clipboard!");
+    }
+
+    // Fungsi pembantu penanganan penyalinan teks clipboard lintas platform/browser
+    function copyTextToClipboardFallback(text, successMessage) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      document.body.appendChild(textarea);
+      textarea.select();
+      
+      try {
+        const success = document.execCommand('copy');
+        if (success) {
+          showToast(successMessage, "success");
+        } else {
+          showToast("Gagal menyalin teks secara otomatis.", "error");
+        }
+      } catch (e) {
+        console.error("Penyalinan clipboard gagal:", e);
+        showToast("Izin clipboard ditolak oleh peramban.", "error");
+      }
+      
+      document.body.removeChild(textarea);
     }
   </script>
 
