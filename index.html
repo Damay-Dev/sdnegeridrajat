@@ -1075,7 +1075,7 @@
             <pre class="bg-slate-900 p-2 rounded border border-slate-800 text-[9px] text-emerald-400 overflow-x-auto whitespace-pre font-mono custom-scrollbar mt-1">
 function doPost(e) {
   var params = e.parameter;
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0]; // Menggunakan sheet pertama secara mutlak agar tidak salah baca tab
   
   // Jika aksi adalah kirim data SKM
   if (params.name) {
@@ -1087,7 +1087,7 @@ function doPost(e) {
 
 function doGet(e) {
   var action = e.parameter.action;
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0]; // Menggunakan sheet pertama secara mutlak agar tidak salah baca tab
   
   // Mengambil ulasan SKM real-time
   if (action === "getSkm") {
@@ -1096,7 +1096,7 @@ function doGet(e) {
     var results = [];
     
     // Skip baris pertama (header)
-    for (var i = 1; i &lt; data.length; i++) {
+    for (var i = 1; i < data.length; i++) {
       results.push({
         id: i,
         date: data[i][0] ? data[i][0] : "",
@@ -2123,12 +2123,9 @@ function doGet(e) {
         .catch(err => {
           console.error(err);
           if (alertSuccess) alertSuccess.innerText = "⚠️ Terjadi kendala jaringan. Penilaian disimpan lokal di browser Anda.";
-          showToast("Koneksi gagal, tersimpan secara lokal.", "error");
           setTimeout(() => { if (alertSuccess) alertSuccess.classList.add('hidden'); }, 5000);
         });
       } else {
-        if (alertSuccess) alertSuccess.innerText = "🎉 Terima kasih! Penilaian Anda tersimpan secara lokal di browser ini.";
-        showToast("Tersimpan secara lokal!", "info");
         setTimeout(() => { if (alertSuccess) alertSuccess.classList.add('hidden'); }, 5000);
       }
     }
@@ -2165,7 +2162,7 @@ function doGet(e) {
       });
     }
 
-    // --- STREAMING_CHUNK: Menghitung and merender diagram persentase kepuasan...
+    // --- STREAMING_CHUNK: Menghitung and merender diagram persentase kepuasan secara fleksibel...
     function renderSkmPercentages() {
       const total = SKM_RESPONSES.length;
       document.getElementById('skm-total-respondents').innerText = total;
@@ -2177,8 +2174,17 @@ function doGet(e) {
 
       let counts = { "Sangat Puas": 0, "Puas": 0, "Cukup Puas": 0, "Kurang Puas": 0 };
       SKM_RESPONSES.forEach(item => {
-        if (counts[item.rating] !== undefined) {
-          counts[item.rating]++;
+        // Melakukan normalisasi teks (trim spasi, ignore kapitalisasi huruf) agar data dari Google Sheets terhitung dengan benar
+        let r = item.rating ? item.rating.toString().trim() : "";
+        if (counts[r] !== undefined) {
+          counts[r]++;
+        } else {
+          // Fallback toleransi untuk format teks bervariasi
+          let rLower = r.toLowerCase();
+          if (rLower === "sangat puas") counts["Sangat Puas"]++;
+          else if (rLower === "puas") counts["Puas"]++;
+          else if (rLower === "cukup puas" || rLower === "cukup") counts["Cukup Puas"]++;
+          else if (rLower === "kurang puas" || rLower === "kurang") counts["Kurang Puas"]++;
         }
       });
 
