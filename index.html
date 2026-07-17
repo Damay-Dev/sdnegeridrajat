@@ -396,7 +396,7 @@
         <div class="absolute top-0 right-0 w-48 h-48 bg-emerald-500/5 rounded-full blur-3xl"></div>
         <div class="lg:col-span-8 space-y-4 relative z-10">
           <div class="border-l-4 border-emerald-500 pl-4 font-sans">
-            <span class="text-[10px] text-emerald-400 font-bold uppercase block tracking-wider font-outfit">Aspirasi Pemimpin</span>
+            <span class="text-[10px] text-emerald-400 font-bold uppercase block tracking-wider font-outfit">ASPIRASI PEMIMPIN</span>
             <h3 class="text-xl md:text-2xl font-black text-white font-outfit">Sambutan Kepala Sekolah</h3>
           </div>
           <p class="text-slate-300 text-xs md:text-sm leading-relaxed italic p-5 bg-slate-950/40 rounded-2xl border border-slate-800 font-sans">
@@ -1096,7 +1096,7 @@ function doGet(e) {
     var results = [];
     
     // Skip baris pertama (header)
-    for (var i = 1; i < data.length; i++) {
+    for (var i = 1; i &lt; data.length; i++) {
       results.push({
         id: i,
         date: data[i][0] ? data[i][0] : "",
@@ -1189,7 +1189,7 @@ function doGet(e) {
             </select>
           </div>
           <div><label class="text-[9px] text-slate-400">DESKRIPSI FASILITAS</label><textarea id="add-facility-desc" rows="2" placeholder="Jelaskan deskripsi fasilitas..." class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white font-sans"></textarea></div>
-          <div><label class="text-[9px] text-slate-400">URL GAMBAR</label><input id="add-facility-image" type="text" placeholder="Link gambar fasilitas..." class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white font-sans"></textarea></div>
+          <div><label class="text-[9px] text-slate-400">URL GAMBAR</label><input id="add-facility-image" type="text" placeholder="Link gambar fasilitas..." class="w-full bg-slate-900 border border-slate-800 rounded p-2 text-white font-sans"></div>
           <button type="button" onclick="addFacilityDirect()" class="w-full bg-emerald-500 text-slate-950 font-black py-2 rounded font-outfit uppercase">🏢 Daftarkan Fasilitas</button>
         </div>
         <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1 pt-2 font-outfit font-sans">DAFTAR FASILITAS AKTIF</h4>
@@ -1465,7 +1465,7 @@ function doGet(e) {
         "id": 1783582762898,
         "title": "Ketangkasan Kelompok",
         "category": "Pramuka Siaga",
-        "desc": "Belajar kemandirian melalui permainan dan ketangkasan kelompok yang menyenangkan.",
+        "desc": "Belajar kemandirian melalui permainan and ketangkasan kelompok yang menyenangkan.",
         "image": "https://lh3.googleusercontent.com/d/1EeRxnrmYsxGZlHzMeTSdrdG9kSd5LY6T"
       }
     ];
@@ -1546,7 +1546,6 @@ function doGet(e) {
     ];
     /* STATE_DATA_END */
 
-    // --- STREAMING_CHUNK: Menginisialisasi variabel status global web...
     let currentPassword = "drajat2026";
     let isUnlocked = false;
     let selectedEmoji = "Sangat Puas";
@@ -1578,7 +1577,6 @@ function doGet(e) {
       }
     };
 
-    // --- STREAMING_CHUNK: Mengatur modul and visualisasi modal MPLS...
     function openMplsModal() {
       const modal = document.getElementById('mpls-modal');
       if (modal) {
@@ -1698,7 +1696,6 @@ function doGet(e) {
       if (countDisplay) countDisplay.innerText = basePledgeCount;
     }
 
-    // --- STREAMING_CHUNK: Memuat basis data runtime tersemat dari penyimpanan lokal browser...
     window.onload = function() {
       isUnlocked = false;
       const adminDrawer = document.getElementById('admin-drawer');
@@ -1761,7 +1758,6 @@ function doGet(e) {
       });
     };
 
-    // --- STREAMING_CHUNK: Menyusun algoritma perankingan guru berdasarkan perannya...
     function getTeacherRank(role) {
       const r = role.toLowerCase();
       if (r.includes("kepala sekolah") || r.includes("kepsek")) return 0;
@@ -1783,7 +1779,6 @@ function doGet(e) {
       });
     }
 
-    // --- STREAMING_CHUNK: Merender data runtime ke antarmuka pengguna...
     function renderAllViews() {
       sortTeachers();
 
@@ -1911,7 +1906,6 @@ function doGet(e) {
       initBotMessages();
     }
 
-    // --- STREAMING_CHUNK: Menyusun logika perpindahan tab navigasi dinamis...
     function switchTab(tabId, subTabId = '') {
       activeTab = tabId;
       document.querySelectorAll('.tab-view').forEach(view => view.classList.add('hidden'));
@@ -2031,7 +2025,6 @@ function doGet(e) {
       if (typeof lucide !== 'undefined') lucide.createIcons();
     }
 
-    // --- STREAMING_CHUNK: Mengatur interaksi survei SKM and lencana kepuasan...
     function selectSkmEmoji(emoji) {
       selectedEmoji = emoji;
       document.querySelectorAll('.emoji-btn').forEach(btn => {
@@ -2049,7 +2042,6 @@ function doGet(e) {
       }
     }
 
-    // --- STREAMING_CHUNK: Mengambil data survey real-time dari Google Sheets...
     async function fetchSkmFromGoogle() {
       const defaultUrl = "https://script.google.com/macros/s/AKfycbw9dXm_hstSfK-lFf_oSsjN1p4HGrxTlo0zoYtB9zpZK8-mKJsPclPS0IkIReMM3Vx9/exec";
       if (!CONFIG.googleScriptUrl || CONFIG.googleScriptUrl.trim() === "" || CONFIG.googleScriptUrl.trim() === defaultUrl) {
@@ -2149,9 +2141,10 @@ function doGet(e) {
       if (!container) return;
       container.innerHTML = '';
       
-      // Membatasi tampilan hanya 5 respon terbaru di halaman demi estetika dan kecepatan render,
-      // namun perhitungan statistik tetap menggunakan total keseluruhan array SKM_RESPONSES
-      const recentResponses = SKM_RESPONSES.slice(0, 5);
+      // LOGIKA BARU (BENAR): Menyalin data, membalik urutannya agar masukan terbaru di spreadsheet / local
+      // melompat ke urutan terdepan, baru mengambil 5 respon masukan teratas untuk dirender.
+      const reversed = [...SKM_RESPONSES].reverse();
+      const recentResponses = reversed.slice(0, 5);
       
       if (recentResponses.length === 0) {
         container.innerHTML = `<p class="text-center text-slate-500 py-4 text-xs italic font-sans">Belum ada respon masukan.</p>`;
@@ -2176,7 +2169,6 @@ function doGet(e) {
       });
     }
 
-    // --- STREAMING_CHUNK: Menghitung and merender diagram persentase kepuasan secara fleksibel...
     function renderSkmPercentages() {
       const total = SKM_RESPONSES.length;
       document.getElementById('skm-total-respondents').innerText = total;
@@ -2221,7 +2213,6 @@ function doGet(e) {
       });
     }
 
-    // --- STREAMING_CHUNK: Menyusun logika operasional mascot hub virtual...
     function toggleKiDrajatHub() {
       const panel = document.getElementById('kidrajat-hub-panel');
       if (!panel) return;
@@ -2292,7 +2283,6 @@ function doGet(e) {
       return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
     }
 
-    // --- STREAMING_CHUNK: Menyusun mesin pencocokan pola pertanyaan chatbot secara instan...
     function getLocalBotResponse(query) {
       const q = query.toLowerCase()
         .replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '')
@@ -2506,7 +2496,6 @@ function doGet(e) {
       showToast("Membuka WhatsApp untuk mengirim laporan...", "info");
     }
 
-    // --- STREAMING_CHUNK: Mengatur modul notifikasi Toast melayang yang asri...
     function showToast(message, type = "success") {
       const container = document.getElementById('toast-container');
       if (!container) return;
@@ -2537,7 +2526,6 @@ function doGet(e) {
       }, 3500);
     }
 
-    // --- STREAMING_CHUNK: Mengaktifkan fungsionalitas panel administrator sekolah...
     function toggleAdminPanel() {
       const panel = document.getElementById('admin-drawer');
       if (!panel) return;
@@ -3018,7 +3006,6 @@ function doGet(e) {
       showToast("Mitra baru berhasil didaftarkan!", "success");
     }
 
-    // --- STREAMING_CHUNK: Managing partner deletion functionality...
     function deletePartner(id) {
       PARTNERS = PARTNERS.filter(p => p.id !== id);
       localStorage.setItem('sdn_drajat_partners', JSON.stringify(PARTNERS));
@@ -3059,7 +3046,6 @@ function doGet(e) {
       showToast("Kustomisasi berhasil disimpan & diterapkan!", "success");
     }
 
-    // --- STREAMING_CHUNK: Membangun sistem ekspor kode steril tanpa sampah ekstensi...
     function generateCleanHTMLExport() {
       const cloneDoc = document.documentElement.cloneNode(true);
       
