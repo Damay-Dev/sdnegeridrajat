@@ -1080,7 +1080,8 @@ function doPost(e) {
   // Jika aksi adalah kirim data SKM
   if (params.name) {
     sheet.appendRow([params.date, params.name, params.rating, params.comment]);
-    return ContentService.createTextOutput("SUCCESS").setMimeType(ContentService.MimeType.TEXT);
+    return ContentService.createTextOutput("SUCCESS")
+      .setMimeType(ContentService.MimeType.TEXT);
   }
 }
 
@@ -1090,19 +1091,22 @@ function doGet(e) {
   
   // Mengambil ulasan SKM real-time
   if (action === "getSkm") {
-    var data = sheet.getDataRange().getValues();
+    // MENGGUNAKAN getDisplayValues() agar format tanggal dan teks di website tidak berubah/berantakan
+    var data = sheet.getDataRange().getDisplayValues(); 
     var results = [];
+    
     // Skip baris pertama (header)
     for (var i = 1; i &lt; data.length; i++) {
       results.push({
         id: i,
-        date: data[i][0] ? data[i][0].toString() : "",
-        name: data[i][1] ? data[i][1].toString() : "",
-        rating: data[i][2] ? data[i][2].toString() : "",
-        comment: data[i][3] ? data[i][3].toString() : ""
+        date: data[i][0] ? data[i][0] : "",
+        name: data[i][1] ? data[i][1] : "",
+        rating: data[i][2] ? data[i][2] : "",
+        comment: data[i][3] ? data[i][3] : ""
       });
     }
-    // Return dalam format JSON dengan header CORS lengkap
+    
+    // Return dalam format JSON dengan header CORS lengkap secara otomatis oleh Google
     return ContentService.createTextOutput(JSON.stringify(results))
       .setMimeType(ContentService.MimeType.JSON);
   }
