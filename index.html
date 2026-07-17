@@ -2051,12 +2051,20 @@ function doGet(e) {
 
     // --- STREAMING_CHUNK: Mengambil data survey real-time dari Google Sheets...
     async function fetchSkmFromGoogle() {
-      if (!CONFIG.googleScriptUrl || CONFIG.googleScriptUrl.trim() === "" || CONFIG.googleScriptUrl.includes("script.google.com/macros/s/AKfycbw9dXm")) return;
+      const defaultUrl = "https://script.google.com/macros/s/AKfycbw9dXm_hstSfK-lFf_oSsjN1p4HGrxTlo0zoYtB9zpZK8-mKJsPclPS0IkIReMM3Vx9/exec";
+      if (!CONFIG.googleScriptUrl || CONFIG.googleScriptUrl.trim() === "" || CONFIG.googleScriptUrl.trim() === defaultUrl) {
+        console.log("Menggunakan data lokal bawaan (URL Google Script belum diatur atau masih menggunakan default).");
+        return;
+      }
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 4000); // Batas tunggu 4 detik
+        const timeoutId = setTimeout(() => controller.abort(), 6000); // Batas tunggu 6 detik
 
         const response = await fetch(`${CONFIG.googleScriptUrl}?action=getSkm`, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json'
+          },
           signal: controller.signal
         });
         clearTimeout(timeoutId);
@@ -2068,11 +2076,17 @@ function doGet(e) {
             localStorage.setItem('sdn_drajat_skm', JSON.stringify(SKM_RESPONSES));
             renderSkmFeed();
             renderSkmPercentages();
+            console.log("Sukses sinkronisasi data real-time dari Google Sheets!");
           }
+        } else {
+          throw new Error("HTTP Status " + response.status);
         }
       } catch (err) {
-        // Gagal mengambil data karena CORS sandbox atau kendala jaringan eksternal ditangani secara aman
-        console.warn("Informasi: Koneksi sinkronisasi eksternal Google Sheets dibatasi atau belum dikonfigurasi. Menggunakan penyimpanan data lokal.", err.message);
+        console.warn("Koneksi real-time dibatasi atau diblokir browser (CORS/Sandbox/Iframe).", err.message);
+        // Memberikan edukasi di log konsol jika origin terdeteksi sebagai null (sandbox preview)
+        if (window.location.origin === "null" || window.location.href.includes("null") || window.location.origin.includes("sandbox")) {
+          console.log("💡 TIPS PORTAL: Di dalam mode Preview editor ini, browser mengirimkan Origin 'null' sehingga Google memblokir CORS. Silakan unduh file HTML ini (tombol hijau di editor panel) lalu buka langsung dari komputer Anda atau hosting di GitHub Pages agar sinkronisasi Google Sheets aktif sempurna!");
+        }
       }
     }
 
@@ -2115,14 +2129,14 @@ function doGet(e) {
           body: urlParams
         })
         .then(() => {
-          if (alertSuccess) alertSuccess.innerText = "🎉 Terima kasih! Penilaian Anda berhasil disimpan ke Google Sheets secara real-time.";
-          showToast("Komentar berhasil dikirim ke Google Sheets!", "success");
-          fetchSkmFromGoogle(); // Refresh data otomatis setelah submit
+          if (alertSuccess) alertSuccess.innerText = "🎉 Terima kasih! Penilaian Anda berhasil dikirim.";
+          showToast("Komentar berhasil dikirim!", "success");
+          fetchSkmFromGoogle(); // Segera ambil ulang data terbaru dari Google Sheets
           setTimeout(() => { if (alertSuccess) alertSuccess.classList.add('hidden'); }, 5000);
         })
         .catch(err => {
           console.error(err);
-          if (alertSuccess) alertSuccess.innerText = "⚠️ Terjadi kendala jaringan. Penilaian disimpan lokal di browser Anda.";
+          if (alertSuccess) alertSuccess.innerText = "⚠️ Terjadi kendala koneksi. Penilaian disimpan lokal di browser Anda.";
           setTimeout(() => { if (alertSuccess) alertSuccess.classList.add('hidden'); }, 5000);
         });
       } else {
