@@ -660,7 +660,10 @@
 
           <!-- Ulasan Masukan Terakhir -->
           <div class="space-y-3">
-            <h3 class="font-extrabold text-white text-xs md:text-sm font-outfit uppercase tracking-wider text-slate-400">Respon Kepuasan Terakhir</h3>
+            <h3 class="font-extrabold text-white text-xs md:text-sm font-outfit uppercase tracking-wider text-slate-400 flex justify-between items-center">
+              <span>Respon Kepuasan Terakhir</span>
+              <span class="text-[9px] text-slate-500 lowercase font-normal">(menampilkan 5 respon terbaru)</span>
+            </h3>
             <div id="skm-feed-container" class="space-y-3 max-h-[220px] overflow-y-auto pr-1 custom-scrollbar"></div>
           </div>
         </div>
@@ -2119,7 +2122,17 @@ function doGet(e) {
       const container = document.getElementById('skm-feed-container');
       if (!container) return;
       container.innerHTML = '';
-      SKM_RESPONSES.forEach(item => {
+      
+      // Membatasi tampilan hanya 5 respon terbaru di halaman demi estetika dan kecepatan render,
+      // namun perhitungan statistik tetap menggunakan total keseluruhan array SKM_RESPONSES
+      const recentResponses = SKM_RESPONSES.slice(0, 5);
+      
+      if (recentResponses.length === 0) {
+        container.innerHTML = `<p class="text-center text-slate-500 py-4 text-xs italic font-sans">Belum ada respon masukan.</p>`;
+        return;
+      }
+
+      recentResponses.forEach(item => {
         container.innerHTML += `
           <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl space-y-1.5 hover:border-slate-700 transition-all animate-fadeIn font-sans">
             <div class="flex justify-between items-start">
