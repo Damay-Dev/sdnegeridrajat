@@ -105,6 +105,7 @@
       </div>
     </div>
 
+    <!-- Desktop Navigation Menu -->
     <div class="hidden lg:block border-t border-slate-900/80 bg-slate-950/40 py-2.5 px-4 md:px-8">
       <div class="max-w-7xl mx-auto flex justify-start">
         <nav class="flex items-center gap-1.5 bg-slate-900/80 border border-slate-800/60 p-1.5 rounded-full text-xs font-bold shadow-2xl shrink-0">
@@ -156,6 +157,7 @@
       </div>
     </div>
 
+    <!-- Mobile Drawer Menu -->
     <div id="mobile-drawer" class="hidden lg:hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur-lg px-4 py-4 space-y-1 font-bold text-xs max-h-[80vh] overflow-y-auto custom-scrollbar">
       <button onclick="switchTab('beranda'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 flex items-center gap-2 font-sans"><i data-lucide="home" class="w-4 h-4 text-emerald-400"></i> Beranda</button>
       <button onclick="switchTab('profil'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 flex items-center gap-2 font-sans"><i data-lucide="user" class="w-4 h-4 text-emerald-400"></i> Profil &amp; Guru</button>
@@ -748,6 +750,7 @@
     </div>
   </footer>
 
+  <!-- KI DRAJAT VIRTUAL ASSISTANT & HELLO DRAJAT HUB -->
   <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
     
     <div id="kidrajat-hub-panel" class="hidden w-[320px] sm:w-[380px] bg-slate-950/95 backdrop-blur-xl border border-slate-800/80 rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col transition-all duration-300 transform scale-95 origin-bottom-right max-h-[520px]">
@@ -903,6 +906,7 @@
 
   <div id="toast-container" class="fixed top-24 right-4 z-[999] pointer-events-none flex flex-col gap-2 max-w-sm"></div>
 
+  <!-- MPLS RAMAH ANAK MODAL -->
   <div id="mpls-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fadeIn">
     <div class="bg-slate-900 border border-slate-800 rounded-[2.5rem] p-6 md:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar relative shadow-2xl space-y-6">
       <div class="flex justify-between items-start border-b border-slate-800 pb-4">
@@ -996,6 +1000,7 @@
     </div>
   </div>
 
+  <!-- ADMIN EDITOR DRAWER -->
   <div id="admin-drawer" class="fixed left-4 bottom-24 md:left-6 md:bottom-28 bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl p-6 w-[310px] sm:w-[500px] md:w-[700px] max-h-[80vh] overflow-y-auto space-y-4 text-xs custom-scrollbar z-50 font-sans hidden">
     <div class="flex justify-between items-center border-b border-slate-800 pb-2.5">
       <div>
@@ -1214,6 +1219,7 @@
   </div>
 
   <script>
+    /* STATE_DATA_START */
     let CONFIG = {
       "name": "SD NEGERI DRAJAT",
       "subName": "KEC. BAURENO KAB. BOJONEGORO",
@@ -1388,7 +1394,7 @@
         "title": "Bela Negara dan Pencegahan Perundungan & Kekerasan",
         "category": "Pembiasaan",
         "image": "https://lh3.googleusercontent.com/d/1WnKNhZCAm-idrDyOrWb56N8iq_gdIH60",
-        "desc": "Sosialisasi preventif berkala guna menjamin rasa aman jasmani dan psikologis seluruh murid."
+        "desc": "Sosialisasi preventif berkala, wawasan kebangsaan, dan penanaman semangat bela negara guna menjamin rasa aman jasmani dan psikologis seluruh murid."
       },
       {
         "id": 1783582502165,
@@ -1454,17 +1460,17 @@
       {
         "id": 1,
         "url": "https://lh3.googleusercontent.com/d/11e2F9jCujcNYB2-jk8Hfy2L6Qt_ODj9T",
-        "caption": "Penyambutan Hangat Murid Baru"
+        "caption": "Penyambutan Hangat Murid"
       },
       {
         "id": 2,
         "url": "https://lh3.googleusercontent.com/d/1_ggToLI1-r-q3KHSAFkGq912Bwr3zNeR",
         "caption": "Mengenal Ruang Kelas Inklusif"
-      }
+      },
       {
         "id": 3,
         "url": "https://lh3.googleusercontent.com/d/1c3-zaF6b5BdSsLp1eQSmkwxy0pqIFiTh",
-        "caption": "Pembukaan MPLS RAMAH"
+        "caption": "Pembukaan MPLS Ramah"
       }
     ];
 
@@ -1498,6 +1504,7 @@
         "date": "09 Juli 2026"
       }
     ];
+    /* STATE_DATA_END */
 
     let currentPassword = "drajat2026";
     let isUnlocked = false;
