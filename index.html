@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SD Negeri Drajat - Portal Resmi Cerdas Berkarakter</title>
   
-  <!-- Loading Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Loading Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800&family=Outfit:wght=400;600;700;800;900&display=swap" rel="stylesheet">
@@ -26,7 +23,6 @@
     }
   </script>
 
-  <!-- Loading Lucide Icons for premium visual depth -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
@@ -162,6 +158,7 @@
             </div>
           </div>
 
+          <button onclick="switchTab('galeri')" id="btn-nav-galeri" class="nav-item-btn px-4 py-2 rounded-full transition-all text-slate-300 hover:text-white hover:bg-slate-800 font-outfit">Galeri</button>
           <button onclick="switchTab('skm')" id="btn-nav-skm" class="nav-item-btn px-4 py-2 rounded-full transition-all text-slate-300 hover:text-white hover:bg-slate-800 font-outfit">Survei SKM</button>
           <button onclick="switchTab('kontak')" id="btn-nav-kontak" class="nav-item-btn px-4 py-2 rounded-full transition-all text-slate-300 hover:text-white hover:bg-slate-800 font-outfit">Kontak</button>
         </nav>
@@ -194,6 +191,7 @@
       </div>
 
       <div class="border-t border-slate-900 my-1 py-1">
+        <button onclick="switchTab('galeri'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 flex items-center gap-2 text-slate-300 font-sans"><i data-lucide="image" class="w-4 h-4 text-emerald-400"></i> Galeri Dokumentasi</button>
         <button onclick="switchTab('skm'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 flex items-center gap-2 text-emerald-400 font-sans"><i data-lucide="heart-handshake" class="w-4 h-4"></i> Simple SKM</button>
         <button onclick="switchTab('kontak'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 flex items-center gap-2 font-sans"><i data-lucide="phone" class="w-4 h-4 text-emerald-400"></i> Kontak</button>
       </div>
@@ -526,6 +524,33 @@
       <div id="services-view-list" class="space-y-6 font-sans"></div>
     </div>
 
+    <!-- SUB-TAB 9 (BARU): GALERI DOKUMENTASI -->
+    <div id="tab-galeri" class="tab-view hidden space-y-12 animate-fadeIn max-w-6xl mx-auto">
+      <div class="text-center space-y-2">
+        <span class="bg-slate-800 text-emerald-400 font-bold text-xs uppercase px-3 py-1 rounded-full border border-slate-700 font-outfit">JEJAK DIGITAL</span>
+        <h2 class="text-2xl md:text-4xl font-extrabold text-white font-outfit">Galeri &amp; Dokumentasi</h2>
+        <div class="w-20 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+      </div>
+
+      <!-- Seksi MPLS -->
+      <div class="space-y-4">
+        <h3 class="font-extrabold text-white text-lg md:text-xl border-l-4 border-amber-500 pl-3 font-outfit flex items-center gap-2">
+          <i data-lucide="shield-check" class="text-amber-400 w-5 h-5 md:w-6 md:h-6"></i> Acara MPLS Ramah Anak
+        </h3>
+        <p class="text-xs text-slate-400 pl-4 font-sans">Potret keceriaan masa transisi pengenalan lingkungan sekolah bagi murid baru.</p>
+        <div id="galeri-utama-mpls" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-2"></div>
+      </div>
+      
+      <!-- Seksi Kegiatan Lainnya -->
+      <div class="space-y-4 pt-8 border-t border-slate-800/60">
+         <h3 class="font-extrabold text-white text-lg md:text-xl border-l-4 border-emerald-500 pl-3 font-outfit flex items-center gap-2">
+          <i data-lucide="activity" class="text-emerald-400 w-5 h-5 md:w-6 md:h-6"></i> Kegiatan Akademik &amp; Ekstra
+        </h3>
+        <p class="text-xs text-slate-400 pl-4 font-sans">Dokumentasi aktivitas pembelajaran rutin, pembiasaan karakter, dan kepanduan Pramuka.</p>
+        <div id="galeri-utama-kegiatan" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-2"></div>
+      </div>
+    </div>
+
     <!-- SUB-TAB 6: SKM (Survei Kepuasan Masyarakat) -->
     <div id="tab-skm" class="tab-view space-y-8 animate-fadeIn hidden">
       <div class="text-center space-y-2">
@@ -853,28 +878,44 @@
         <div class="bg-emerald-500/5 p-3 rounded-2xl border border-emerald-500/20">
           <p class="text-[10px] text-emerald-400 font-bold flex gap-1.5 items-start leading-relaxed font-sans">
             <i data-lucide="shield-check" class="w-4 h-4 shrink-0 text-emerald-400 animate-pulse"></i>
-            Hello Drajat menghubungkan pesan aduan, kritik, saran, atau konsultasi Anda langsung ke nomor WhatsApp resmi sekolah secara transparan dan aman.
+            Halo! Silakan ajukan layanan Anda. Sistem akan meneruskan data ini secara aman ke pusat layanan (Email Sekolah). Admin kami akan segera menindaklanjuti melalui pesan WhatsApp ke nomor Anda.
           </p>
         </div>
 
         <form onsubmit="sendHelloMessage(event)" class="space-y-3 font-sans">
           <div class="space-y-1">
-            <label class="block text-slate-400 font-extrabold uppercase text-[9px] tracking-wider font-outfit">KATEGORI PELAYANAN</label>
-            <select id="hello-category" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white font-semibold focus:outline-none focus:border-emerald-500">
-              <option value="Sapa Admin / Konsultasi">👋 Sapa Admin / Tanya Info</option>
-              <option value="Laporan Pengaduan">📣 Laporan Pengaduan</option>
-              <option value="Saran Perbaikan">💡 Saran Perbaikan</option>
-              <option value="Kritik Konstruktif">✍️ Kritik Sekolah</option>
-            </select>
+            <label class="block text-slate-400 font-extrabold uppercase text-[9px] tracking-wider font-outfit">NAMA LENGKAP</label>
+            <input type="text" id="hello-name" required placeholder="Tuliskan nama Anda..." class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white focus:outline-none focus:border-emerald-500 placeholder-slate-600">
           </div>
 
           <div class="space-y-1">
-            <label class="block text-slate-400 font-extrabold uppercase text-[9px] tracking-wider font-outfit">ISI PESAN LAPORAN</label>
-            <textarea id="hello-message" rows="3" required placeholder="Tuliskan keluhan atau saran Anda secara rinci..." class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white focus:outline-none focus:border-emerald-500 placeholder-slate-600"></textarea>
+            <label class="block text-slate-400 font-extrabold uppercase text-[9px] tracking-wider font-outfit">NOMER WA AKTIF</label>
+            <input type="tel" id="hello-wa" required placeholder="Contoh: 08123456789" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white focus:outline-none focus:border-emerald-500 placeholder-slate-600">
+          </div>
+
+          <div class="space-y-1">
+            <label class="block text-slate-400 font-extrabold uppercase text-[9px] tracking-wider font-outfit">KATEGORI LAYANAN</label>
+            <select id="hello-category" onchange="updateHelloRequirements()" class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white font-semibold focus:outline-none focus:border-emerald-500">
+              <option value="" disabled selected>-- Pilih Layanan --</option>
+              <option value="SPMB (PPDB Online)">📋 SPMB (PPDB Online)</option>
+              <option value="Legalisir Dokumen">🗂️ Legalisir Dokumen</option>
+              <option value="Mutasi Murid">🔄 Mutasi Murid</option>
+              <option value="Konsultasi Lain / Info">💬 Konsultasi Lain / Info</option>
+            </select>
+          </div>
+
+          <!-- Wadah Persyaratan Dokumen Dinamis -->
+          <div id="hello-requirements-box" class="hidden mt-1 bg-slate-950 p-3 rounded-xl border border-slate-800 text-[10px] text-slate-300 font-sans leading-relaxed">
+            <!-- Diisi melalui JavaScript -->
+          </div>
+
+          <div class="space-y-1">
+            <label class="block text-slate-400 font-extrabold uppercase text-[9px] tracking-wider font-outfit">DETAIL / KETERANGAN</label>
+            <textarea id="hello-message" rows="2" required placeholder="Tuliskan keperluan detail Anda..." class="w-full bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-white focus:outline-none focus:border-emerald-500 placeholder-slate-600"></textarea>
           </div>
 
           <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-slate-950 font-black py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all text-xs font-outfit">
-            <i data-lucide="phone" class="w-4 h-4 text-slate-950"></i> Kirim Pesan ke WhatsApp Admin
+            <i data-lucide="send" class="w-4 h-4 text-slate-950"></i> Ajukan Layanan
           </button>
         </form>
       </div>
@@ -982,8 +1023,18 @@
           </div>
         </div>
 
+        <!-- Galeri Dokumentasi MPLS -->
+        <div class="mt-2 border-t border-slate-800/80 pt-4">
+          <h4 class="font-extrabold text-white text-xs flex items-center gap-2 font-outfit mb-3">
+            <i data-lucide="camera" class="w-4 h-4 text-emerald-400"></i> Dokumentasi MPLS Ramah
+          </h4>
+          <div id="mpls-gallery-container" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <!-- Galeri dirender oleh JS -->
+          </div>
+        </div>
+
         <!-- Petisi Digital Dukungan -->
-        <div class="bg-slate-950 p-4 rounded-2xl border border-amber-500/20 space-y-3">
+        <div class="bg-slate-950 p-4 rounded-2xl border border-amber-500/20 space-y-3 mt-4">
           <h4 class="font-bold text-white text-xs flex items-center justify-between text-amber-400 font-outfit">
             <span class="flex items-center gap-2"><i data-lucide="edit-3" class="w-4 h-4 text-amber-400"></i> Petisi Digital Wali Murid &amp; Alumni</span>
             <span class="bg-amber-500/20 text-amber-300 text-[10px] px-2 py-0.5 rounded-full font-black"><span id="pledge-count-display" class="font-outfit font-black">43</span> Pendukung</span>
@@ -1056,6 +1107,7 @@
         <button onclick="switchAdminTab('guru')" id="btn-atab-guru" class="atab-btn px-3 py-1.5 rounded-lg bg-slate-950 text-slate-300 font-bold shrink-0">👩‍🏫 Guru</button>
         <button onclick="switchAdminTab('fasilitas')" id="btn-atab-fasilitas" class="atab-btn px-3 py-1.5 rounded-lg bg-slate-950 text-slate-300 font-bold shrink-0">🏫 Fasilitas</button>
         <button onclick="switchAdminTab('kegiatan')" id="btn-atab-kegiatan" class="atab-btn px-3 py-1.5 rounded-lg bg-slate-950 text-slate-300 font-bold shrink-0">🏕️ Kegiatan</button>
+        <button onclick="switchAdminTab('mpls')" id="btn-atab-mpls" class="atab-btn px-3 py-1.5 rounded-lg bg-slate-950 text-slate-300 font-bold shrink-0">📸 MPLS</button>
         <button onclick="switchAdminTab('layanan')" id="btn-atab-layanan" class="atab-btn px-3 py-1.5 rounded-lg bg-slate-950 text-slate-300 font-bold shrink-0">📋 Layanan</button>
         <button onclick="switchAdminTab('berita')" id="btn-atab-berita" class="atab-btn px-3 py-1.5 rounded-lg bg-slate-950 text-slate-300 font-bold shrink-0">📰 Berita</button>
         <button onclick="switchAdminTab('mitra')" id="btn-atab-mitra" class="atab-btn px-3 py-1.5 rounded-lg bg-slate-950 text-slate-300 font-bold shrink-0">🤝 Mitra</button>
@@ -1214,6 +1266,18 @@ function doGet(e) {
         </div>
         <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1 pt-2 font-outfit">DAFTAR KEGIATAN AKTIF</h4>
         <div id="admin-gallery-list" class="space-y-1.5 max-h-48 overflow-y-auto custom-scrollbar"></div>
+      </div>
+
+      <!-- TAB-CONTENT 8 (BARU): MANAJEMEN MPLS -->
+      <div id="atab-content-mpls" class="admin-tab-view space-y-3 hidden">
+        <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1 font-outfit font-sans">TAMBAH FOTO DOKUMENTASI MPLS</h4>
+        <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-800 space-y-2">
+          <input id="add-mpls-caption" type="text" placeholder="Keterangan Foto..." class="w-full bg-slate-900 p-2 border border-slate-800 rounded text-white font-sans text-xs">
+          <input id="add-mpls-url" type="text" placeholder="URL Foto..." class="w-full bg-slate-900 p-2 border border-slate-800 rounded text-white font-sans text-xs">
+          <button type="button" onclick="addMplsPhotoDirect()" class="w-full bg-emerald-500 text-slate-950 font-black py-2 rounded font-outfit uppercase font-sans">📸 Tambahkan Foto</button>
+        </div>
+        <h4 class="font-extrabold text-white text-xs border-b border-slate-800 pb-1 pt-2 font-outfit font-sans">DAFTAR DOKUMENTASI</h4>
+        <div id="admin-mpls-list" class="space-y-1 max-h-36 overflow-y-auto custom-scrollbar font-sans"></div>
       </div>
 
       <!-- TAB-CONTENT 5: MANAJEMEN LAYANAN -->
@@ -1514,6 +1578,19 @@ function doGet(e) {
       }
     ];
 
+    let MPLS_GALLERY = [
+      {
+        "id": 1,
+        "url": "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=600",
+        "caption": "Penyambutan Hangat Murid Baru"
+      },
+      {
+        "id": 2,
+        "url": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=600",
+        "caption": "Mengenal Ruang Kelas Inklusif"
+      }
+    ];
+
     let SKM_RESPONSES = [
       {
         "id": 1783920873323,
@@ -1714,10 +1791,10 @@ function doGet(e) {
       const lServices = localStorage.getItem('sdn_drajat_services');
       const lNews = localStorage.getItem('sdn_drajat_news');
       const lMission = localStorage.getItem('sdn_drajat_mission');
+      const lMpls = localStorage.getItem('sdn_drajat_mpls_gallery');
       
       if (lConfig) {
         const parsedConfig = JSON.parse(lConfig);
-        // Memastikan URL Web App yang baru selalu menggantikan URL kosong pada memori simpanan browser
         if (!parsedConfig.googleScriptUrl || parsedConfig.googleScriptUrl === "" || parsedConfig.googleScriptUrl.includes("script.google.com/macros/s/AKfycbw9dXm")) {
           parsedConfig.googleScriptUrl = CONFIG.googleScriptUrl;
           localStorage.setItem('sdn_drajat_config', JSON.stringify(parsedConfig));
@@ -1730,7 +1807,6 @@ function doGet(e) {
       if (lFacilities) FACILITIES = JSON.parse(lFacilities);
       
       if (lGallery) {
-        // override to ensure updated scout gallery object is propagated if not matches
         const parsedGallery = JSON.parse(lGallery);
         const penggalangIdx = parsedGallery.findIndex(item => item.category === "Pramuka Penggalang");
         if (penggalangIdx !== -1) {
@@ -1743,6 +1819,7 @@ function doGet(e) {
       if (lServices) SERVICES = JSON.parse(lServices);
       if (lNews) NEWS = JSON.parse(lNews);
       if (lMission) MISSION = JSON.parse(lMission);
+      if (lMpls) MPLS_GALLERY = JSON.parse(lMpls);
 
       renderAllViews();
       updatePledgeUI(); 
@@ -1903,7 +1980,70 @@ function doGet(e) {
 
       renderSkmFeed();
       renderSkmPercentages();
+      renderMplsGalleryUI();
+      renderGaleriUtama();
       initBotMessages();
+    }
+
+    function renderMplsGalleryUI() {
+      const container = document.getElementById('mpls-gallery-container');
+      if (!container) return;
+      container.innerHTML = '';
+      if (MPLS_GALLERY.length === 0) {
+         container.innerHTML = '<p class="text-[10px] text-slate-500 col-span-full italic">Belum ada dokumentasi ditambahkan.</p>';
+         return;
+      }
+      MPLS_GALLERY.forEach(img => {
+         container.innerHTML += `
+           <div class="relative group rounded-xl overflow-hidden border border-slate-800 bg-slate-950 aspect-video shadow-md">
+             <img src="${img.url}" alt="${img.caption}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/600x400/0f172a/ffffff?text=MPLS'">
+             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent flex items-end p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <p class="text-[9px] text-white font-bold leading-tight line-clamp-2 bg-slate-950/80 px-2 py-1 rounded w-full font-sans">${img.caption}</p>
+             </div>
+           </div>
+         `;
+      });
+    }
+
+    function renderGaleriUtama() {
+      const containerMpls = document.getElementById('galeri-utama-mpls');
+      if (containerMpls) {
+        containerMpls.innerHTML = '';
+        if (MPLS_GALLERY.length === 0) {
+           containerMpls.innerHTML = '<p class="text-[11px] text-slate-500 col-span-full italic">Belum ada dokumentasi MPLS.</p>';
+        } else {
+          MPLS_GALLERY.forEach(img => {
+            containerMpls.innerHTML += `
+              <div class="relative group rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 aspect-[4/3] shadow-md">
+                <img src="${img.url}" alt="${img.caption}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onerror="this.src='https://placehold.co/600x400/0f172a/ffffff?text=MPLS'">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/40 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                   <p class="text-xs md:text-sm text-white font-bold leading-tight font-outfit drop-shadow-lg">${img.caption}</p>
+                </div>
+              </div>
+            `;
+          });
+        }
+      }
+
+      const containerKegiatan = document.getElementById('galeri-utama-kegiatan');
+      if (containerKegiatan) {
+        containerKegiatan.innerHTML = '';
+        if (GALLERY.length === 0) {
+           containerKegiatan.innerHTML = '<p class="text-[11px] text-slate-500 col-span-full italic">Belum ada dokumentasi Kegiatan.</p>';
+        } else {
+          GALLERY.forEach(item => {
+            containerKegiatan.innerHTML += `
+              <div class="relative group rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 aspect-[4/3] shadow-md">
+                <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onerror="this.src='https://placehold.co/600x440/1e293b/ffffff?text=Kegiatan'">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/40 to-transparent flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                   <span class="text-[9px] text-emerald-400 font-extrabold uppercase tracking-widest mb-1 font-outfit shadow-sm">${item.category}</span>
+                   <p class="text-xs md:text-sm text-white font-bold leading-tight font-outfit drop-shadow-lg">${item.title}</p>
+                </div>
+              </div>
+            `;
+          });
+        }
+      }
     }
 
     function switchTab(tabId, subTabId = '') {
@@ -2050,7 +2190,7 @@ function doGet(e) {
       }
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 6000); // Batas tunggu 6 detik
+        const timeoutId = setTimeout(() => controller.abort(), 6000); 
 
         const response = await fetch(`${CONFIG.googleScriptUrl}?action=getSkm`, {
           method: 'GET',
@@ -2075,7 +2215,6 @@ function doGet(e) {
         }
       } catch (err) {
         console.warn("Koneksi real-time dibatasi atau diblokir browser (CORS/Sandbox/Iframe).", err.message);
-        // Memberikan edukasi di log konsol jika origin terdeteksi sebagai null (sandbox preview)
         if (window.location.origin === "null" || window.location.href.includes("null") || window.location.origin.includes("sandbox")) {
           console.log("💡 TIPS PORTAL: Di dalam mode Preview editor ini, browser mengirimkan Origin 'null' sehingga Google memblokir CORS. Silakan unduh file HTML ini (tombol hijau di editor panel) lalu buka langsung dari komputer Anda atau hosting di GitHub Pages agar sinkronisasi Google Sheets aktif sempurna!");
         }
@@ -2141,8 +2280,6 @@ function doGet(e) {
       if (!container) return;
       container.innerHTML = '';
       
-      // LOGIKA BARU (BENAR): Menyalin data, membalik urutannya agar masukan terbaru di spreadsheet / local
-      // melompat ke urutan terdepan, baru mengambil 5 respon masukan teratas untuk dirender.
       const reversed = [...SKM_RESPONSES].reverse();
       const recentResponses = reversed.slice(0, 5);
       
@@ -2180,12 +2317,10 @@ function doGet(e) {
 
       let counts = { "Sangat Puas": 0, "Puas": 0, "Cukup Puas": 0, "Kurang Puas": 0 };
       SKM_RESPONSES.forEach(item => {
-        // Melakukan normalisasi teks (trim spasi, ignore kapitalisasi huruf) agar data dari Google Sheets terhitung dengan benar
         let r = item.rating ? item.rating.toString().trim() : "";
         if (counts[r] !== undefined) {
           counts[r]++;
         } else {
-          // Fallback toleransi untuk format teks bervariasi
           let rLower = r.toLowerCase();
           if (rLower === "sangat puas") counts["Sangat Puas"]++;
           else if (rLower === "puas") counts["Puas"]++;
@@ -2194,7 +2329,6 @@ function doGet(e) {
         }
       });
 
-      // Skor Kuantitatif (Sangat Puas = 4, Puas = 3, Cukup Puas = 2, Kurang Puas = 1)
       let weightedSum = (counts["Sangat Puas"] * 4) + (counts["Puas"] * 3) + (counts["Cukup Puas"] * 2) + (counts["Kurang Puas"] * 1);
       let indexScore = (weightedSum / (total * 4)) * 100;
       document.getElementById('skm-index-percentage').innerText = indexScore.toFixed(1) + "%";
@@ -2480,20 +2614,51 @@ function doGet(e) {
       await callKiDrajatAI(optionText);
     }
 
+    function updateHelloRequirements() {
+      const cat = document.getElementById('hello-category').value;
+      const box = document.getElementById('hello-requirements-box');
+      
+      let reqText = "";
+      if (cat === "SPMB (PPDB Online)") {
+        reqText = "<strong class='text-emerald-400 block mb-1 font-outfit uppercase tracking-wider'>Dokumen Disiapkan (Softfile/Foto):</strong><ul class='list-disc pl-4 space-y-0.5'><li>Scan Akta Kelahiran</li><li>Kartu Keluarga (KK)</li><li>KTP Orang Tua</li><li>Pas Foto Anak (Latar Merah/Biru)</li></ul>";
+      } else if (cat === "Legalisir Dokumen") {
+        reqText = "<strong class='text-amber-400 block mb-1 font-outfit uppercase tracking-wider'>Dokumen Disiapkan:</strong><ul class='list-disc pl-4 space-y-0.5'><li>Dokumen Asli (untuk verifikasi)</li><li>Fotokopi dokumen yang akan dilegalisir</li></ul>";
+      } else if (cat === "Mutasi Murid") {
+        reqText = "<strong class='text-blue-400 block mb-1 font-outfit uppercase tracking-wider'>Dokumen Disiapkan (Softfile/Scan):</strong><ul class='list-disc pl-4 space-y-0.5'><li>Surat Keterangan Pindah (Sekolah Asal)</li><li>Raport Asli</li><li>NISN Valid</li></ul>";
+      } else if (cat === "Konsultasi Lain / Info") {
+        reqText = "<strong class='text-slate-400 block mb-1 font-outfit uppercase tracking-wider'>Catatan:</strong><p>Tidak ada dokumen khusus yang diperlukan. Silakan jelaskan keperluan Anda pada kolom detail di bawah.</p>";
+      }
+      
+      if (reqText) {
+        box.innerHTML = reqText;
+        box.classList.remove('hidden');
+      } else {
+        box.classList.add('hidden');
+      }
+    }
+
     function sendHelloMessage(e) {
       e.preventDefault();
       const cat = document.getElementById('hello-category').value;
       const text = document.getElementById('hello-message').value;
+      const name = document.getElementById('hello-name').value;
+      const wa = document.getElementById('hello-wa').value;
 
-      if (!text.trim()) return;
+      if (!text.trim() || !name.trim() || !wa.trim()) return;
 
-      const formatted = `*HELLO DRAJAT - SD Negeri Drajat*\n----------------------------------------\n*Kategori:* ${cat}\n*Tujuan:* WhatsApp Admin Sekolah\n\n*Pesan / Aspirasi:*\n"${text}"\n\n----------------------------------------\n_Dikirim otomatis via Portal Hello Drajat_`;
-      const waUrl = `https://api.whatsapp.com/send?phone=${CONFIG.whatsappAduan}&text=${encodeURIComponent(formatted)}`;
-      window.open(waUrl, '_blank');
+      const subject = encodeURIComponent(`Layanan ${CONFIG.name}: ${cat} - ${name}`);
+      const body = encodeURIComponent(`*HELLO DRAJAT - Pusat Layanan*\n----------------------------------------\n*Kategori Layanan:* ${cat}\n*Nama Pemohon:* ${name}\n*No WhatsApp Aktif:* ${wa}\n\n*Detail Pesan:*\n"${text}"\n\n----------------------------------------\n_Mohon admin sekolah merespon/menindaklanjuti permintaan ini melalui nomor WhatsApp di atas._`);
       
+      const mailtoUrl = `mailto:${CONFIG.email}?subject=${subject}&body=${body}`;
+      window.location.href = mailtoUrl;
+      
+      document.getElementById('hello-name').value = '';
+      document.getElementById('hello-wa').value = '';
       document.getElementById('hello-message').value = '';
+      document.getElementById('hello-category').value = '';
+      updateHelloRequirements();
       toggleKiDrajatHub();
-      showToast("Membuka WhatsApp untuk mengirim laporan...", "info");
+      showToast("Aplikasi Email (Gmail/dll) akan terbuka. Silakan tekan 'Kirim' di aplikasi tersebut.", "info");
     }
 
     function showToast(message, type = "success") {
@@ -2584,6 +2749,7 @@ function doGet(e) {
         renderAdminServices();
         renderAdminNews();
         renderAdminPartners();
+        renderAdminMplsGallery();
 
         switchAdminTab('umum');
         showToast("Akses Kustomisasi Terbuka!", "success");
@@ -2853,6 +3019,50 @@ function doGet(e) {
       showToast("Kegiatan berhasil dihapus!", "success");
     }
 
+    // --- MANAJEMEN MPLS (BARU) ---
+    function renderAdminMplsGallery() {
+      const container = document.getElementById('admin-mpls-list');
+      if (!container) return;
+      container.innerHTML = '';
+      MPLS_GALLERY.forEach(g => {
+        container.innerHTML += `
+          <div class="flex justify-between items-center bg-slate-950 p-2 rounded-xl border border-slate-800 gap-2 font-sans">
+            <span class="truncate text-slate-300 font-semibold text-[11px]">${g.caption}</span>
+            <button onclick="deleteMplsPhotoDirect(${g.id})" class="text-rose-400 hover:text-rose-500 font-bold shrink-0 text-[10px]">Hapus</button>
+          </div>
+        `;
+      });
+    }
+
+    function addMplsPhotoDirect() {
+      const caption = document.getElementById('add-mpls-caption').value;
+      const url = document.getElementById('add-mpls-url').value;
+
+      if (!caption.trim() || !url.trim()) {
+        showToast("Keterangan dan URL gambar wajib diisi!", "error");
+        return;
+      }
+
+      const newPhoto = { id: Date.now(), caption: caption, url: url };
+      MPLS_GALLERY.push(newPhoto);
+      localStorage.setItem('sdn_drajat_mpls_gallery', JSON.stringify(MPLS_GALLERY));
+
+      document.getElementById('add-mpls-caption').value = '';
+      document.getElementById('add-mpls-url').value = '';
+
+      renderAdminMplsGallery();
+      renderAllViews();
+      showToast("Foto MPLS berhasil ditambahkan!", "success");
+    }
+
+    function deleteMplsPhotoDirect(id) {
+      MPLS_GALLERY = MPLS_GALLERY.filter(g => g.id !== id);
+      localStorage.setItem('sdn_drajat_mpls_gallery', JSON.stringify(MPLS_GALLERY));
+      renderAdminMplsGallery();
+      renderAllViews();
+      showToast("Foto MPLS berhasil dihapus!", "success");
+    }
+
     // --- MANAJEMEN LAYANAN ---
     function renderAdminServices() {
       const container = document.getElementById('admin-services-list');
@@ -3049,7 +3259,6 @@ function doGet(e) {
     function generateCleanHTMLExport() {
       const cloneDoc = document.documentElement.cloneNode(true);
       
-      // 1. Membersihkan atribut sampah yang dimasukkan oleh ekstensi browser (Grammarly, Dark Reader, dll)
       const attributesToRemove = [
         'data-gr-ext-installed', 
         'gr-ext-disabled', 
@@ -3057,7 +3266,7 @@ function doGet(e) {
         'data-gr-annotator-installed', 
         'cz-shortcut-listen', 
         'darkreader',
-        'class' // Hapus class kustom yang mungkin disuntikkan di tag html
+        'class'
       ];
       attributesToRemove.forEach(attr => {
         if (cloneDoc.hasAttribute(attr)) cloneDoc.removeAttribute(attr);
@@ -3071,24 +3280,20 @@ function doGet(e) {
         cloneBody.style.overflow = '';
       }
 
-      // 2. Membersihkan wadah notifikasi Toast yang mungkin sedang melayang saat mengklik tombol unduh
       const toastCont = cloneDoc.querySelector('#toast-container');
       if (toastCont) toastCont.innerHTML = '';
 
-      // 3. RESTORASI IKON LUCIDE: Mengembalikan tag SVG ke tag <i> asli agar tidak terduplikasi atau rusak saat dirender di GitHub
       const activeIcons = cloneDoc.querySelectorAll('[data-lucide]');
       activeIcons.forEach(icon => {
         const iconName = icon.getAttribute('data-lucide');
         const replacement = document.createElement('i');
         replacement.setAttribute('data-lucide', iconName);
         if (icon.hasAttribute('class')) {
-          // Salin class bawaan yang mengatur ukuran atau warna ikon
           replacement.setAttribute('class', icon.getAttribute('class'));
         }
         icon.parentNode.replaceChild(replacement, icon);
       });
 
-      // 4. Memastikan semua script eksternal yang diizinkan tetap aman, membuang script ekstensi tak dikenal
       const allowedScriptSrcs = [
         'cdn.tailwindcss.com',
         'unpkg.com/lucide'
@@ -3104,8 +3309,7 @@ function doGet(e) {
         }
       });
 
-      // 5. Mengembalikan struktur menu ke tampilan Beranda secara default agar saat dibuka pertama kali tidak langsung membuka tab lain
-      const tabs = ['beranda', 'profil', 'fasilitas', 'pengembangan', 'layanan', 'skm', 'kontak', 'informasi'];
+      const tabs = ['beranda', 'profil', 'fasilitas', 'pengembangan', 'layanan', 'skm', 'kontak', 'informasi', 'galeri'];
       tabs.forEach(tab => {
         const tabEl = cloneDoc.querySelector('#tab-' + tab);
         if (tabEl) {
@@ -3129,7 +3333,6 @@ function doGet(e) {
         }
       });
 
-      // 6. Menyembunyikan seluruh panel laci kustomisasi (CMS), drawer seluler, modal, and asisten chatbot
       const elementsToHide = [
         '#admin-drawer', 
         '#admin-fields', 
@@ -3145,14 +3348,12 @@ function doGet(e) {
         }
       });
 
-      // Mengembalikan halaman kunci sandi admin ke keadaan terkunci semula
       const adminLock = cloneDoc.querySelector('#admin-lock-screen');
       if (adminLock) adminLock.classList.remove('hidden');
 
       const successAlert = cloneDoc.querySelector('#skm-success-alert');
       if (successAlert) successAlert.classList.add('hidden');
 
-      // Mengosongkan isian form di dalam panel admin kloningan agar tidak membocorkan password atau draft teks sementara
       const adminInputs = cloneDoc.querySelectorAll('#admin-drawer input, #admin-drawer textarea');
       adminInputs.forEach(input => {
         if (input.id !== 'admin-pw') {
@@ -3160,7 +3361,6 @@ function doGet(e) {
         }
       });
 
-      // 7. Menyinkronkan variabel DOM dengan parameter konfigurasi dinamis terbaru
       if (cloneDoc.querySelector('#top-announcement')) cloneDoc.querySelector('#top-announcement').innerText = CONFIG.announcement;
       if (cloneDoc.querySelector('#school-title-name')) cloneDoc.querySelector('#school-title-name').innerText = CONFIG.name;
       if (cloneDoc.querySelector('#school-title-sub')) cloneDoc.querySelector('#school-title-sub').innerText = CONFIG.subName;
@@ -3177,11 +3377,9 @@ function doGet(e) {
         heroBgDiv.style.backgroundImage = `url('${CONFIG.heroBgUrl}')`;
       }
 
-      // 8. SENSOR API KEY GEMINI: Menjamin keamanan kunci API Gemini agar tidak ikut ter-upload secara publik ke GitHub Pages
       const secureConfig = { ...CONFIG };
       secureConfig.geminiApiKey = ""; 
 
-      // 9. Memasukkan seluruh data state (database lokal) terupdate ke dalam tag komentar script STATE_DATA
       const allScripts = cloneDoc.querySelectorAll('script');
       let isStateReplaced = false;
       allScripts.forEach(s => {
@@ -3203,6 +3401,8 @@ function doGet(e) {
     let SERVICES = ${JSON.stringify(SERVICES, null, 2)};
 
     let NEWS = ${JSON.stringify(NEWS, null, 2)};
+
+    let MPLS_GALLERY = ${JSON.stringify(MPLS_GALLERY, null, 2)};
 
     let SKM_RESPONSES = ${JSON.stringify(SKM_RESPONSES, null, 2)};
     /* STATE_DATA_END */`;
